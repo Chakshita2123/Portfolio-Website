@@ -10,13 +10,13 @@ export default function AnimatedBackground() {
         <div className={styles.backgroundWrapper}>
             {/* Primary ambient gradient layer */}
             <div className={styles.gradientOrb1}></div>
-            
+
             {/* Secondary gradient layer */}
             <div className={styles.gradientOrb2}></div>
-            
+
             {/* Tertiary soft glow */}
             <div className={styles.gradientOrb3}></div>
-            
+
             {/* Subtle noise overlay for texture */}
             <div className={styles.noiseOverlay}></div>
         </div>

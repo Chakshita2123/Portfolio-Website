@@ -7,7 +7,7 @@ import styles from './ThemeToggle.module.css';
  * Persists theme choice to localStorage
  */
 export default function ThemeToggle() {
-    const [theme, setTheme] = useState('dark');
+    const [theme, setTheme] = useState('light');
     const [mounted, setMounted] = useState(false);
 
     // On mount, check localStorage and system preference
@@ -18,8 +18,8 @@ export default function ThemeToggle() {
             setTheme(savedTheme);
             document.documentElement.setAttribute('data-theme', savedTheme);
         } else {
-            // Default to dark theme
-            document.documentElement.setAttribute('data-theme', 'dark');
+            // Default to light theme
+            document.documentElement.setAttribute('data-theme', 'light');
         }
     }, []);
 
