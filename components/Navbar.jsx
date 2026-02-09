@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import styles from './Navbar.module.css';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   return (
@@ -21,11 +22,15 @@ export default function Navbar() {
           <li><Link href="/contact" className={styles.navLink}>Contact</Link></li>
         </ul>
 
-        {/* CTA Button - Links to Ask AI page */}
-        <Link href="/ask-ai" className={`btn btn-primary ${styles.navCta}`}>
-          Ask AI <span className={styles.ctaEmoji}>🤖</span>
-        </Link>
+        {/* Right side: Theme Toggle + CTA */}
+        <div className={styles.navActions}>
+          <ThemeToggle />
+          <Link href="/ask-ai" className={`btn btn-primary ${styles.navCta}`}>
+            Ask AI <span className={styles.ctaEmoji}>🤖</span>
+          </Link>
+        </div>
       </div>
     </nav>
   );
 }
+

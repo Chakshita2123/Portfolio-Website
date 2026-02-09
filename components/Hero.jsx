@@ -1,10 +1,14 @@
 'use client';
 import Link from 'next/link';
 import styles from './Hero.module.css';
+import AnimatedBackground from './AnimatedBackground';
 
 export default function Hero() {
     return (
         <section id="home" className={styles.hero}>
+            {/* Living animated background */}
+            <AnimatedBackground />
+
             <div className={`container ${styles.heroContainer}`}>
                 {/* Left Column - Content */}
                 <div className={styles.heroContent}>
@@ -82,9 +86,7 @@ export default function Hero() {
             <div className={styles.scrollHint}>
                 <span className={styles.scrollHintText}>Scroll to explore how this portfolio is designed to think.</span>
             </div>
-
-            {/* Background Elements */}
-            <div className={styles.bgGradient}></div>
         </section>
     );
 }
+

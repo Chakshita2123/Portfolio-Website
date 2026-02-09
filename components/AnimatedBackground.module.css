@@ -1,0 +1,163 @@
+/* =====================================================
+   ANIMATED BACKGROUND - Living Gradient System
+   Premium, calm, continuous motion
+   ===================================================== */
+
+.backgroundWrapper {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Primary gradient orb - Large, slow-moving */
+.gradientOrb1 {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(ellipse at center,
+            rgba(99, 102, 241, 0.15) 0%,
+            rgba(139, 92, 246, 0.08) 40%,
+            transparent 70%);
+    filter: blur(60px);
+    animation: floatOrb1 15s ease-in-out infinite;
+}
+
+/* Secondary gradient orb - Mid-size, different rhythm */
+.gradientOrb2 {
+    position: absolute;
+    bottom: -30%;
+    left: -20%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(ellipse at center,
+            rgba(168, 85, 247, 0.12) 0%,
+            rgba(139, 92, 246, 0.05) 50%,
+            transparent 70%);
+    filter: blur(80px);
+    animation: floatOrb2 20s ease-in-out infinite;
+}
+
+/* Tertiary glow - Subtle accent */
+.gradientOrb3 {
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    width: 50%;
+    height: 50%;
+    background: radial-gradient(circle at center,
+            rgba(99, 102, 241, 0.08) 0%,
+            transparent 60%);
+    filter: blur(100px);
+    animation: floatOrb3 12s ease-in-out infinite;
+}
+
+/* Subtle noise texture for depth */
+.noiseOverlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+/* ==================== ANIMATIONS ==================== */
+/* Slow, organic floating motion */
+
+@keyframes floatOrb1 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    25% {
+        transform: translate(-5%, 8%) scale(1.05);
+    }
+
+    50% {
+        transform: translate(3%, 15%) scale(0.95);
+    }
+
+    75% {
+        transform: translate(-8%, 5%) scale(1.02);
+    }
+}
+
+@keyframes floatOrb2 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(10%, -8%) scale(1.08);
+    }
+
+    66% {
+        transform: translate(-5%, -15%) scale(0.92);
+    }
+}
+
+@keyframes floatOrb3 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translate(10%, -10%) rotate(180deg);
+        opacity: 1;
+    }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .gradientOrb1 {
+        width: 100%;
+        height: 60%;
+        top: -10%;
+        right: -20%;
+    }
+
+    .gradientOrb2 {
+        width: 100%;
+        height: 60%;
+    }
+
+    .gradientOrb3 {
+        width: 80%;
+        height: 40%;
+    }
+}
+
+/* ==================== LIGHT THEME ==================== */
+[data-theme='light'] .gradientOrb1 {
+    background: radial-gradient(ellipse at center,
+            rgba(99, 102, 241, 0.12) 0%,
+            rgba(109, 40, 217, 0.06) 40%,
+            transparent 70%);
+}
+
+[data-theme='light'] .gradientOrb2 {
+    background: radial-gradient(ellipse at center,
+            rgba(139, 92, 246, 0.1) 0%,
+            rgba(109, 40, 217, 0.04) 50%,
+            transparent 70%);
+}
+
+[data-theme='light'] .gradientOrb3 {
+    background: radial-gradient(circle at center,
+            rgba(99, 102, 241, 0.06) 0%,
+            transparent 60%);
+}
+
+[data-theme='light'] .noiseOverlay {
+    opacity: 0.02;
+}

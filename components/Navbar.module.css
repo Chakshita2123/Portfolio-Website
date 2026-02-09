@@ -4,11 +4,12 @@
     left: 0;
     right: 0;
     height: var(--navbar-height);
-    background: rgba(250, 251, 252, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-light);
+    background: var(--navbar-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--navbar-border);
     z-index: 1000;
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .navContainer {
@@ -65,6 +66,13 @@
     font-size: 1.1em;
 }
 
+/* Actions container for toggle + CTA */
+.navActions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .navLinks {
@@ -73,5 +81,14 @@
 
     .logo {
         font-size: var(--font-size-lg);
+    }
+
+    .navActions {
+        gap: var(--spacing-sm);
+    }
+
+    .navCta {
+        padding: var(--spacing-xs) var(--spacing-md);
+        font-size: var(--font-size-xs);
     }
 }
