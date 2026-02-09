@@ -9,6 +9,7 @@ import AskAIPreview from '@/components/AskAIPreview';
 import ContactCTA from '@/components/ContactCTA';
 import Footer from '@/components/Footer';
 import WelcomeIntro from '@/components/WelcomeIntro';
+import ScrollReveal from '@/components/ScrollReveal';
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
@@ -16,9 +17,7 @@ export default function Home() {
 
   const handleIntroComplete = () => {
     setShowIntro(false);
-    // Scroll to top when homepage loads
     window.scrollTo(0, 0);
-    // Small delay to ensure smooth transition
     setTimeout(() => setContentVisible(true), 50);
   };
 
@@ -33,11 +32,26 @@ export default function Home() {
         <Navbar />
         <main>
           <Hero />
-          <AboutPreview />
-          <SkillsSnapshot />
-          <FeaturedProjects />
-          <AskAIPreview />
-          <ContactCTA />
+
+          <ScrollReveal>
+            <AboutPreview />
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <SkillsSnapshot />
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <FeaturedProjects />
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <AskAIPreview />
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <ContactCTA />
+          </ScrollReveal>
         </main>
         <Footer />
       </div>

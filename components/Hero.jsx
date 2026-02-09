@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import styles from './Hero.module.css';
 import AnimatedBackground from './AnimatedBackground';
+import OrbitSystem from './OrbitSystem';
 
 export default function Hero() {
     return (
@@ -57,11 +58,8 @@ export default function Hero() {
                 <div className={`${styles.heroVisual} ${styles.animateIn} ${styles.delay2}`}>
                     <div className={styles.visualContainer}>
                         {/* Abstract AI Visual */}
-                        <div className={styles.orbContainer}>
-                            <div className={styles.orb}></div>
-                            <div className={styles.orbRing}></div>
-                            <div className={styles.orbRing2}></div>
-                        </div>
+                        {/* 3D Orbit System */}
+                        <OrbitSystem />
 
                         {/* Floating Cards */}
                         <div className={`${styles.floatingCard} ${styles.card1}`}>

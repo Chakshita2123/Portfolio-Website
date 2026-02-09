@@ -85,59 +85,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    perspective: 1000px;
+    /* Enable 3D space for children */
 }
 
 .visualContainer {
     position: relative;
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    /* Increased for OrbitSystem */
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    /* Maintain 3D for children */
 }
 
-/* Orb */
-.orbContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.orb {
-    width: 200px;
-    height: 200px;
-    background: var(--accent-gradient);
-    border-radius: 50%;
-    filter: blur(1px);
-    box-shadow: 0 0 60px rgba(139, 92, 246, 0.4), 0 0 120px rgba(99, 102, 241, 0.2);
-    animation: pulse-glow 4s ease-in-out infinite;
-}
-
-.orbRing {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 280px;
-    height: 280px;
-    border: 2px solid rgba(139, 92, 246, 0.35);
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
-    animation: float 6s ease-in-out infinite;
-}
-
-.orbRing2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 350px;
-    height: 350px;
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    border-radius: 50%;
-    box-shadow: 0 0 30px rgba(139, 92, 246, 0.1);
-    animation: float 8s ease-in-out infinite reverse;
-}
-
-/* Floating Cards */
+/* Floating Cards - Now with 3D elevation */
 .floatingCard {
     position: absolute;
     display: flex;
@@ -151,7 +115,18 @@
     font-size: var(--font-size-sm);
     font-weight: 500;
     color: var(--text-primary);
-    animation: float 5s ease-in-out infinite;
+    transform: translateZ(20px);
+    /* Lift off surface */
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.floatingCard:hover {
+    transform: translateZ(40px) scale(1.05);
+    /* Extra lift on hover */
+    box-shadow: var(--shadow-xl), 0 0 20px rgba(14, 165, 233, 0.2);
+    border-color: var(--primary);
+    z-index: 20;
 }
 
 .cardIcon {
@@ -159,21 +134,57 @@
 }
 
 .card1 {
-    top: 10%;
-    right: 0;
-    animation-delay: 0s;
+    top: 5%;
+    right: 5%;
+    animation: floatCard1 6s ease-in-out infinite;
 }
 
 .card2 {
-    bottom: 30%;
+    bottom: 25%;
     left: 0;
-    animation-delay: 1s;
+    animation: floatCard2 7s ease-in-out infinite;
 }
 
 .card3 {
-    bottom: 10%;
-    right: 10%;
-    animation-delay: 2s;
+    bottom: 5%;
+    right: 15%;
+    animation: floatCard3 8s ease-in-out infinite;
+}
+
+@keyframes floatCard1 {
+
+    0%,
+    100% {
+        transform: translateZ(20px) translateY(0);
+    }
+
+    50% {
+        transform: translateZ(20px) translateY(-10px);
+    }
+}
+
+@keyframes floatCard2 {
+
+    0%,
+    100% {
+        transform: translateZ(30px) translateY(0);
+    }
+
+    50% {
+        transform: translateZ(30px) translateY(-15px);
+    }
+}
+
+@keyframes floatCard3 {
+
+    0%,
+    100% {
+        transform: translateZ(25px) translateY(0);
+    }
+
+    50% {
+        transform: translateZ(25px) translateY(-12px);
+    }
 }
 
 /* Background - Now handled by AnimatedBackground component */

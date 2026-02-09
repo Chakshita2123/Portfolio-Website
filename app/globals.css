@@ -6,44 +6,55 @@
 /* Google Fonts - Inter */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* ==================== CSS VARIABLES ==================== */
+/* ==================== CSS VARIABLES (DARK CINEMATIC) ==================== */
 :root {
-  /* Colors - Premium Dark Mode (Default) */
-  --bg-primary: #08080c;
-  --bg-secondary: #0d0d14;
-  --bg-gradient: linear-gradient(180deg, #08080c 0%, #0d0d14 100%);
-  --surface: #12121a;
-  --surface-elevated: #1a1a24;
+  /* Colors - Deepest Cinematic Dark Mode */
+  --bg-primary: #020617;
+  /* Deepest Slate Black */
+  --bg-secondary: #0f172a;
+  /* Slate 900 */
+  --bg-gradient: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+  --surface: #0f172a;
+  --surface-elevated: #1e293b;
 
-  /* Brand Colors - Electric Violet/Indigo */
-  --primary: #8b5cf6;
-  --primary-hover: #a78bfa;
-  --primary-dark: #6d28d9;
-  --primary-light: rgba(139, 92, 246, 0.15);
-  --accent-gradient: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
-  --accent-gradient-hover: linear-gradient(135deg, #818cf8, #a78bfa, #c084fc);
-  --accent-gradient-soft: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.12));
+  /* Brand Colors - Teal / Cyan (Cinematic Glow) */
+  --primary: #0ea5e9;
+  /* Sky Blue / Cyan */
+  --primary-hover: #06b6d4;
+  /* Teal */
+  --primary-dark: #0369a1;
+  --primary-light: rgba(14, 165, 233, 0.15);
+
+  /* Creative Accents */
+  --accent-secondary: #3b82f6;
+  /* Royal Blue */
+
+  --accent-gradient: linear-gradient(135deg, #06b6d4, #0ea5e9, #3b82f6);
+  --accent-gradient-hover: linear-gradient(135deg, #0891b2, #0284c7, #2563eb);
+  --accent-gradient-soft: linear-gradient(135deg, rgba(6, 182, 212, 0.12), rgba(14, 165, 233, 0.12));
 
   /* Text Colors - High Contrast on Dark */
-  --text-primary: #f0f0f5;
-  --text-secondary: #a1a1aa;
-  --text-tertiary: #71717a;
-  --text-inverse: #08080c;
+  --text-primary: #f8fafc;
+  /* Cool White */
+  --text-secondary: #94a3b8;
+  /* Slate Gray */
+  --text-tertiary: #64748b;
+  --text-inverse: #020617;
 
-  /* Border & Shadow - Electric Glow */
-  --border-light: rgba(139, 92, 246, 0.15);
-  --border-medium: rgba(139, 92, 246, 0.25);
+  /* Border & Shadow - Cyan Glow */
+  --border-light: rgba(14, 165, 233, 0.15);
+  --border-medium: rgba(14, 165, 233, 0.25);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.5), 0 4px 8px -2px rgba(0, 0, 0, 0.3);
   --shadow-xl: 0 24px 48px -8px rgba(0, 0, 0, 0.6), 0 12px 24px -4px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.35);
-  --shadow-glow-sm: 0 0 20px rgba(139, 92, 246, 0.2);
-  --shadow-glow-lg: 0 0 60px rgba(139, 92, 246, 0.4);
+  --shadow-glow: 0 0 40px rgba(14, 165, 233, 0.35);
+  --shadow-glow-sm: 0 0 20px rgba(14, 165, 233, 0.2);
+  --shadow-glow-lg: 0 0 60px rgba(14, 165, 233, 0.4);
 
   /* Navbar background for dark mode */
-  --navbar-bg: rgba(8, 8, 12, 0.8);
-  --navbar-border: rgba(139, 92, 246, 0.1);
+  --navbar-bg: rgba(2, 6, 23, 0.85);
+  --navbar-border: rgba(14, 165, 233, 0.1);
 
   /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -86,45 +97,60 @@
   --navbar-height: 72px;
 }
 
-/* ==================== LIGHT THEME ==================== */
+/* ==================== LIGHT THEME (CREATIVE CINEMATIC & DARKER) ==================== */
 [data-theme='light'] {
-  /* Colors - Premium Light Mode */
-  --bg-primary: #f8f9fc;
-  --bg-secondary: #eef0f5;
-  --bg-gradient: linear-gradient(180deg, #f8f9fc 0%, #eef0f5 100%);
-  --surface: #ffffff;
+  /* Colors - Darker Stone / Mist */
+  --bg-primary: #d6d3d1;
+  /* Stone 300 - Visibly darker than before */
+  --bg-secondary: #e7e5e4;
+  /* Stone 200 - Lighter contrast */
+  --bg-gradient: linear-gradient(180deg, #d6d3d1 0%, #e7e5e4 100%);
+  --surface: #f5f5f4;
+  /* Stone 50 */
   --surface-elevated: #ffffff;
 
-  /* Brand Colors - Deeper for light mode */
-  --primary: #6d28d9;
-  --primary-hover: #5b21b6;
-  --primary-dark: #4c1d95;
-  --primary-light: rgba(109, 40, 217, 0.1);
-  --accent-gradient: linear-gradient(135deg, #6366f1, #7c3aed, #8b5cf6);
-  --accent-gradient-hover: linear-gradient(135deg, #4f46e5, #6d28d9, #7c3aed);
-  --accent-gradient-soft: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+  /* Brand Colors - Multi-Tone Aquatic Palette */
+  --primary: #0ea5e9;
+  /* Electric Cyan (Core Energy) */
+  --primary-hover: #0284c7;
+  /* Deep Sky */
+  --primary-dark: #0369a1;
+  --primary-light: rgba(14, 165, 233, 0.12);
 
-  /* Text Colors - High Contrast on Light */
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a4a68;
-  --text-tertiary: #6b6b8a;
+  /* Secondary Accent - Deep Ocean for Contrast */
+  --accent-secondary: #3b82f6;
+  /* Royal Blue */
+
+  /* Richer Gradients */
+  --accent-gradient: linear-gradient(135deg, #0ea5e9, #3b82f6, #6366f1);
+  --accent-gradient-hover: linear-gradient(135deg, #0284c7, #2563eb, #4f46e5);
+  --accent-gradient-soft: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(59, 130, 246, 0.1));
+
+  /* Text Colors - Deepest Charcoal */
+  --text-primary: #0c0a09;
+  /* Stone 950 */
+  --text-secondary: #44403c;
+  /* Stone 700 */
+  --text-tertiary: #57534e;
   --text-inverse: #ffffff;
 
-  /* Border & Shadow - Subtle */
-  --border-light: rgba(109, 40, 217, 0.12);
-  --border-medium: rgba(109, 40, 217, 0.2);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 24px 48px -8px rgba(0, 0, 0, 0.12), 0 12px 24px -4px rgba(0, 0, 0, 0.06);
-  --shadow-glow: 0 0 40px rgba(109, 40, 217, 0.15);
-  --shadow-glow-sm: 0 0 20px rgba(109, 40, 217, 0.1);
-  --shadow-glow-lg: 0 0 60px rgba(109, 40, 217, 0.2);
+  /* Border & Shadow - Sophisticated Depth */
+  --border-light: rgba(59, 130, 246, 0.2);
+  --border-medium: rgba(59, 130, 246, 0.3);
+  --shadow-sm: 0 2px 4px rgba(12, 10, 9, 0.08);
+  --shadow-md: 0 6px 12px -2px rgba(12, 10, 9, 0.1), 0 3px 6px -1px rgba(12, 10, 9, 0.06);
+  --shadow-lg: 0 12px 24px -4px rgba(59, 130, 246, 0.12), 0 4px 8px -2px rgba(12, 10, 9, 0.06);
+  --shadow-xl: 0 24px 48px -8px rgba(59, 130, 246, 0.18), 0 12px 24px -4px rgba(12, 10, 9, 0.08);
+  --shadow-glow: 0 0 30px rgba(14, 165, 233, 0.25);
+  --shadow-glow-sm: 0 0 15px rgba(14, 165, 233, 0.2);
+  --shadow-glow-lg: 0 0 50px rgba(59, 130, 246, 0.3);
 
-  /* Navbar background for light mode */
-  --navbar-bg: rgba(248, 249, 252, 0.85);
-  --navbar-border: rgba(109, 40, 217, 0.08);
+  /* Navbar background - Slightly cooler stone */
+  --navbar-bg: rgba(214, 211, 209, 0.85);
+  /* Stone 300 */
+  --navbar-border: rgba(59, 130, 246, 0.15);
 }
+
 
 /* ==================== RESET & BASE ==================== */
 *,
@@ -149,6 +175,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ::selection for creative pop */
+::selection {
+  background: rgba(14, 165, 233, 0.2);
+  color: var(--primary-dark);
 }
 
 a {
@@ -186,8 +218,11 @@ img {
   padding: 0 var(--spacing-xl);
 }
 
+/* Section - 3D Stage */
 .section {
   padding: var(--spacing-4xl) 0;
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
 /* Section Label - Small, subtle category label */
@@ -276,25 +311,31 @@ img {
   background: var(--primary-light);
 }
 
-/* Cards - Consistent padding and calm interactions */
+/* Cards - Cinematic Glassmorphism & 3D Lift */
 .card {
   background: var(--surface);
   border: 1.5px solid var(--border-light);
   border-radius: var(--radius-xl);
   padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-lg);
-  transition: all 0.4s var(--ease-smooth);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Bouncy 3D */
   box-shadow: var(--shadow-sm);
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0) rotateY(0) translateZ(0);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .card:hover {
-  box-shadow: var(--shadow-md), 0 0 20px rgba(139, 92, 246, 0.1);
-  transform: translateY(-4px);
-  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: var(--shadow-xl), 0 0 30px rgba(14, 165, 233, 0.15);
+  border-color: rgba(14, 165, 233, 0.4);
+  transform: perspective(1000px) rotateX(1deg) translateZ(5px);
+  /* Genteel lift */
 }
 
 .card-ai {
-  background: linear-gradient(135deg, rgba(80, 70, 229, 0.06), rgba(124, 58, 237, 0.06));
-  border: 1.5px solid rgba(80, 70, 229, 0.2);
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.06), rgba(59, 130, 246, 0.06));
+  border: 1.5px solid rgba(14, 165, 233, 0.2);
 }
 
 /* AI Indicator Badge */
@@ -308,7 +349,7 @@ img {
   color: var(--primary);
   background: var(--primary-light);
   border-radius: var(--radius-full);
-  border: 1px solid rgba(80, 70, 229, 0.15);
+  border: 1px solid rgba(14, 165, 233, 0.15);
 }
 
 .ai-badge::before {
@@ -331,7 +372,7 @@ img {
 .tag:hover {
   background: var(--primary-light);
   color: var(--primary);
-  border-color: rgba(80, 70, 229, 0.3);
+  border-color: rgba(14, 165, 233, 0.3);
 }
 
 /* ==================== ANIMATIONS ==================== */
@@ -358,11 +399,11 @@ img {
 
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(80, 70, 229, 0.15);
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.15);
   }
 
   50% {
-    box-shadow: 0 0 40px rgba(80, 70, 229, 0.25);
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.25);
   }
 }
 

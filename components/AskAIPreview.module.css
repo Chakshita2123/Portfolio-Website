@@ -250,7 +250,7 @@
 
 .input:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .input:disabled {
@@ -308,7 +308,7 @@
     left: -30px;
     width: 100px;
     height: 100px;
-    background: rgba(139, 92, 246, 0.1);
+    background: rgba(59, 130, 246, 0.1);
     border-radius: 50%;
     z-index: -1;
     filter: blur(30px);
