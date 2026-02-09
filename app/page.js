@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import AboutPreview from '@/components/AboutPreview';
@@ -15,7 +15,19 @@ export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
   const [contentVisible, setContentVisible] = useState(false);
 
+  useEffect(() => {
+    // Check if intro has already been shown in this session
+    // This prevents re-running the intro when navigating back to home
+    const introShown = sessionStorage.getItem('introShown');
+    if (introShown) {
+      setShowIntro(false);
+      setContentVisible(true);
+    }
+  }, []);
+
   const handleIntroComplete = () => {
+    // Mark intro as shown for this session
+    sessionStorage.setItem('introShown', 'true');
     setShowIntro(false);
     window.scrollTo(0, 0);
     setTimeout(() => setContentVisible(true), 50);
