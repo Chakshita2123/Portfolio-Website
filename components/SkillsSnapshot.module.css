@@ -1,92 +1,241 @@
+/* ==================== SKILLS SNAPSHOT - HOLOGRAPHIC TECH ==================== */
 .skills {
     background: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
 }
 
 .header {
     text-align: center;
     margin-bottom: var(--spacing-2xl);
+    position: relative;
+    z-index: 2;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xl);
+    position: relative;
+    z-index: 2;
 }
 
+/* Base Card Styles - Glass & Hologram */
 .category {
-    background: var(--surface);
-    border: 1px solid var(--border-light);
+    background: rgba(15, 23, 42, 0.6);
+    /* Deep Glass */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    /* Default Glow Color */
+    --glow-color: var(--primary);
 }
 
+/* Category Specific Themes */
+.category[data-type="frontend"] {
+    --glow-color: #06b6d4;
+}
+
+/* Cyan */
+.category[data-type="backend"] {
+    --glow-color: #10b981;
+}
+
+/* Emerald */
+.category[data-type="ai"] {
+    --glow-color: #8b5cf6;
+}
+
+/* Purple */
+.category[data-type="tools"] {
+    --glow-color: #f59e0b;
+}
+
+/* Amber */
+
+/* Holographic Shine Effect */
+.category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.03),
+            transparent);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.category:hover::before {
+    left: 100%;
+    transition: left 0.7s ease;
+}
+
+/* Hover Interaction */
 .category:hover {
-    border-color: var(--primary);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--glow-color);
+    box-shadow:
+        0 15px 30px -5px rgba(0, 0, 0, 0.3),
+        0 0 20px -5px var(--glow-color);
 }
 
 .categoryActive {
-    border-color: var(--primary);
+    border-color: var(--glow-color);
+    background: rgba(15, 23, 42, 0.8);
 }
 
+/* Header Layout */
 .categoryHeader {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
 }
 
+/* Floating Icon Animation */
 .categoryIcon {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    /* Subtle bubble */
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+}
+
+.category:hover .categoryIcon {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--glow-color);
+    box-shadow: 0 0 15px var(--glow-color);
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(5deg);
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(5deg);
+    }
 }
 
 .categoryTitle {
-    font-size: var(--font-size-lg);
-    font-weight: 600;
+    font-size: var(--font-size-xl);
+    font-weight: 700;
     color: var(--text-primary);
+    transition: color 0.3s ease;
 }
 
+.category:hover .categoryTitle {
+    color: var(--glow-color);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Contrast for readability */
+}
+
+/* Interactive Tags */
 .skillTags {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-sm);
 }
 
-/* Category AI Insight (on hover) */
+.category .tag {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.category:hover .tag {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.category .tag:hover {
+    background: var(--glow-color);
+    color: white;
+    /* Always white text on colored tag */
+    border-color: var(--glow-color);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Default Tag override from globals to handle coloring */
+/* Note: We rely on hierarchy specificity here */
+
+/* AI Insight (Bottom Section) */
 .categoryInsight {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
-    margin-top: var(--spacing-md);
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
     padding-top: var(--spacing-md);
-    border-top: 1px solid var(--border-light);
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.6;
+    transform: translateY(5px);
+    transition: all 0.4s ease;
 }
 
 .category:hover .categoryInsight {
     opacity: 1;
     transform: translateY(0);
+    border-top-color: var(--glow-color);
 }
 
-.categoryInsight .insightIcon {
+.insightIcon {
+    font-size: var(--font-size-base);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+        text-shadow: 0 0 10px var(--glow-color);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+.insightText {
     font-size: var(--font-size-sm);
-}
-
-.categoryInsight .insightText {
-    font-size: var(--font-size-xs);
     color: var(--text-secondary);
     font-style: italic;
+    line-height: 1.4;
 }
 
-/* AI Insight Banner */
+.category:hover .insightText {
+    color: var(--text-primary);
+}
+
+/* AI Insight Banner (Bottom Global) */
 .aiInsightBanner {
-    margin-top: var(--spacing-2xl);
+    margin-top: var(--spacing-3xl);
     background: var(--surface);
     border: 1px solid var(--border-light);
     border-radius: var(--radius-xl);
@@ -96,6 +245,7 @@
     gap: var(--spacing-lg);
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-md);
 }
 
 .aiInsightBanner::before {
@@ -116,6 +266,7 @@
     background: var(--primary-light);
     border-radius: var(--radius-full);
     flex-shrink: 0;
+    border: 1px solid rgba(14, 165, 233, 0.2);
 }
 
 .insightBadge span:last-child {
@@ -172,6 +323,43 @@
 .insightDotActive {
     background: var(--primary);
     transform: scale(1.2);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+/* Light Theme Overrides */
+[data-theme='light'] .category {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='light'] .category:hover {
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 0 20px -5px var(--glow-color);
+}
+
+[data-theme='light'] .categoryIcon {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='light'] .category:hover .categoryIcon {
+    background: white;
+}
+
+[data-theme='light'] .category .tag {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--text-secondary);
+}
+
+[data-theme='light'] .category:hover .tag {
+    background: white;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='light'] .category .tag:hover {
+    background: var(--glow-color);
+    color: white;
+    border-color: var(--glow-color);
 }
 
 /* Responsive */

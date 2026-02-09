@@ -116,7 +116,7 @@ export default function FeaturedProjects() {
                 {/* Project Cards */}
                 <div className={styles.grid}>
                     {sortedProjects.map((project, index) => (
-                        <div key={project.id} className={styles.card}>
+                        <div key={project.id} className={`${styles.card} card-3d`}>
                             {index === 0 && (
                                 <span className={styles.topPick}>⭐ Top Pick</span>
                             )}

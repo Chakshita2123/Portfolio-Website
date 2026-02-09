@@ -109,7 +109,7 @@ export default function AskAIPreview() {
 
                     {/* Chat UI Preview */}
                     <div className={styles.chatContainer}>
-                        <div className={styles.chatWindow}>
+                        <div className={`${styles.chatWindow} card-3d`}>
                             {/* Chat Header */}
                             <div className={styles.chatHeader}>
                                 <div className={styles.chatStatus}>

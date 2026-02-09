@@ -590,26 +590,132 @@ select:focus {
   transition: all 0.3s var(--ease-smooth);
 }
 
-/* ==================== SCROLL BEHAVIOR ==================== */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
+/* ==================== 3D DEPTH SYSTEM (GLOBAL) ==================== */
+/* Cinematic Camera Movement - Enhance ScrollReveal */
+.reveal-wrapper {
+  perspective: 1000px;
+  /* Essential for depth */
+}
+
+/* Base fade-in-up replaced with Camera Zoom-In + Fade */
+@keyframes cameraZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(30px) rotateX(2deg);
+    /* Start slightly back and tilted */
+    filter: blur(4px);
+    /* Depth of field simulation */
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotateX(0);
+    filter: blur(0);
   }
 }
 
-/* ==================== RESPONSIVE ==================== */
-@media (max-width: 768px) {
-  :root {
-    --font-size-5xl: 2.25rem;
-    --font-size-6xl: 2.75rem;
-    --spacing-4xl: 4rem;
+.camera-reveal {
+  animation: cameraZoomIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  will-change: transform, opacity, filter;
+}
+
+/* Card Tilt & Lift System */
+.card-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+.card-3d::before {
+  /* Ambient light reflection on top edge */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.card-3d:hover {
+  transform: translateY(-6px) scale(1.01);
+  /* Gentle Lift */
+  box-shadow:
+    0 20px 40px -5px rgba(0, 0, 0, 0.3),
+    /* Deep shadow */
+    0 0 20px rgba(14, 165, 233, 0.1);
+  /* Glow hint */
+  z-index: 10;
+}
+
+/* Active State Physics - Button Press */
+.btn:active,
+.card-3d:active {
+  transform: translateY(-2px) scale(0.98);
+  /* Press down slightly */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  /* Shadow tightens */
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Ambient Motion Classes */
+@keyframes drift {
+
+  0%,
+  100% {
+    transform: translateY(0px);
   }
 
-  .container {
-    padding: 0 var(--spacing-md);
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes drift-slow {
+
+  0%,
+  100% {
+    transform: translateY(0px);
   }
 
-  .section {
-    padding: var(--spacing-3xl) 0;
+  50% {
+    transform: translateY(-15px);
   }
+}
+
+.animate-drift {
+  animation: drift 6s ease-in-out infinite;
+}
+
+.animate-drift-slow {
+  animation: drift-slow 8s ease-in-out infinite;
+}
+
+/* Staggered Entrance Utilities */
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+
+/* Enhanced Shadow Definitions for 3D Feel */
+:root {
+  /* Diffused, Atmospheric Shadows */
+  --shadow-ambient: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --shadow-floating: 0 15px 35px -5px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.08);
+  /* Lifted */
+  --shadow-elevated: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  /* High elevation */
 }

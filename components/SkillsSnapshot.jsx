@@ -70,7 +70,8 @@ export default function SkillsSnapshot() {
                     {skillCategories.map((category, index) => (
                         <div
                             key={index}
-                            className={`${styles.category} ${activeCategory === index ? styles.categoryActive : ''}`}
+                            data-type={index === 0 ? 'frontend' : index === 1 ? 'backend' : index === 2 ? 'ai' : 'tools'}
+                            className={`${styles.category} card-3d ${activeCategory === index ? styles.categoryActive : ''}`}
                             onMouseEnter={() => setActiveCategory(index)}
                             onMouseLeave={() => setActiveCategory(null)}
                         >

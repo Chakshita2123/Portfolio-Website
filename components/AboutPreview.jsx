@@ -75,7 +75,7 @@ export default function AboutPreview() {
                 </div>
 
                 {/* AI Personalization Card */}
-                <div className={styles.aiCard}>
+                <div className={`${styles.aiCard} card-3d`}>
                     <div className={styles.aiCardHeader}>
                         <span className={styles.aiIcon}>✨</span>
                         <span className={styles.aiTitle}>AI Personalized Intro</span>

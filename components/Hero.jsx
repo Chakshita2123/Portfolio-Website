@@ -62,17 +62,17 @@ export default function Hero() {
                         <OrbitSystem />
 
                         {/* Floating Cards */}
-                        <div className={`${styles.floatingCard} ${styles.card1}`}>
+                        <div className={`${styles.floatingCard} ${styles.card1} card-3d`}>
                             <span className={styles.cardIcon}>🧠</span>
                             <span className={styles.cardText}>AI Ready</span>
                         </div>
 
-                        <div className={`${styles.floatingCard} ${styles.card2}`}>
+                        <div className={`${styles.floatingCard} ${styles.card2} card-3d`}>
                             <span className={styles.cardIcon}>⚡</span>
                             <span className={styles.cardText}>Fast & Modern</span>
                         </div>
 
-                        <div className={`${styles.floatingCard} ${styles.card3}`}>
+                        <div className={`${styles.floatingCard} ${styles.card3} card-3d`}>
                             <span className={styles.cardIcon}>🎯</span>
                             <span className={styles.cardText}>Personalized</span>
                         </div>

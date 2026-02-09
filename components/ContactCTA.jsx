@@ -26,7 +26,7 @@ export default function ContactCTA() {
                     </div>
 
                     {/* AI Helper Card */}
-                    <div className={styles.aiCard}>
+                    <div className={`${styles.aiCard} card-3d`}>
                         <div className={styles.aiCardIcon}>
                             <span>✨</span>
                         </div>
