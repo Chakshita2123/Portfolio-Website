@@ -1,0 +1,276 @@
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--navbar-height);
+    position: relative;
+    overflow: hidden;
+}
+
+.heroContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Content Column */
+.heroContent {
+    max-width: 600px;
+}
+
+.greeting {
+    display: inline-block;
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.headline {
+    font-size: var(--font-size-5xl);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.description {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.ctas {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-3xl);
+}
+
+/* Stats */
+.stats {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.statNumber {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.statLabel {
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+}
+
+.statDivider {
+    width: 1px;
+    height: 40px;
+    background: var(--border-light);
+}
+
+/* Visual Column */
+.heroVisual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.visualContainer {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+/* Orb */
+.orbContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.orb {
+    width: 200px;
+    height: 200px;
+    background: var(--accent-gradient);
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.orbRing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    border: 2px solid rgba(99, 102, 241, 0.3);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.orbRing2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 350px;
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite reverse;
+}
+
+/* Floating Cards */
+.floatingCard {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--text-primary);
+    animation: float 5s ease-in-out infinite;
+}
+
+.cardIcon {
+    font-size: 1.2em;
+}
+
+.card1 {
+    top: 10%;
+    right: 0;
+    animation-delay: 0s;
+}
+
+.card2 {
+    bottom: 30%;
+    left: 0;
+    animation-delay: 1s;
+}
+
+.card3 {
+    bottom: 10%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+/* Background */
+.bgGradient {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background: radial-gradient(ellipse at 70% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Scroll Hint - Subtle and understated */
+.scrollHint {
+    position: absolute;
+    bottom: var(--spacing-2xl);
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    animation: heroFadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 1s;
+    opacity: 0;
+}
+
+.scrollHintText {
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .heroContainer {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .heroContent {
+        max-width: 100%;
+    }
+
+    .ctas {
+        justify-content: center;
+    }
+
+    .stats {
+        justify-content: center;
+    }
+
+    .heroVisual {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .headline {
+        font-size: var(--font-size-4xl);
+    }
+
+    .ctas {
+        flex-direction: column;
+    }
+
+    .ctas button {
+        width: 100%;
+    }
+}
+
+/* ==================== PAGE LOAD ANIMATIONS ==================== */
+@keyframes heroFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animateIn {
+    opacity: 0;
+    animation: heroFadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay1 {
+    animation-delay: 0.15s;
+}
+
+.delay2 {
+    animation-delay: 0.3s;
+}
+
+.delay3 {
+    animation-delay: 0.45s;
+}
+
+.delay4 {
+    animation-delay: 0.6s;
+}

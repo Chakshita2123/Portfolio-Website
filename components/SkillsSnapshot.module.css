@@ -1,0 +1,197 @@
+.skills {
+    background: var(--bg-primary);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.category {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.category:hover {
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.categoryActive {
+    border-color: var(--primary);
+}
+
+.categoryHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.categoryIcon {
+    font-size: var(--font-size-xl);
+}
+
+.categoryTitle {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.skillTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+/* Category AI Insight (on hover) */
+.categoryInsight {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-light);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.category:hover .categoryInsight {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.categoryInsight .insightIcon {
+    font-size: var(--font-size-sm);
+}
+
+.categoryInsight .insightText {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* AI Insight Banner */
+.aiInsightBanner {
+    margin-top: var(--spacing-2xl);
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.aiInsightBanner::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--accent-gradient);
+}
+
+.insightBadge {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--primary-light);
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+
+.insightBadge span:last-child {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.sparkle {
+    font-size: var(--font-size-sm);
+}
+
+.insightContent {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.insightVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.insightHidden {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.insightEmoji {
+    font-size: var(--font-size-lg);
+}
+
+.insightMessage {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.insightDots {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.insightDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: all 0.3s ease;
+}
+
+.insightDotActive {
+    background: var(--primary);
+    transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .aiInsightBanner {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-md);
+    }
+
+    .insightContent {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+
+    .insightDots {
+        justify-content: center;
+    }
+}

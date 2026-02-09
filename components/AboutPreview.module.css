@@ -1,0 +1,198 @@
+.about {
+    background: var(--bg-secondary);
+}
+
+.aboutContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl);
+    align-items: start;
+}
+
+.content {
+    max-width: 500px;
+}
+
+.summary {
+    font-size: var(--font-size-md);
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+}
+
+.infoRow {
+    display: flex;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+}
+
+.infoItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.infoIcon {
+    font-size: var(--font-size-xl);
+}
+
+.infoText {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* AI Personalization Card */
+.aiCard {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.aiCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-gradient);
+}
+
+.aiCardHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.aiIcon {
+    font-size: var(--font-size-lg);
+}
+
+.aiTitle {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Persona Selector */
+.personaSelector {
+    margin-bottom: var(--spacing-lg);
+}
+
+.personaLabel {
+    display: block;
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    color: var(--text-tertiary);
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.personaButtons {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.personaBtn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.personaBtn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.personaBtnActive {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.personaBtnActive:hover {
+    color: white;
+}
+
+/* Personalized Content */
+.personalizedContent {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fadeIn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fadeOut {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.introTitle {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.introDescription {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+}
+
+.highlights {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.highlightTag {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .aboutContainer {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-2xl);
+    }
+
+    .content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .infoRow {
+        justify-content: center;
+    }
+
+    .personaButtons {
+        justify-content: center;
+    }
+
+    .highlights {
+        justify-content: center;
+    }
+}
