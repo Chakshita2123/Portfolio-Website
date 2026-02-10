@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, usePathname } from 'next/navigation';
-import usePerformanceTier from '@/hooks/usePerformanceTier';
+import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import { usePerformanceTier } from '@/hooks/usePerformanceTier';
 import ScrollThoughts from '@/components/ScrollThoughts';
 import SystemLog from '@/components/SystemLog';
 

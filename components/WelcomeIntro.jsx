@@ -36,14 +36,14 @@ export default function WelcomeIntro({ onComplete }) {
             setSystemText(systemMessages[msgIndex]);
         }, 1500);
 
-        // Begin exit at 6 seconds
-        const exitTimer = setTimeout(() => setExiting(true), 6000);
+        // Begin exit at 5 seconds
+        const exitTimer = setTimeout(() => setExiting(true), 5000);
 
         // Complete after exit animation (1.4s) so handoff to site is seamless
         const completeTimer = setTimeout(() => {
             setVisible(false);
             onComplete?.();
-        }, 7600);
+        }, 6400);
 
         return () => {
             clearTimeout(phase1);

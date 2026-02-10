@@ -4,13 +4,13 @@ import { useState, useEffect, useCallback } from 'react';
 import styles from './ScrollThoughts.module.css';
 
 const THOUGHTS = [
-    'Noting scroll depth.',
-    'Section in view.',
-    'User exploring.',
-    'System ready.',
-    'Portfolio context loaded.',
-    'Smooth transition.',
-    'Content focused.',
+    'Initializing interface...',
+    'Designing for clarity...',
+    'Optimizing for scale...',
+    'Syncing aesthetics...',
+    'Crafting experiences...',
+    'Shipping with intention...',
+    'System synced.'
 ];
 
 function getThoughtIndex(scrollY, docHeight, viewHeight) {
@@ -30,13 +30,39 @@ export default function ScrollThoughts() {
 
     const update = useCallback(() => {
         if (typeof document === 'undefined' || typeof window === 'undefined') return;
+
         const scrollY = window.scrollY;
+
+        // Hide on very top
+        if (scrollY < 50) {
+            setVisible(false);
+            return;
+        }
+
         const docHeight = document.documentElement.scrollHeight;
         const viewHeight = window.innerHeight;
         const newIndex = getThoughtIndex(scrollY, docHeight, viewHeight);
-        setIndex(newIndex);
-        setVisible(scrollY > 60);
+
+        setIndex(prev => {
+            if (prev !== newIndex) {
+                // Thought changed, show it momentarily
+                setVisible(true);
+                // Clear any existing timeout to keep it visible if skimming rapidly
+                // But simplified: just let the effect handle the timeout
+            }
+            return newIndex;
+        });
     }, []);
+
+    // Auto-hide effect
+    useEffect(() => {
+        if (visible) {
+            const timer = setTimeout(() => {
+                setVisible(false);
+            }, 2500); // Sustainable duration
+            return () => clearTimeout(timer);
+        }
+    }, [visible, index]); // Reset timer if index changes while visible
 
     useEffect(() => {
         setMounted(true);
@@ -44,7 +70,6 @@ export default function ScrollThoughts() {
 
     useEffect(() => {
         if (!mounted) return;
-        update();
         window.addEventListener('scroll', update, { passive: true });
         window.addEventListener('resize', update);
         return () => {
@@ -62,7 +87,7 @@ export default function ScrollThoughts() {
             aria-live="polite"
             aria-atomic="true"
         >
-            <span className={styles.thought}>{THOUGHTS[index]}</span>
+            <span className={styles.thought} key={index}>{THOUGHTS[index]}</span>
         </div>
     );
 }

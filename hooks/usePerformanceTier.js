@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
  * Use to gracefully reduce effects without errors. Fails safe (assumes reduced motion if unsure).
  */
 export function usePerformanceTier() {
-    const [reducedMotion, setReducedMotion] = useState(true);
+    const [reducedMotion, setReducedMotion] = useState(false);
     const [lowTier, setLowTier] = useState(false);
 
     useEffect(() => {

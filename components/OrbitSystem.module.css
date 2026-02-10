@@ -60,10 +60,13 @@
 }
 
 @keyframes coreBreathe {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
         box-shadow: 0 0 50px rgba(14, 165, 233, 0.7), inset 0 0 24px rgba(255, 255, 255, 0.4);
     }
+
     50% {
         transform: scale(1.08);
         box-shadow: 0 0 70px rgba(14, 165, 233, 0.8), inset 0 0 30px rgba(255, 255, 255, 0.5);
@@ -71,10 +74,13 @@
 }
 
 @keyframes breatheGlow {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0.6;
         transform: scale(1);
     }
+
     50% {
         opacity: 0.9;
         transform: scale(1.25);
@@ -97,7 +103,7 @@
     transform: translate(-50%, -50%) rotateX(60deg) rotateY(10deg);
     border-color: rgba(6, 182, 212, 0.3);
     /* Cyan */
-    animation: rotateRing1 20s linear infinite;
+    animation: rotateRing1 35s linear infinite;
 }
 
 .ring2 {
@@ -106,7 +112,7 @@
     transform: translate(-50%, -50%) rotateX(-45deg) rotateY(-10deg);
     border-color: rgba(14, 165, 233, 0.25);
     /* Sky Blue */
-    animation: rotateRing2 25s linear infinite reverse;
+    animation: rotateRing2 45s linear infinite reverse;
 }
 
 .ring3 {
@@ -114,7 +120,7 @@
     height: 340px;
     transform: translate(-50%, -50%) rotateX(75deg) rotateY(20deg);
     border-color: rgba(14, 165, 233, 0.2);
-    animation: rotateRing3 30s linear infinite;
+    animation: rotateRing3 55s linear infinite;
 }
 
 .ring4 {
@@ -122,7 +128,7 @@
     height: 400px;
     transform: translate(-50%, -50%) rotateX(50deg) rotateY(-15deg);
     border: 1px solid rgba(14, 165, 233, 0.12);
-    animation: rotateRing1 38s linear infinite reverse;
+    animation: rotateRing1 65s linear infinite reverse;
 }
 
 .ring5 {
@@ -130,7 +136,7 @@
     height: 460px;
     transform: translate(-50%, -50%) rotateX(65deg) rotateY(5deg);
     border: 1px solid rgba(14, 165, 233, 0.08);
-    animation: rotateRing2 48s linear infinite;
+    animation: rotateRing2 75s linear infinite;
 }
 
 /* ==================== ORBITS & PLANETS ==================== */
@@ -146,21 +152,21 @@
     width: 220px;
     height: 220px;
     transform: translate(-50%, -50%) rotateX(60deg) rotateY(10deg);
-    animation: rotateRing1 12s linear infinite;
+    animation: rotateRing1 25s linear infinite;
 }
 
 .orbit2 {
     width: 300px;
     height: 300px;
     transform: translate(-50%, -50%) rotateX(-45deg) rotateY(-10deg);
-    animation: rotateRing2 18s linear infinite reverse;
+    animation: rotateRing2 35s linear infinite reverse;
 }
 
 .orbit3 {
     width: 380px;
     height: 380px;
     transform: translate(-50%, -50%) rotateX(75deg) rotateY(20deg);
-    animation: rotateRing3 24s linear infinite;
+    animation: rotateRing3 45s linear infinite;
 }
 
 .planet {

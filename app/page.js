@@ -10,7 +10,7 @@ import ContactCTA from '@/components/ContactCTA';
 import Footer from '@/components/Footer';
 import WelcomeIntro from '@/components/WelcomeIntro';
 import ScrollReveal from '@/components/ScrollReveal';
-import usePerformanceTier from '@/hooks/usePerformanceTier';
+import { usePerformanceTier } from '@/hooks/usePerformanceTier';
 import styles from './page.module.css';
 
 export default function Home() {

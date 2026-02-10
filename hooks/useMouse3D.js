@@ -1,38 +1,64 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { usePerformanceTier } from './usePerformanceTier';
 
-export default function useMouse3D(ref, strength = 20) {
-    const [rotate, setRotate] = useState({ x: 0, y: 0 });
+/**
+ * useMouse3D - High performance 3D tilt effect using direct DOM manipulation.
+ * Applies transform directly to the target element to avoid React re-renders.
+ */
+export default function useMouse3D(containerRef, targetRef, strength = 20) {
+    const { reducedMotion } = usePerformanceTier();
 
     useEffect(() => {
-        const element = ref.current;
-        if (!element) return;
+        const container = containerRef.current;
+        const target = targetRef.current;
+
+        if (!container || !target || reducedMotion) return;
+
+        let frameId;
+        let rotateX = 0;
+        let rotateY = 0;
+        let currentRotateX = 0;
+        let currentRotateY = 0;
 
         const handleMouseMove = (e) => {
-            const rect = element.getBoundingClientRect();
-            const splitX = rect.left + rect.width / 2;
-            const splitY = rect.top + rect.height / 2;
+            const rect = container.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
 
-            const mouseX = e.clientX - splitX;
-            const mouseY = e.clientY - splitY;
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
 
-            const rotateX = (mouseY / rect.height / 2) * -strength; // Invert Y
-            const rotateY = (mouseX / rect.width / 2) * strength;
-
-            setRotate({ x: rotateX, y: rotateY });
+            // Calculate target rotation
+            rotateX = ((mouseY / rect.height) * -strength).toFixed(2);
+            rotateY = ((mouseX / rect.width) * strength).toFixed(2);
         };
 
         const handleMouseLeave = () => {
-            setRotate({ x: 0, y: 0 });
+            rotateX = 0;
+            rotateY = 0;
         };
 
-        element.addEventListener('mousemove', handleMouseMove);
-        element.addEventListener('mouseleave', handleMouseLeave);
+        // Smooth animation loop
+        const loop = () => {
+            // Linear interpolation (LERP) for smoothness
+            currentRotateX += (rotateX - currentRotateX) * 0.1;
+            currentRotateY += (rotateY - currentRotateY) * 0.1;
+
+            target.style.transform = `rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)`;
+
+            frameId = requestAnimationFrame(loop);
+        };
+
+        container.addEventListener('mousemove', handleMouseMove);
+        container.addEventListener('mouseleave', handleMouseLeave);
+        frameId = requestAnimationFrame(loop);
 
         return () => {
-            element.removeEventListener('mousemove', handleMouseMove);
-            element.removeEventListener('mouseleave', handleMouseLeave);
+            container.removeEventListener('mousemove', handleMouseMove);
+            container.removeEventListener('mouseleave', handleMouseLeave);
+            cancelAnimationFrame(frameId);
+            // Reset transform on cleanup
+            if (target) target.style.transform = '';
         };
-    }, [ref, strength]);
-
-    return rotate;
+    }, [containerRef, targetRef, strength, reducedMotion]);
 }

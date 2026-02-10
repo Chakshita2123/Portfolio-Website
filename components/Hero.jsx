@@ -7,7 +7,14 @@ import OrbitSystem from './OrbitSystem';
 
 export default function Hero() {
     const heroRef = useRef(null);
-    const rotation = useMouse3D(heroRef, 20); // Hero-only strong tilt
+    const contentRef = useRef(null);
+    const visualRef = useRef(null);
+
+    // Apply 3D tilt to content (subtle)
+    useMouse3D(heroRef, contentRef, 5);
+
+    // Apply 3D tilt to orbit system (stronger but smoother)
+    useMouse3D(heroRef, visualRef, 15);
 
     return (
         <section id="home" className={styles.hero} ref={heroRef}>
@@ -23,9 +30,12 @@ export default function Hero() {
                 {/* Left Column - Content */}
                 <div
                     className={styles.heroContent}
+                    ref={contentRef}
                     style={{
-                        transform: `rotateX(${rotation.x * 0.4}deg) rotateY(${rotation.y * 0.4}deg)`,
-                        transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
+                        // Initial transform for static rendering, 
+                        // hook will override with 3D transform on mount
+                        transform: 'translateZ(0)',
+                        willChange: 'transform'
                     }}
                 >
                     <span className={`${styles.greeting} ${styles.animateIn}`}>Hi, I'm Chakshita 👋</span>
@@ -73,9 +83,9 @@ export default function Hero() {
                 <div className={`${styles.heroVisual} ${styles.animateIn} ${styles.delay2}`}>
                     <div
                         className={styles.visualContainer}
+                        ref={visualRef}
                         style={{
-                            transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
-                            transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
+                            willChange: 'transform'
                         }}
                     >
                         {/* Abstract AI Visual */}
@@ -108,4 +118,3 @@ export default function Hero() {
         </section>
     );
 }
-

@@ -35,6 +35,22 @@ export default function AboutPreview() {
     const [recruiterSummary, setRecruiterSummary] = useState(null);
     const [summaryLoading, setSummaryLoading] = useState(false);
     const [summaryError, setSummaryError] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+
+    // Auto-cycle personas
+    useEffect(() => {
+        if (isHovered) return;
+
+        const interval = setInterval(() => {
+            setSelectedPersona(prev => {
+                const currentIndex = personas.findIndex(p => p.value === prev);
+                const nextIndex = (currentIndex + 1) % personas.length;
+                return personas[nextIndex].value;
+            });
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [isHovered]);
 
     const fetchRecruiterSummary = useCallback(async () => {
         if (summaryLoading || recruiterSummary) return;
@@ -108,7 +124,11 @@ export default function AboutPreview() {
                 </div>
 
                 {/* AI Personalization Card */}
-                <div className={`${styles.aiCard} card-3d`}>
+                <div
+                    className={`${styles.aiCard} card-3d`}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                >
                     <div className={styles.aiCardHeader}>
                         <span className={styles.aiIcon}>✨</span>
                         <span className={styles.aiTitle}>AI Personalized Intro</span>

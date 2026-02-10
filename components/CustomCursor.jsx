@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
-import usePerformanceTier from '@/hooks/usePerformanceTier';
+import { usePerformanceTier } from '@/hooks/usePerformanceTier';
 import styles from './CustomCursor.module.css';
 
 const LERP = 0.12;

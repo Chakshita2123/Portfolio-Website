@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import usePerformanceTier from '@/hooks/usePerformanceTier';
+import { usePerformanceTier } from '@/hooks/usePerformanceTier';
 import styles from './AnimatedBackground.module.css';
 
 export default function AnimatedBackground() {

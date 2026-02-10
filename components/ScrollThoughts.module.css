@@ -10,7 +10,7 @@
 }
 
 .wrapper[data-visible='true'] {
-    opacity: 0.35;
+    opacity: 0.4;
     transform: translateY(0);
 }
 
