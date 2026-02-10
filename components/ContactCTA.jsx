@@ -1,4 +1,3 @@
-'use client';
 import styles from './ContactCTA.module.css';
 
 export default function ContactCTA() {

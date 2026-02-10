@@ -1,13 +1,9 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
-/**
- * ScrollReveal - Cinematic Camera Entrance
- * Simulates camera movement through space
- */
-export default function ScrollReveal({ children, delay = 0, width = '100%', threshold = 0.15 }) {
-    const [isVisible, setIsVisible] = useState(false);
+export default function ScrollReveal({ children, style, className }) {
     const ref = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -18,8 +14,8 @@ export default function ScrollReveal({ children, delay = 0, width = '100%', thre
                 }
             },
             {
-                threshold,
-                rootMargin: '50px'
+                threshold: 0.15,
+                rootMargin: "50px"
             }
         );
 
@@ -32,23 +28,19 @@ export default function ScrollReveal({ children, delay = 0, width = '100%', thre
                 observer.unobserve(ref.current);
             }
         };
-    }, [threshold]);
+    }, []);
 
     return (
         <div
             ref={ref}
-            className="reveal-wrapper"
+            className={`${className || ''} reveal-section ${isVisible ? 'is-visible' : ''}`}
             style={{
-                width,
+                ...style,
+                transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease',
                 opacity: isVisible ? 1 : 0,
-                // Cinematic Entrance: Scale up from depth + slight tilt + slide up
-                transform: isVisible
-                    ? 'scale(1) translateY(0) rotateX(0) translateZ(0)'
-                    : 'scale(0.92) translateY(60px) rotateX(5deg) translateZ(-100px)',
-                filter: isVisible ? 'blur(0)' : 'blur(8px)',
-                transition: `all 1.2s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
-                transformStyle: 'preserve-3d',
-                willChange: 'transform, opacity, filter'
+                transform: isVisible ? 'scale(1) translateY(0)' : 'scale(0.95) translateY(50px)',
+                filter: isVisible ? 'blur(0)' : 'blur(4px)',
+                willChange: 'opacity, transform, filter'
             }}
         >
             {children}

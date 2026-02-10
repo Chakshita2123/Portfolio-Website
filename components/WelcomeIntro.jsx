@@ -39,11 +39,11 @@ export default function WelcomeIntro({ onComplete }) {
         // Begin exit at 6 seconds
         const exitTimer = setTimeout(() => setExiting(true), 6000);
 
-        // Complete at 7 seconds
+        // Complete at 7.5 seconds (matching new 1.2s exit animation)
         const completeTimer = setTimeout(() => {
             setVisible(false);
             onComplete?.();
-        }, 7000);
+        }, 7500);
 
         return () => {
             clearTimeout(phase1);

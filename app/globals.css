@@ -95,6 +95,15 @@
   /* Layout */
   --container-max: 1200px;
   --navbar-height: 72px;
+
+  /* 3D Depth Layers */
+  --z-negative: -100px;
+  --z-background: -50px;
+  --z-base: 0;
+  --z-elevated: 20px;
+  --z-floating: 50px;
+  --z-orbit: 100px;
+  --z-overlay: 1000px;
 }
 
 /* ==================== LIGHT THEME (CREATIVE CINEMATIC & DARKER) ==================== */
@@ -175,6 +184,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: none;
+  /* Hide default cursor */
 }
 
 /* ::selection for creative pop */

@@ -1,4 +1,5 @@
 import "./globals.css";
+import CustomCursor from "../components/CustomCursor";
 
 export const metadata = {
   title: "Chakshita.ai | AI-Powered Portfolio",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
       <body>
+        <CustomCursor />
         {children}
       </body>
     </html>

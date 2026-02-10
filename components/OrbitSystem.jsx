@@ -7,38 +7,8 @@ import styles from './OrbitSystem.module.css';
  * Replaces static visuals with a living, breathing AI core
  */
 export default function OrbitSystem() {
-    const [rotation, setRotation] = useState({ x: 0, y: 0 });
-    const containerRef = useRef(null);
-
-    const handleMouseMove = (e) => {
-        if (!containerRef.current) return;
-
-        const rect = containerRef.current.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-
-        // Calculate rotation based on mouse position (subtle tilt)
-        const rotateX = (y / rect.height) * -20; // Invert Y for natural tilt
-        const rotateY = (x / rect.width) * 20;
-
-        setRotation({ x: rotateX, y: rotateY });
-    };
-
-    const handleMouseLeave = () => {
-        setRotation({ x: 0, y: 0 });
-    };
-
     return (
-        <div
-            className={styles.orbitContainer}
-            ref={containerRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{
-                '--rotate-x': `${rotation.x}deg`,
-                '--rotate-y': `${rotation.y}deg`
-            }}
-        >
+        <div className={styles.orbitContainer}>
             <div className={styles.system}>
                 {/* Core Nucleus */}
                 <div className={styles.nucleus}>

@@ -1,18 +1,33 @@
-'use client';
+import { useRef } from 'react';
 import Link from 'next/link';
+import useMouse3D from '../hooks/useMouse3D';
 import styles from './Hero.module.css';
 import AnimatedBackground from './AnimatedBackground';
 import OrbitSystem from './OrbitSystem';
 
 export default function Hero() {
+    const heroRef = useRef(null);
+    const rotation = useMouse3D(heroRef, 15); // 15deg tilt strength
+
     return (
-        <section id="home" className={styles.hero}>
+        <section id="home" className={styles.hero} ref={heroRef}>
             {/* Living animated background */}
             <AnimatedBackground />
 
-            <div className={`container ${styles.heroContainer}`}>
+            <div
+                className={`container ${styles.heroContainer}`}
+                style={{
+                    perspective: '1000px'
+                }}
+            >
                 {/* Left Column - Content */}
-                <div className={styles.heroContent}>
+                <div
+                    className={styles.heroContent}
+                    style={{
+                        transform: `rotateX(${rotation.x * 0.5}deg) rotateY(${rotation.y * 0.5}deg)`,
+                        transition: 'transform 0.1s ease-out'
+                    }}
+                >
                     <span className={`${styles.greeting} ${styles.animateIn}`}>Hi, I'm Chakshita 👋</span>
 
                     <h1 className={`${styles.headline} ${styles.animateIn} ${styles.delay1}`}>
@@ -56,7 +71,12 @@ export default function Hero() {
 
                 {/* Right Column - Visual */}
                 <div className={`${styles.heroVisual} ${styles.animateIn} ${styles.delay2}`}>
-                    <div className={styles.visualContainer}>
+                    <div
+                        className={styles.visualContainer}
+                        style={{
+                            transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+                        }}
+                    >
                         {/* Abstract AI Visual */}
                         {/* 3D Orbit System */}
                         <OrbitSystem />
