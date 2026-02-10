@@ -36,7 +36,12 @@ export default function AskAIPreview() {
             const response = await fetch('/api/ai', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: userMessage, context: 'general' })
+                body: JSON.stringify({
+                    message: userMessage,
+                    context: 'general',
+                    pageContext: 'home',
+                    conversationHistory: messages.map(m => ({ role: m.role, content: m.content }))
+                })
             });
 
             const data = await response.json();

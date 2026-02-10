@@ -1,0 +1,23 @@
+.wrapper {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 9998;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.wrapper[data-visible='true'] {
+    opacity: 0.35;
+    transform: translateY(0);
+}
+
+.thought {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+}

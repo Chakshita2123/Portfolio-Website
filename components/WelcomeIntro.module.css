@@ -23,7 +23,7 @@
 }
 
 .overlay.exiting {
-    animation: flyThrough 1.2s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+    animation: flyThrough 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     pointer-events: none;
 }
 
@@ -33,11 +33,14 @@
         transform: scale(1) translateZ(0);
         filter: blur(0);
     }
-
+    40% {
+        opacity: 1;
+        filter: blur(2px);
+    }
     100% {
         opacity: 0;
-        transform: scale(1.5) translateZ(100px);
-        filter: blur(20px);
+        transform: scale(1.08) translateZ(120px);
+        filter: blur(16px);
     }
 }
 

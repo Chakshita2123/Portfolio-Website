@@ -221,3 +221,15 @@
     /* Texture more visible on darker stone */
     mix-blend-mode: multiply;
 }
+
+/* Performance: reduce motion on low-tier or when user prefers reduced motion */
+.backgroundWrapper[data-reduced-motion='true'] .gradientOrb1,
+.backgroundWrapper[data-reduced-motion='true'] .gradientOrb2,
+.backgroundWrapper[data-reduced-motion='true'] .gradientOrb3 {
+    animation: none;
+}
+
+.backgroundWrapper[data-reduced-motion='true'] .particle {
+    animation: none;
+    opacity: 0.2;
+}

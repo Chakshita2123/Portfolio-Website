@@ -1,9 +1,12 @@
+'use client';
 import { useEffect, useState } from 'react';
+import usePerformanceTier from '@/hooks/usePerformanceTier';
 import styles from './AnimatedBackground.module.css';
 
 export default function AnimatedBackground() {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [particles, setParticles] = useState([]);
+    const { reducedMotion, lowTier } = usePerformanceTier();
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -28,25 +31,30 @@ export default function AnimatedBackground() {
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
 
+    const reduceMotion = reducedMotion || lowTier;
+
     return (
-        <div className={styles.backgroundWrapper}>
-            {/* Layer 1: Deep Slow Movement */}
+        <div
+            className={styles.backgroundWrapper}
+            data-reduced-motion={reduceMotion ? 'true' : 'false'}
+        >
+            {/* Layer 1: Deepest parallax - hero background depth */}
             <div
                 className={styles.gradientOrb1}
-                style={{ transform: `translate(${mousePos.x * -20}px, ${mousePos.y * -20}px)` }}
-            ></div>
+                style={{ transform: `translate(${mousePos.x * -35}px, ${mousePos.y * -35}px)` }}
+            />
 
-            {/* Layer 2: Mid-Depth Movement */}
+            {/* Layer 2: Mid-depth */}
             <div
                 className={styles.gradientOrb2}
-                style={{ transform: `translate(${mousePos.x * 30}px, ${mousePos.y * 30}px)` }}
-            ></div>
+                style={{ transform: `translate(${mousePos.x * 50}px, ${mousePos.y * 50}px)` }}
+            />
 
-            {/* Layer 3: Foreground Drift */}
+            {/* Layer 3: Foreground - strongest parallax */}
             <div
                 className={styles.gradientOrb3}
-                style={{ transform: `translate(${mousePos.x * -40}px, ${mousePos.y * -40}px)` }}
-            ></div>
+                style={{ transform: `translate(${mousePos.x * -70}px, ${mousePos.y * -70}px)` }}
+            />
 
             {/* Cinematic Particles */}
             <div className={styles.particlesContainer}>

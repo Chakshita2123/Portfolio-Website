@@ -1,31 +1,36 @@
 'use client';
-import { useState, useRef, useEffect } from 'react';
 import styles from './OrbitSystem.module.css';
 
 /**
- * OrbitSystem - A 3D-style rotating system with mouse interaction
- * Replaces static visuals with a living, breathing AI core
+ * OrbitSystem - Hero-only AI core with multiple orbit layers,
+ * breathing inner core, and different rotation speeds for depth.
  */
 export default function OrbitSystem() {
     return (
         <div className={styles.orbitContainer}>
             <div className={styles.system}>
-                {/* Core Nucleus */}
+                {/* Inner breathing core */}
                 <div className={styles.nucleus}>
-                    <div className={styles.coreGlow}></div>
+                    <div className={styles.coreInner} />
+                    <div className={styles.coreGlow} />
                 </div>
 
-                {/* Rotating Rings */}
-                <div className={`${styles.ring} ${styles.ring1}`}></div>
-                <div className={`${styles.ring} ${styles.ring2}`}></div>
-                <div className={`${styles.ring} ${styles.ring3}`}></div>
+                {/* Multiple orbit layers - different speeds for depth */}
+                <div className={`${styles.ring} ${styles.ring1}`} />
+                <div className={`${styles.ring} ${styles.ring2}`} />
+                <div className={`${styles.ring} ${styles.ring3}`} />
+                <div className={`${styles.ring} ${styles.ring4}`} />
+                <div className={`${styles.ring} ${styles.ring5}`} />
 
-                {/* Orbital Nodes */}
+                {/* Orbital nodes on rings */}
                 <div className={`${styles.orbit} ${styles.orbit1}`}>
-                    <div className={styles.planet}></div>
+                    <div className={styles.planet} />
                 </div>
                 <div className={`${styles.orbit} ${styles.orbit2}`}>
-                    <div className={styles.planet}></div>
+                    <div className={styles.planet} />
+                </div>
+                <div className={`${styles.orbit} ${styles.orbit3}`}>
+                    <div className={styles.planet} />
                 </div>
             </div>
         </div>

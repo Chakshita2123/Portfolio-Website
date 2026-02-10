@@ -169,10 +169,19 @@ export default function AskAIPage() {
         setIsLoading(true);
 
         try {
+            const historyForApi = messages
+                .filter(m => !m.isWelcome)
+                .map(m => ({ role: m.role, content: m.content }));
+
             const response = await fetch('/api/ai', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: userMessage, context: 'general' })
+                body: JSON.stringify({
+                    message: userMessage,
+                    context: 'general',
+                    pageContext: 'ask-ai',
+                    conversationHistory: historyForApi
+                })
             });
 
             const data = await response.json();
@@ -415,7 +424,7 @@ export default function AskAIPage() {
                                     <form onSubmit={handleSubmit} className={styles.chatInputArea}>
                                         <div className={styles.contextIndicator}>
                                             <span className={styles.contextDot}></span>
-                                            <span>Context: Portfolio Assistant</span>
+                                            <span>Context: Ask AI · {messages.filter(m => !m.isWelcome).length} messages in thread</span>
                                         </div>
                                         <div className={`${styles.inputWrapper} ${isFocused ? styles.inputFocused : ''}`}>
                                             <input

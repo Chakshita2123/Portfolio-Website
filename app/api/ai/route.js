@@ -1,9 +1,20 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { systemPrompt, getContextPrompt } from '@/lib/portfolio-context';
 
+/** Build a short summary of recent conversation for context (last N messages, capped length) */
+function buildConversationSummary(history, maxMessages = 6, maxChars = 800) {
+    if (!Array.isArray(history) || history.length === 0) return '';
+    const recent = history.slice(-maxMessages);
+    const lines = recent.map(m => {
+        const role = m.role === 'user' ? 'User' : 'Chakshita AI';
+        const content = (m.content || '').slice(0, 200);
+        return `${role}: ${content}`;
+    });
+    return lines.join('\n').slice(0, maxChars);
+}
+
 export async function POST(request) {
     try {
-        // Check for API key
         if (!process.env.GEMINI_API_KEY) {
             return Response.json(
                 {
@@ -14,9 +25,8 @@ export async function POST(request) {
             );
         }
 
-        const { message, context } = await request.json();
+        const { message, context, pageContext, conversationHistory } = await request.json();
 
-        // Validate input
         if (!message || typeof message !== 'string') {
             return Response.json(
                 { error: 'Message is required' },
@@ -24,7 +34,6 @@ export async function POST(request) {
             );
         }
 
-        // Limit message length
         if (message.length > 500) {
             return Response.json(
                 { error: 'Message too long', message: 'Please keep your question under 500 characters.' },
@@ -32,19 +41,18 @@ export async function POST(request) {
             );
         }
 
-        // Build the full prompt with context
-        const contextAddition = getContextPrompt(context);
+        const conversationSummary = buildConversationSummary(conversationHistory || []);
+        const contextAddition = getContextPrompt(context || 'general', {
+            pageContext: pageContext || null,
+            conversationSummary
+        });
         const fullSystemPrompt = systemPrompt + contextAddition;
 
-        // Initialize Gemini
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-        // Use gemini-2.5-flash which is available for this API key
         const model = genAI.getGenerativeModel({
             model: 'gemini-2.5-flash'
         });
 
-        // Generate content with the full context
         const prompt = `${fullSystemPrompt}\n\nUser question: ${message}\n\nRespond helpfully and professionally:`;
 
         const result = await model.generateContent(prompt);

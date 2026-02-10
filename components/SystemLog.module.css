@@ -1,0 +1,51 @@
+.panel {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 280px;
+    max-height: 180px;
+    z-index: 9997;
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    font-family: ui-monospace, monospace;
+    font-size: 0.7rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0.6rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.title {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.hint {
+    font-size: 0.6rem;
+    color: var(--text-tertiary);
+}
+
+.body {
+    padding: 0.5rem;
+    max-height: 140px;
+    overflow-y: auto;
+}
+
+.line {
+    padding: 0.15rem 0;
+    color: var(--text-tertiary);
+}
+
+.time {
+    margin-right: 0.5rem;
+    color: var(--text-tertiary);
+    opacity: 0.8;
+}

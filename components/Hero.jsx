@@ -7,7 +7,7 @@ import OrbitSystem from './OrbitSystem';
 
 export default function Hero() {
     const heroRef = useRef(null);
-    const rotation = useMouse3D(heroRef, 15); // 15deg tilt strength
+    const rotation = useMouse3D(heroRef, 20); // Hero-only strong tilt
 
     return (
         <section id="home" className={styles.hero} ref={heroRef}>
@@ -24,8 +24,8 @@ export default function Hero() {
                 <div
                     className={styles.heroContent}
                     style={{
-                        transform: `rotateX(${rotation.x * 0.5}deg) rotateY(${rotation.y * 0.5}deg)`,
-                        transition: 'transform 0.1s ease-out'
+                        transform: `rotateX(${rotation.x * 0.4}deg) rotateY(${rotation.y * 0.4}deg)`,
+                        transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
                     }}
                 >
                     <span className={`${styles.greeting} ${styles.animateIn}`}>Hi, I'm Chakshita 👋</span>
@@ -75,6 +75,7 @@ export default function Hero() {
                         className={styles.visualContainer}
                         style={{
                             transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+                            transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
                         }}
                     >
                         {/* Abstract AI Visual */}

@@ -10,58 +10,58 @@ import ContactCTA from '@/components/ContactCTA';
 import Footer from '@/components/Footer';
 import WelcomeIntro from '@/components/WelcomeIntro';
 import ScrollReveal from '@/components/ScrollReveal';
+import usePerformanceTier from '@/hooks/usePerformanceTier';
+import styles from './page.module.css';
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
-  const [contentVisible, setContentVisible] = useState(false);
+  const [contentReveal, setContentReveal] = useState(false);
+  const { reducedMotion } = usePerformanceTier();
 
   useEffect(() => {
-    // Check if intro has already been shown in this session
-    // This prevents re-running the intro when navigating back to home
-    const introShown = sessionStorage.getItem('introShown');
-    if (introShown) {
+    if (reducedMotion) {
       setShowIntro(false);
-      setContentVisible(true);
+      setContentReveal(true);
     }
-  }, []);
+  }, [reducedMotion]);
 
   const handleIntroComplete = () => {
-    // Mark intro as shown for this session
-    sessionStorage.setItem('introShown', 'true');
     setShowIntro(false);
     window.scrollTo(0, 0);
-    setTimeout(() => setContentVisible(true), 50);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => setContentReveal(true));
+    });
   };
 
   return (
     <>
       {showIntro && <WelcomeIntro onComplete={handleIntroComplete} />}
-      <div style={{
-        opacity: contentVisible ? 1 : 0,
-        transition: 'opacity 0.5s ease-out',
-        visibility: showIntro ? 'hidden' : 'visible'
-      }}>
+      <div
+        className={styles.siteContent}
+        data-reveal={contentReveal}
+        aria-hidden={showIntro}
+      >
         <Navbar />
-        <main>
+        <main className={styles.main}>
           <Hero />
 
-          <ScrollReveal>
+          <ScrollReveal stagger>
             <AboutPreview />
           </ScrollReveal>
 
-          <ScrollReveal>
+          <ScrollReveal stagger>
             <SkillsSnapshot />
           </ScrollReveal>
 
-          <ScrollReveal>
+          <ScrollReveal stagger>
             <FeaturedProjects />
           </ScrollReveal>
 
-          <ScrollReveal>
+          <ScrollReveal stagger>
             <AskAIPreview />
           </ScrollReveal>
 
-          <ScrollReveal>
+          <ScrollReveal stagger>
             <ContactCTA />
           </ScrollReveal>
         </main>

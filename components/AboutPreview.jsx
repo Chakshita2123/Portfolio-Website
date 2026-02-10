@@ -1,6 +1,8 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import styles from './AboutPreview.module.css';
+
+const RECRUITER_SUMMARY_PROMPT = 'Summarize Chakshita in 3 short paragraphs for a recruiter: her strongest skills, key experience, and why she is a strong hire. Be concise and professional.';
 
 const personas = [
     { value: 'recruiter', label: '💼 Recruiter', icon: '💼' },
@@ -30,6 +32,37 @@ export default function AboutPreview() {
     const [selectedPersona, setSelectedPersona] = useState('recruiter');
     const [isAnimating, setIsAnimating] = useState(false);
     const [displayedIntro, setDisplayedIntro] = useState(personaIntros.recruiter);
+    const [recruiterSummary, setRecruiterSummary] = useState(null);
+    const [summaryLoading, setSummaryLoading] = useState(false);
+    const [summaryError, setSummaryError] = useState(false);
+
+    const fetchRecruiterSummary = useCallback(async () => {
+        if (summaryLoading || recruiterSummary) return;
+        setSummaryLoading(true);
+        setSummaryError(false);
+        try {
+            const res = await fetch('/api/ai', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: RECRUITER_SUMMARY_PROMPT,
+                    context: 'recruiter',
+                    pageContext: 'home',
+                    conversationHistory: []
+                })
+            });
+            const data = await res.json();
+            if (res.ok && data.message) {
+                setRecruiterSummary(data.message);
+            } else {
+                setSummaryError(true);
+            }
+        } catch {
+            setSummaryError(true);
+        } finally {
+            setSummaryLoading(false);
+        }
+    }, [summaryLoading, recruiterSummary]);
 
     useEffect(() => {
         setIsAnimating(true);
@@ -106,6 +139,26 @@ export default function AboutPreview() {
                                 <span key={idx} className={styles.highlightTag}>{highlight}</span>
                             ))}
                         </div>
+                    </div>
+
+                    {/* AI summary for recruiters - delight */}
+                    <div className={styles.recruiterSummaryBlock}>
+                        <button
+                            type="button"
+                            className={styles.recruiterSummaryBtn}
+                            onClick={fetchRecruiterSummary}
+                            disabled={summaryLoading}
+                        >
+                            {summaryLoading ? 'Generating…' : 'Get AI summary (for recruiters)'}
+                        </button>
+                        {summaryError && (
+                            <p className={styles.recruiterSummaryFallback}>
+                                Summary unavailable. Use the Ask AI page or contact directly.
+                            </p>
+                        )}
+                        {recruiterSummary && (
+                            <div className={styles.recruiterSummaryText}>{recruiterSummary}</div>
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import "./globals.css";
 import CustomCursor from "../components/CustomCursor";
+import PortfolioExperienceProvider from "../components/PortfolioExperienceProvider";
 
 export const metadata = {
   title: "Chakshita.ai | AI-Powered Portfolio",
@@ -17,8 +18,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
       <body>
-        <CustomCursor />
-        {children}
+        <PortfolioExperienceProvider>
+          <CustomCursor />
+          {children}
+        </PortfolioExperienceProvider>
       </body>
     </html>
   );
