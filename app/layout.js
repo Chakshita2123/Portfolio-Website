@@ -1,27 +1,36 @@
 import "./globals.css";
-import CustomCursor from "../components/CustomCursor";
-import PortfolioExperienceProvider from "../components/PortfolioExperienceProvider";
+import ThemeProvider from "../components/ThemeProvider";
+import SmoothScroll from "../components/SmoothScroll";
 
 export const metadata = {
-  title: "Chakshita.ai | AI-Powered Portfolio",
-  description: "An AI-first digital identity. Not just a resume — a modern, intelligent portfolio showcasing projects, skills, and vision.",
-  keywords: ["portfolio", "AI", "web developer", "frontend", "React", "Next.js"],
+  title: "Chakshita | Aspiring Full Stack Developer",
+  description:
+    "Portfolio of Chakshita — an aspiring Full Stack Developer who builds beautiful and functional web experiences. Explore projects, skills, and the story behind the code.",
+  keywords: [
+    "portfolio",
+    "full stack developer",
+    "web developer",
+    "React",
+    "Next.js",
+    "frontend",
+    "backend",
+  ],
   authors: [{ name: "Chakshita" }],
   openGraph: {
-    title: "Chakshita.ai | AI-Powered Portfolio",
-    description: "An AI-first digital identity designed like a real product.",
+    title: "Chakshita | Aspiring Full Stack Developer",
+    description:
+      "A cinematic portfolio showcasing projects, skills, and a growth journey.",
     type: "website",
   },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="light">
+    <html lang="en" data-theme="light" suppressHydrationWarning>
       <body>
-        <PortfolioExperienceProvider>
-          <CustomCursor />
-          {children}
-        </PortfolioExperienceProvider>
+        <ThemeProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );
