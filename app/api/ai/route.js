@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { systemPrompt, getContextPrompt } from '@/lib/portfolio-context';
+import { systemPrompt, getContextPrompt, messageEnhancerPrompt } from '@/lib/portfolio-context';
 
 /** Build a short summary of recent conversation for context (last N messages, capped length) */
 function buildConversationSummary(history, maxMessages = 6, maxChars = 800) {
@@ -25,7 +25,7 @@ export async function POST(request) {
             );
         }
 
-        const { message, context, pageContext, conversationHistory } = await request.json();
+        const { message, context, pageContext, conversationHistory, mode } = await request.json();
 
         if (!message || typeof message !== 'string') {
             return Response.json(
@@ -34,26 +34,34 @@ export async function POST(request) {
             );
         }
 
-        if (message.length > 500) {
+        if (message.length > 1000) {
             return Response.json(
-                { error: 'Message too long', message: 'Please keep your question under 500 characters.' },
+                { error: 'Message too long', message: 'Please keep your message under 1000 characters.' },
                 { status: 400 }
             );
         }
 
-        const conversationSummary = buildConversationSummary(conversationHistory || []);
-        const contextAddition = getContextPrompt(context || 'general', {
-            pageContext: pageContext || null,
-            conversationSummary
-        });
-        const fullSystemPrompt = systemPrompt + contextAddition;
-
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const model = genAI.getGenerativeModel({
-            model: 'gemini-2.5-flash'
+            model: 'gemini-1.5-flash'
         });
 
-        const prompt = `${fullSystemPrompt}\n\nUser question: ${message}\n\nRespond helpfully and professionally:`;
+        let prompt;
+
+        // Mode: Enhance Message (Specialized Task)
+        if (mode === 'enhance-message') {
+            prompt = `${messageEnhancerPrompt}\n\nUser's draft message:\n"${message}"\n\nImproved version:`;
+        }
+        // Mode: Standard Portfolio Chat
+        else {
+            const conversationSummary = buildConversationSummary(conversationHistory || []);
+            const contextAddition = getContextPrompt(context || 'general', {
+                pageContext: pageContext || null,
+                conversationSummary
+            });
+            const fullSystemPrompt = systemPrompt + contextAddition;
+            prompt = `${fullSystemPrompt}\n\nUser question: ${message}\n\nRespond helpfully and professionally:`;
+        }
 
         const result = await model.generateContent(prompt);
         const response = await result.response;

@@ -1,6 +1,7 @@
 'use client';
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import { FaGithub } from 'react-icons/fa';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import styles from './projects.module.css';
@@ -236,7 +237,7 @@ export default function ProjectsPage() {
                                             Live Demo <span>→</span>
                                         </a>
                                         <a href={featuredProject.githubUrl} className="btn btn-secondary">
-                                            GitHub
+                                            <FaGithub /> GitHub
                                         </a>
                                     </div>
                                 </div>
@@ -291,7 +292,7 @@ export default function ProjectsPage() {
                                             Live Demo
                                         </a>
                                         <a href={project.githubUrl} className="btn btn-secondary">
-                                            GitHub
+                                            <FaGithub /> GitHub
                                         </a>
                                     </div>
                                 </div>

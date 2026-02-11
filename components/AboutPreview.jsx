@@ -2,7 +2,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import styles from './AboutPreview.module.css';
 
-const RECRUITER_SUMMARY_PROMPT = 'Summarize Chakshita in 3 short paragraphs for a recruiter: her strongest skills, key experience, and why she is a strong hire. Be concise and professional.';
+const STUDENT_SUMMARY_PROMPT = 'Summarize Chakshita in 3 short paragraphs for a student: her collaborative nature, learning journey, and why she is a great peer to work with. Be friendly and encouraging.';
+const FOUNDER_SUMMARY_PROMPT = 'Summarize Chakshita in 3 short paragraphs for a founder: her product mindset, ability to ship fast, and technical expertise in building MVP to scale. Be business-focused and impactful.';
 
 const personas = [
     { value: 'recruiter', label: '💼 Recruiter', icon: '💼' },
@@ -32,7 +33,7 @@ export default function AboutPreview() {
     const [selectedPersona, setSelectedPersona] = useState('recruiter');
     const [isAnimating, setIsAnimating] = useState(false);
     const [displayedIntro, setDisplayedIntro] = useState(personaIntros.recruiter);
-    const [recruiterSummary, setRecruiterSummary] = useState(null);
+    const [aiSummary, setAiSummary] = useState(null);
     const [summaryLoading, setSummaryLoading] = useState(false);
     const [summaryError, setSummaryError] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
@@ -52,24 +53,35 @@ export default function AboutPreview() {
         return () => clearInterval(interval);
     }, [isHovered]);
 
-    const fetchRecruiterSummary = useCallback(async () => {
-        if (summaryLoading || recruiterSummary) return;
+    // Reset summary when persona changes
+    useEffect(() => {
+        setAiSummary(null);
+        setSummaryError(false);
+    }, [selectedPersona]);
+
+    const fetchPersonaSummary = useCallback(async () => {
+        if (summaryLoading || aiSummary) return;
         setSummaryLoading(true);
         setSummaryError(false);
+
+        let prompt = RECRUITER_SUMMARY_PROMPT;
+        if (selectedPersona === 'student') prompt = STUDENT_SUMMARY_PROMPT;
+        if (selectedPersona === 'founder') prompt = FOUNDER_SUMMARY_PROMPT;
+
         try {
             const res = await fetch('/api/ai', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    message: RECRUITER_SUMMARY_PROMPT,
-                    context: 'recruiter',
+                    message: prompt,
+                    context: selectedPersona,
                     pageContext: 'home',
                     conversationHistory: []
                 })
             });
             const data = await res.json();
             if (res.ok && data.message) {
-                setRecruiterSummary(data.message);
+                setAiSummary(data.message);
             } else {
                 setSummaryError(true);
             }
@@ -78,7 +90,7 @@ export default function AboutPreview() {
         } finally {
             setSummaryLoading(false);
         }
-    }, [summaryLoading, recruiterSummary]);
+    }, [summaryLoading, aiSummary, selectedPersona]);
 
     useEffect(() => {
         setIsAnimating(true);
@@ -88,6 +100,8 @@ export default function AboutPreview() {
         }, 200);
         return () => clearTimeout(timer);
     }, [selectedPersona]);
+
+    const currentPersonaLabel = personas.find(p => p.value === selectedPersona)?.label || 'Recruiter';
 
     return (
         <section id="about" className={`section ${styles.about}`}>
@@ -166,18 +180,18 @@ export default function AboutPreview() {
                         <button
                             type="button"
                             className={styles.recruiterSummaryBtn}
-                            onClick={fetchRecruiterSummary}
+                            onClick={fetchPersonaSummary}
                             disabled={summaryLoading}
                         >
-                            {summaryLoading ? 'Generating…' : 'Get AI summary (for recruiters)'}
+                            {summaryLoading ? 'Generating…' : `Get AI summary (for ${currentPersonaLabel})`}
                         </button>
                         {summaryError && (
                             <p className={styles.recruiterSummaryFallback}>
                                 Summary unavailable. Use the Ask AI page or contact directly.
                             </p>
                         )}
-                        {recruiterSummary && (
-                            <div className={styles.recruiterSummaryText}>{recruiterSummary}</div>
+                        {aiSummary && (
+                            <div className={styles.recruiterSummaryText}>{aiSummary}</div>
                         )}
                     </div>
                 </div>

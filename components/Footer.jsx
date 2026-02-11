@@ -1,5 +1,7 @@
 'use client';
 import Link from 'next/link';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
 import styles from './Footer.module.css';
 
 const navLinks = [
@@ -11,9 +13,9 @@ const navLinks = [
 ];
 
 const socialLinks = [
-    { name: 'LinkedIn', icon: '💼', url: 'https://linkedin.com/in/chakshita' },
-    { name: 'GitHub', icon: '💻', url: 'https://github.com/chakshita' },
-    { name: 'Email', icon: '📧', url: 'mailto:chakshitajaswal2106@gmail.com' },
+    { name: 'LinkedIn', icon: <FaLinkedin />, url: 'https://www.linkedin.com/in/chakshita-jaswal-4a691a2ba/' },
+    { name: 'GitHub', icon: <FaGithub />, url: 'https://github.com/Chakshita2123' },
+    { name: 'Email', icon: <MdEmail />, url: 'mailto:chakshitajaswal2106@gmail.com' },
 ];
 
 export default function Footer() {

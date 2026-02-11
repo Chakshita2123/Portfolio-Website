@@ -9,6 +9,21 @@
     border-radius: 50%;
     background: radial-gradient(circle, rgba(14, 165, 233, 0.06) 0%, transparent 70%);
     transition: opacity 0.4s ease;
+    animation: ambientPulse 4s ease-in-out infinite;
+}
+
+@keyframes ambientPulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.8;
+    }
 }
 
 /* Premium cursor - theme-aware, subtle depth */
@@ -16,9 +31,10 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     transform: translate(-50%, -50%);
+    /* Revert to center alignment */
     pointer-events: none;
     z-index: 9999;
     display: flex;
@@ -28,32 +44,36 @@
 }
 
 .cursorDot {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background: var(--primary);
     border-radius: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 12px var(--primary), 0 0 24px rgba(14, 165, 233, 0.4);
+    box-shadow: 0 0 10px var(--primary), 0 0 20px rgba(14, 165, 233, 0.4);
+    clip-path: none;
+    mix-blend-mode: normal;
     transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
 }
 
 .cursorRing {
-    width: 28px;
-    height: 28px;
-    border: 1.5px solid var(--border-medium);
+    display: block;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--border-medium);
     border-radius: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.25s ease,
-                background 0.25s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.25s ease,
+        background 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    opacity: 1;
 }
 
 .hidden {
@@ -63,27 +83,34 @@
 
 .clicked .cursorDot {
     transform: translate(-50%, -50%) scale(0.85);
-    box-shadow: 0 0 8px var(--primary);
+    box-shadow: 0 0 6px var(--primary);
 }
 
 .clicked .cursorRing {
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
     border-color: var(--primary);
     background: rgba(14, 165, 233, 0.08);
-    box-shadow: 0 0 16px rgba(14, 165, 233, 0.2);
+    box-shadow: 0 0 12px rgba(14, 165, 233, 0.2);
 }
 
 .hovered .cursorRing {
-    width: 44px;
-    height: 44px;
+    width: 30px;
+    height: 30px;
     border-color: var(--primary);
-    background: rgba(14, 165, 233, 0.06);
-    box-shadow: 0 0 20px rgba(14, 165, 233, 0.15);
+    background: rgba(14, 165, 233, 0.05);
+    box-shadow: 0 0 16px rgba(14, 165, 233, 0.15);
+    opacity: 1;
 }
 
 .hovered .cursorDot {
-    box-shadow: 0 0 16px var(--primary), 0 0 32px rgba(14, 165, 233, 0.5);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 14px var(--primary), 0 0 28px rgba(14, 165, 233, 0.5);
+}
+
+/* Remove glow for the arrow */
+.cursorDot::after {
+    display: none;
 }
 
 /* Hide on mobile */

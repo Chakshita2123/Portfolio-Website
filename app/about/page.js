@@ -1,5 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import EducationTimeline from '@/components/EducationTimeline';
+import AdaptiveIntroduction from '@/components/AdaptiveIntroduction';
 import styles from './about.module.css';
 
 export const metadata = {
@@ -87,38 +89,13 @@ export default function AboutPage() {
                             </p>
                         </div>
 
-                        <div className={`${styles.aiCard} ${styles.animateIn} ${styles.delay3}`}>
-                            <div className={styles.aiCardHeader}>
-                                <span className={styles.aiIcon}>✨</span>
-                                <span className={styles.aiTitle}>AI Feature Coming Soon</span>
-                            </div>
-                            <p className={styles.aiDescription}>
-                                This section will generate personalized introductions based on
-                                who's viewing — tailored for recruiters, collaborators, or fellow developers.
-                            </p>
-                            <div className={styles.aiPreview}>
-                                <div className={styles.previewLine}></div>
-                                <div className={styles.previewLine}></div>
-                                <div className={styles.previewLineShort}></div>
-                            </div>
-                        </div>
+                        <AdaptiveIntroduction />
                     </div>
                 </section>
 
                 {/* Education Section */}
-                <section className={`section ${styles.education}`}>
-                    <div className="container">
-                        <h2 className={`${styles.sectionTitle} ${styles.centerText}`}>Education</h2>
-                        <div className={`${styles.eduCard} ${styles.animateIn}`}>
-                            <div className={styles.eduIcon}>🎓</div>
-                            <div className={styles.eduContent}>
-                                <h3 className={styles.eduDegree}>Bachelor of Technology</h3>
-                                <p className={styles.eduField}>Computer Science & Engineering</p>
-                                <p className={styles.eduInstitution}>Your University Name</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                {/* Education Section */}
+                <EducationTimeline />
 
                 {/* Mindset Section */}
                 <section className={`section ${styles.mindset}`}>

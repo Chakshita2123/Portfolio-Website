@@ -1,6 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import { FaGithub } from 'react-icons/fa';
 import styles from './FeaturedProjects.module.css';
 
 const projects = [
@@ -139,7 +140,7 @@ export default function FeaturedProjects() {
                                     Live Demo
                                 </a>
                                 <a href={project.githubUrl} className="btn btn-secondary">
-                                    GitHub
+                                    <FaGithub /> GitHub
                                 </a>
                             </div>
                         </div>

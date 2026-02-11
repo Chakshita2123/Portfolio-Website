@@ -1,30 +1,32 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import styles from './contact.module.css';
 
 const contactMethods = [
     {
-        icon: '📧',
+        icon: <MdEmail />,
         label: 'Email',
         value: 'chakshitajaswal2106@gmail.com',
         href: 'mailto:chakshitajaswal2106@gmail.com',
         description: 'Best for detailed inquiries'
     },
     {
-        icon: '💼',
+        icon: <FaLinkedin />,
         label: 'LinkedIn',
         value: 'Connect on LinkedIn',
-        href: 'https://linkedin.com/in/chakshita',
+        href: 'https://www.linkedin.com/in/chakshita-jaswal-4a691a2ba/',
         description: 'For professional networking'
     },
     {
-        icon: '💻',
+        icon: <FaGithub />,
         label: 'GitHub',
-        value: 'View my code',
-        href: 'https://github.com/chakshita',
+        value: 'Check out my code',
+        href: 'https://github.com/Chakshita2123',
         description: 'Explore my projects'
     }
 ];

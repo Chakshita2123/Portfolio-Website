@@ -1,0 +1,316 @@
+/* AdaptiveIntroduction.module.css */
+
+.container {
+    position: relative;
+    padding: var(--spacing-xl);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Dark mode adjustment if needed, assuming global vars handle it, but being safe */
+@media (prefers-color-scheme: dark) {
+    .container {
+        background: rgba(255, 255, 255, 0.02);
+        border-color: rgba(255, 255, 255, 0.05);
+    }
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--radius-xl);
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 40%, rgba(255, 255, 255, 0.05));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.5;
+    transition: opacity 0.5s ease;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(14, 165, 233, 0.3);
+    /* Primary color hint */
+}
+
+.container:hover::before {
+    opacity: 1;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.4), transparent 40%, rgba(14, 165, 233, 0.1));
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.titleBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.badge {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--primary);
+    background: rgba(14, 165, 233, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    align-self: flex-start;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* System Activity Line */
+.activityLine {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    min-height: 20px;
+}
+
+.spinner {
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--text-tertiary);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.activityText {
+    animation: fadeInOut 3s infinite;
+}
+
+/* Mode Pills */
+.modeSelector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+}
+
+.modePill {
+    background: transparent;
+    border: 1px solid var(--border-light);
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.modePill:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-medium);
+    transform: translateY(-1px);
+}
+
+.activePill {
+    background: rgba(14, 165, 233, 0.1);
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.15);
+}
+
+/* Content Area */
+.contentArea {
+    min-height: 100px;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+}
+
+.summaryText {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-secondary);
+    transition: opacity 0.3s ease;
+}
+
+.summaryText.fading {
+    opacity: 0;
+}
+
+/* Status Indicators */
+.statusBar {
+    display: flex;
+    gap: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-light);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-tertiary);
+    flex-wrap: wrap;
+}
+
+.statusItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.statusDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+    /* Assuming green/success variable exists, else fallback */
+    background-color: #4ade80;
+    box-shadow: 0 0 5px rgba(74, 222, 128, 0.4);
+}
+
+.optimizingDot {
+    background-color: #fbbf24;
+    /* Amber */
+    animation: pulse 2s infinite;
+}
+
+/* Philosophy Line */
+.philosophy {
+    text-align: right;
+    font-size: var(--font-size-xs);
+    font-style: italic;
+    color: var(--text-tertiary);
+    margin-top: var(--spacing-sm);
+    opacity: 0.6;
+}
+
+/* Activation Overlay */
+.activationOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+    animation: fadeOutOverlay 0.5s 1.5s forwards;
+    pointer-events: none;
+}
+
+.activationText {
+    font-family: var(--font-mono);
+    color: var(--primary);
+    font-size: var(--font-size-lg);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: glowText 1.5s ease-in-out;
+}
+
+/* Animations */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        box-shadow: 0 0 0 rgba(251, 191, 36, 0);
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+    }
+}
+
+@keyframes fadeOutOverlay {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes glowText {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+        text-shadow: 0 0 20px var(--primary);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+    }
+
+    .badge {
+        align-self: flex-start;
+    }
+
+    .statusBar {
+        gap: var(--spacing-md);
+    }
+}

@@ -1,6 +1,45 @@
+'use client';
+import { useState } from 'react';
+import { MdEmail } from 'react-icons/md';
 import styles from './ContactCTA.module.css';
 
 export default function ContactCTA() {
+    const [message, setMessage] = useState('');
+    const [isEnhancing, setIsEnhancing] = useState(false);
+    const [enhancedMessage, setEnhancedMessage] = useState('');
+
+    const handleEnhance = async () => {
+        if (!message.trim() || isEnhancing) return;
+
+        setIsEnhancing(true);
+        try {
+            const res = await fetch('/api/ai', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: message,
+                    mode: 'enhance-message'
+                })
+            });
+            const data = await res.json();
+            if (data.success) {
+                setEnhancedMessage(data.message);
+            }
+        } catch (error) {
+            console.error('Enhancement failed:', error);
+        } finally {
+            setIsEnhancing(false);
+        }
+    };
+
+    const copyToClipboard = () => {
+        if (enhancedMessage) {
+            navigator.clipboard.writeText(enhancedMessage);
+            // Optional: Show a toast or small "Copied!" feedback if needed, 
+            // but for now the user can just see the text.
+        }
+    };
+
     return (
         <section id="contact" className={`section ${styles.contact}`}>
             <div className="container">
@@ -18,8 +57,8 @@ export default function ContactCTA() {
                             <button className="btn btn-primary">
                                 Contact Me <span>→</span>
                             </button>
-                            <a href="mailto:hello@chakshita.ai" className="btn btn-secondary">
-                                hello@chakshita.ai
+                            <a href="mailto:chakshitajaswal2106@gmail.com" className="btn btn-secondary">
+                                <MdEmail /> Send Email
                             </a>
                         </div>
                     </div>
@@ -37,14 +76,49 @@ export default function ContactCTA() {
                             </p>
                         </div>
                         <div className={styles.aiCardPreview}>
-                            <div className={styles.previewInput}>
-                                <span className={styles.previewPlaceholder}>
-                                    "Hi Chakshita, I'm a recruiter at..."
-                                </span>
-                            </div>
-                            <div className={styles.previewButton}>
-                                <span>✨ Enhance with AI</span>
-                            </div>
+                            {enhancedMessage ? (
+                                <div className={styles.enhancedResult}>
+                                    <div className={styles.resultHeader}>
+                                        <span className={styles.resultLabel}>✨ Enhanced Message</span>
+                                        <button
+                                            onClick={() => setEnhancedMessage('')}
+                                            className={styles.resetBtn}
+                                        >
+                                            Draft New
+                                        </button>
+                                    </div>
+                                    <textarea
+                                        readOnly
+                                        className={styles.enhancedTextarea}
+                                        value={enhancedMessage}
+                                        onClick={(e) => e.target.select()}
+                                    />
+                                    <button
+                                        className={styles.previewButton}
+                                        onClick={copyToClipboard}
+                                    >
+                                        Copy to Clipboard
+                                    </button>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className={styles.previewInput}>
+                                        <textarea
+                                            className={styles.messageInput}
+                                            placeholder="Type a rough draft (e.g., 'Hi Chakshita, I'm a recruiter at Google...')"
+                                            value={message}
+                                            onChange={(e) => setMessage(e.target.value)}
+                                        />
+                                    </div>
+                                    <button
+                                        className={`${styles.previewButton} ${isEnhancing || !message.trim() ? styles.disabled : ''}`}
+                                        onClick={handleEnhance}
+                                        disabled={isEnhancing || !message.trim()}
+                                    >
+                                        {isEnhancing ? 'Enhancing...' : '✨ Enhance with AI'}
+                                    </button>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
