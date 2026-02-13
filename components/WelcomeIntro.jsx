@@ -70,9 +70,9 @@ export default function WelcomeIntro({ onComplete }) {
             {/* Color haze from core - BACKGROUND LAYER */}
             <div className={styles.colorHaze}></div>
 
-            {/* Curved data streams - MIDGROUND LAYER */}
+            {/* Curved data streams - MIDGROUND LAYER - Reduced for performance */}
             <div className={styles.dataStreamField}>
-                {[...Array(6)].map((_, i) => (
+                {[...Array(4)].map((_, i) => (
                     <div
                         key={i}
                         className={styles.dataStream}
@@ -83,17 +83,17 @@ export default function WelcomeIntro({ onComplete }) {
                 ))}
             </div>
 
-            {/* Floating particles - MIDGROUND LAYER */}
+            {/* Floating particles - MIDGROUND LAYER - Reduced for performance */}
             <div className={styles.particleField}>
-                {[...Array(25)].map((_, i) => (
+                {[...Array(15)].map((_, i) => (
                     <div
                         key={i}
                         className={styles.particle}
                         style={{
-                            '--delay': `${i * 0.25}s`,
-                            '--duration': `${12 + (i % 6) * 3}s`,
-                            '--x': `${5 + (i * 3.8) % 90}%`,
-                            '--y': `${5 + (i * 5.7) % 90}%`
+                            '--delay': `${i * 0.3}s`,
+                            '--duration': `${12 + (i % 5) * 3}s`,
+                            '--x': `${5 + (i * 6) % 90}%`,
+                            '--y': `${5 + (i * 6) % 90}%`
                         }}
                     ></div>
                 ))}

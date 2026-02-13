@@ -6,25 +6,47 @@ const skillCategories = [
     {
         title: 'Frontend',
         icon: '🎨',
-        skills: ['React', 'Next.js', 'JavaScript', 'HTML/CSS', 'TypeScript'],
+        skills: [
+            { name: 'React', icon: 'react' },
+            { name: 'Next.js', icon: 'nextjs' },
+            { name: 'JavaScript', icon: 'js' },
+            { name: 'HTML/CSS', icon: 'html,css' },
+            { name: 'TypeScript', icon: 'ts' }
+        ],
         aiInsight: 'Core strength - React component architecture and modern CSS'
     },
     {
         title: 'Backend',
         icon: '⚙️',
-        skills: ['Node.js', 'Express', 'Python', 'REST APIs'],
+        skills: [
+            { name: 'Node.js', icon: 'nodejs' },
+            { name: 'Express', icon: 'express' },
+            { name: 'Python', icon: 'py' },
+            { name: 'REST APIs', icon: 'postman' }
+        ],
         aiInsight: 'Full-stack capability for complete project development'
     },
     {
         title: 'AI / Automation',
         icon: '🤖',
-        skills: ['OpenAI API', 'LangChain', 'Prompt Engineering', 'Chatbots'],
+        skills: [
+            { name: 'OpenAI API', icon: 'tensorflow' },
+            { name: 'LangChain', icon: 'py' },
+            { name: 'Prompt Engineering', icon: 'react' },
+            { name: 'Chatbots', icon: 'githubactions' }
+        ],
         aiInsight: 'Practical AI integration with production-ready features'
     },
     {
         title: 'Tools & Platforms',
         icon: '🛠️',
-        skills: ['Git', 'VS Code', 'Figma', 'Vercel', 'MongoDB'],
+        skills: [
+            { name: 'Git', icon: 'git' },
+            { name: 'VS Code', icon: 'vscode' },
+            { name: 'Figma', icon: 'figma' },
+            { name: 'Vercel', icon: 'vercel' },
+            { name: 'MongoDB', icon: 'mongodb' }
+        ],
         aiInsight: 'Modern development workflow and deployment expertise'
     }
 ];
@@ -81,8 +103,16 @@ export default function SkillsSnapshot() {
                             </div>
                             <div className={styles.skillTags}>
                                 {category.skills.map((skill, skillIndex) => (
-                                    <span key={skillIndex} className="tag">
-                                        {skill}
+                                    <span key={skillIndex} className={`tag ${styles.skillTag}`}>
+                                        {skill.icon && (
+                                            <img
+                                                src={`https://skillicons.dev/icons?i=${skill.icon}`}
+                                                alt=""
+                                                className={styles.tagIcon}
+                                                loading="lazy"
+                                            />
+                                        )}
+                                        {skill.name}
                                     </span>
                                 ))}
                             </div>

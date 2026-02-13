@@ -157,24 +157,34 @@
     gap: var(--spacing-sm);
 }
 
-.category .tag {
+.skillTag {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm) !important;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 }
 
-.category:hover .tag {
+.category:hover .skillTag {
     border-color: rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.08);
 }
 
-.category .tag:hover {
-    background: var(--glow-color);
-    color: white;
-    /* Always white text on colored tag */
-    border-color: var(--glow-color);
+.skillTag:hover {
+    background: var(--glow-color) !important;
+    color: white !important;
+    border-color: var(--glow-color) !important;
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.tagIcon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
 }
 
 /* Default Tag override from globals to handle coloring */

@@ -8,10 +8,11 @@
     width: 500px;
     height: 500px;
     perspective: 1000px;
-    /* Essential for 3D effect */
     display: flex;
     justify-content: center;
     align-items: center;
+    /* GPU acceleration hint */
+    will-change: contents;
 }
 
 .system {
@@ -21,6 +22,8 @@
     transform-style: preserve-3d;
     transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
     transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    /* GPU acceleration */
+    will-change: transform;
 }
 
 /* ==================== CORE NUCLEUS - Breathing effect ==================== */

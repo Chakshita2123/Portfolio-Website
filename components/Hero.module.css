@@ -102,7 +102,7 @@
     /* Maintain 3D for children */
 }
 
-/* Floating Cards - Now with 3D elevation */
+/* Floating Cards - Optimized for performance */
 .floatingCard {
     position: absolute;
     display: flex;
@@ -117,9 +117,9 @@
     font-weight: 500;
     color: var(--text-primary);
     transform: translateZ(20px);
-    /* Lift off surface */
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Removed backdrop-filter for performance */
+    will-change: transform;
 }
 
 .floatingCard:hover {

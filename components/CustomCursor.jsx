@@ -1,79 +1,124 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { usePerformanceTier } from '@/hooks/usePerformanceTier';
 import styles from './CustomCursor.module.css';
 
 const LERP = 0.12;
 
+/**
+ * Optimized CustomCursor - Uses direct DOM manipulation instead of React state
+ * to avoid re-renders on every mouse move event.
+ */
 export default function CustomCursor() {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [trail, setTrail] = useState({ x: 0, y: 0 });
-    const [hidden, setHidden] = useState(false);
-    const [clicked, setClicked] = useState(false);
-    const [linkHovered, setLinkHovered] = useState(false);
+    const cursorRef = useRef(null);
+    const ambientRef = useRef(null);
     const targetRef = useRef({ x: 0, y: 0 });
+    const currentRef = useRef({ x: 0, y: 0 });
+    const trailRef = useRef({ x: 0, y: 0 });
+    const stateRef = useRef({ hidden: false, clicked: false, linkHovered: false });
+    const rafRef = useRef(0);
     const { reducedMotion } = usePerformanceTier();
     const ambientEnabled = !reducedMotion;
 
+    const updateCursorClasses = useCallback(() => {
+        const cursor = cursorRef.current;
+        if (!cursor) return;
+        const { hidden, clicked, linkHovered } = stateRef.current;
+        cursor.classList.toggle(styles.hidden, hidden);
+        cursor.classList.toggle(styles.clicked, clicked);
+        cursor.classList.toggle(styles.hovered, linkHovered);
+    }, [styles.hidden, styles.clicked, styles.hovered]);
+
     useEffect(() => {
+        const cursor = cursorRef.current;
+        const ambient = ambientRef.current;
+        if (!cursor) return;
+
         const onMouseMove = (e) => {
             targetRef.current = { x: e.clientX, y: e.clientY };
-            setPosition({ x: e.clientX, y: e.clientY });
+
+            // Direct DOM update - no React re-render
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+
+            // Check for clickable elements
             const target = e.target;
-            const isClickable = target.closest("a, button, .clickable, input, textarea, select");
-            setLinkHovered(!!isClickable);
+            const isClickable = !!target.closest("a, button, .clickable, input, textarea, select");
+            if (stateRef.current.linkHovered !== isClickable) {
+                stateRef.current.linkHovered = isClickable;
+                updateCursorClasses();
+            }
         };
 
-        document.addEventListener("mousemove", onMouseMove);
-        document.addEventListener("mouseenter", () => setHidden(false));
-        document.addEventListener("mouseleave", () => setHidden(true));
-        document.addEventListener("mousedown", () => setClicked(true));
-        document.addEventListener("mouseup", () => setClicked(false));
+        const onMouseEnter = () => {
+            stateRef.current.hidden = false;
+            if (ambient) ambient.style.opacity = '1';
+            updateCursorClasses();
+        };
+
+        const onMouseLeave = () => {
+            stateRef.current.hidden = true;
+            if (ambient) ambient.style.opacity = '0';
+            updateCursorClasses();
+        };
+
+        const onMouseDown = () => {
+            stateRef.current.clicked = true;
+            updateCursorClasses();
+        };
+
+        const onMouseUp = () => {
+            stateRef.current.clicked = false;
+            updateCursorClasses();
+        };
+
+        document.addEventListener("mousemove", onMouseMove, { passive: true });
+        document.addEventListener("mouseenter", onMouseEnter);
+        document.addEventListener("mouseleave", onMouseLeave);
+        document.addEventListener("mousedown", onMouseDown);
+        document.addEventListener("mouseup", onMouseUp);
 
         return () => {
             document.removeEventListener("mousemove", onMouseMove);
-            document.removeEventListener("mouseenter", () => setHidden(false));
-            document.removeEventListener("mouseleave", () => setHidden(true));
-            document.removeEventListener("mousedown", () => setClicked(true));
-            document.removeEventListener("mouseup", () => setClicked(false));
+            document.removeEventListener("mouseenter", onMouseEnter);
+            document.removeEventListener("mouseleave", onMouseLeave);
+            document.removeEventListener("mousedown", onMouseDown);
+            document.removeEventListener("mouseup", onMouseUp);
         };
-    }, []);
+    }, [updateCursorClasses]);
 
+    // Smooth trail animation loop
     useEffect(() => {
-        if (!ambientEnabled) return;
-        let raf = 0;
+        if (!ambientEnabled || !ambientRef.current) return;
+
         const tick = () => {
             const t = targetRef.current;
-            setTrail((prev) => ({
-                x: prev.x + (t.x - prev.x) * LERP,
-                y: prev.y + (t.y - prev.y) * LERP
-            }));
-            raf = requestAnimationFrame(tick);
+            trailRef.current.x += (t.x - trailRef.current.x) * LERP;
+            trailRef.current.y += (t.y - trailRef.current.y) * LERP;
+
+            // Direct DOM update
+            if (ambientRef.current) {
+                ambientRef.current.style.left = `${trailRef.current.x}px`;
+                ambientRef.current.style.top = `${trailRef.current.y}px`;
+            }
+
+            rafRef.current = requestAnimationFrame(tick);
         };
-        raf = requestAnimationFrame(tick);
-        return () => cancelAnimationFrame(raf);
+
+        rafRef.current = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(rafRef.current);
     }, [ambientEnabled]);
 
     return (
         <>
             {ambientEnabled && (
                 <div
+                    ref={ambientRef}
                     className={styles.cursorAmbient}
-                    style={{
-                        left: `${trail.x}px`,
-                        top: `${trail.y}px`,
-                        opacity: hidden ? 0 : 1
-                    }}
                     aria-hidden="true"
                 />
             )}
-            <div
-                className={`${styles.cursor} ${hidden ? styles.hidden : ''} ${clicked ? styles.clicked : ''} ${linkHovered ? styles.hovered : ''}`}
-                style={{
-                    left: `${position.x}px`,
-                    top: `${position.y}px`
-                }}
-            >
+            <div ref={cursorRef} className={styles.cursor}>
                 <div className={styles.cursorDot} />
                 <div className={styles.cursorRing} />
             </div>

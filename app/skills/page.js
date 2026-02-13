@@ -14,11 +14,11 @@ const skillCategories = [
         levelClass: 'levelCore',
         icon: '🎨',
         skills: [
-            { name: 'React', description: 'Component architecture, hooks, state management' },
-            { name: 'Next.js', description: 'SSR, routing, API routes, optimization' },
-            { name: 'JavaScript / TypeScript', description: 'ES6+, async/await, type safety' },
-            { name: 'HTML & CSS', description: 'Semantic markup, Flexbox, Grid, animations' },
-            { name: 'Responsive Design', description: 'Mobile-first, cross-browser compatibility' },
+            { name: 'React', description: 'Component architecture, hooks, state management', icon: 'react' },
+            { name: 'Next.js', description: 'SSR, routing, API routes, optimization', icon: 'nextjs' },
+            { name: 'JavaScript / TypeScript', description: 'ES6+, async/await, type safety', icon: 'js,ts' },
+            { name: 'HTML & CSS', description: 'Semantic markup, Flexbox, Grid, animations', icon: 'html,css' },
+            { name: 'Responsive Design', description: 'Mobile-first, cross-browser compatibility', icon: 'figma' },
         ]
     },
     {
@@ -27,9 +27,9 @@ const skillCategories = [
         levelClass: 'levelWorking',
         icon: '⚙️',
         skills: [
-            { name: 'Node.js', description: 'Express basics, REST APIs, middleware' },
-            { name: 'API Integration', description: 'Fetching, authentication, error handling' },
-            { name: 'Database Basics', description: 'MongoDB, PostgreSQL fundamentals' },
+            { name: 'Node.js', description: 'Express basics, REST APIs, middleware', icon: 'nodejs' },
+            { name: 'API Integration', description: 'Fetching, authentication, error handling', icon: 'postman' },
+            { name: 'Database Basics', description: 'MongoDB, PostgreSQL fundamentals', icon: 'mongodb,postgres' },
         ]
     },
     {
@@ -38,10 +38,10 @@ const skillCategories = [
         levelClass: 'levelCore',
         icon: '🤖',
         skills: [
-            { name: 'AI API Integration', description: 'OpenAI, LangChain, prompt engineering' },
-            { name: 'Prompt Design', description: 'Structuring prompts for reliable outputs' },
-            { name: 'AI-Enhanced UX', description: 'Building intelligent user experiences' },
-            { name: 'Automation Workflows', description: 'Streamlining repetitive tasks' },
+            { name: 'AI API Integration', description: 'OpenAI, LangChain, prompt engineering', icon: 'tensorflow' },
+            { name: 'Prompt Design', description: 'Structuring prompts for reliable outputs', icon: 'py' },
+            { name: 'AI-Enhanced UX', description: 'Building intelligent user experiences', icon: 'react' },
+            { name: 'Automation Workflows', description: 'Streamlining repetitive tasks', icon: 'githubactions' },
         ]
     },
     {
@@ -50,10 +50,10 @@ const skillCategories = [
         levelClass: 'levelWorking',
         icon: '🛠️',
         skills: [
-            { name: 'Git & GitHub', description: 'Version control, branching, collaboration' },
-            { name: 'VS Code', description: 'Extensions, debugging, productivity' },
-            { name: 'Deployment', description: 'Vercel, Netlify, CI/CD basics' },
-            { name: 'Figma', description: 'Design handoffs, prototyping' },
+            { name: 'Git & GitHub', description: 'Version control, branching, collaboration', icon: 'git,github' },
+            { name: 'VS Code', description: 'Extensions, debugging, productivity', icon: 'vscode' },
+            { name: 'Deployment', description: 'Vercel, Netlify, CI/CD basics', icon: 'vercel' },
+            { name: 'Figma', description: 'Design handoffs, prototyping', icon: 'figma' },
         ]
     }
 ];
@@ -99,7 +99,17 @@ export default function SkillsPage() {
                                     <ul className={styles.skillList}>
                                         {category.skills.map((skill, skillIndex) => (
                                             <li key={skillIndex} className={styles.skillItem}>
-                                                <span className={styles.skillName}>{skill.name}</span>
+                                                <div className={styles.skillHeader}>
+                                                    {skill.icon && (
+                                                        <img
+                                                            src={`https://skillicons.dev/icons?i=${skill.icon}`}
+                                                            alt={`${skill.name} icon`}
+                                                            className={styles.skillIcon}
+                                                            loading="lazy"
+                                                        />
+                                                    )}
+                                                    <span className={styles.skillName}>{skill.name}</span>
+                                                </div>
                                                 <span className={styles.skillDescription}>{skill.description}</span>
                                             </li>
                                         ))}
