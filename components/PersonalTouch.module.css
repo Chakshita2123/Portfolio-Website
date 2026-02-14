@@ -1,0 +1,188 @@
+/* ==================== SECTION WRAPPER ==================== */
+.section {
+    position: relative;
+    padding: var(--spacing-4xl) 0;
+    /* Specific user-requested light gray */
+    background: #E5E5E5;
+    overflow: hidden;
+    color: #1e293b;
+    /* Dark text for light bg */
+}
+
+/* Background mesh gradient - subtle dark overlay */
+.section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+            rgba(0, 0, 0, 0.03) 0%,
+            transparent 70%);
+    transform: rotate(-15deg);
+    pointer-events: none;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==================== HEADER ==================== */
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+}
+
+.title {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: #0f172a;
+    /* Dark slate */
+    margin-bottom: var(--spacing-sm);
+}
+
+.subtitle {
+    font-size: var(--font-size-lg);
+    color: #475569;
+    /* Slate 600 */
+}
+
+/* ==================== INTEREST GRID ==================== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+}
+
+/* ==================== CARD ==================== */
+.card {
+    position: relative;
+    /* White glass card */
+    background: rgba(255, 255, 255, 0.6);
+    /* Darker border for higher contrast */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: default;
+    overflow: hidden;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon Container */
+.iconWrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-lg);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover .iconWrapper {
+    transform: scale(1.1) rotate(5deg);
+    border-color: rgba(14, 165, 233, 0.4);
+    background: linear-gradient(135deg, #ffffff, #f1f5f9);
+}
+
+.cardTitle {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: #0f172a;
+    /* Dark text */
+    margin-bottom: var(--spacing-md);
+}
+
+/* Reveal Content (Initially hidden/subtle) */
+.details {
+    opacity: 0.8;
+    font-size: var(--font-size-sm);
+    color: #475569;
+    /* Slate 600 */
+    line-height: 1.6;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    max-width: 240px;
+}
+
+.card:hover .details {
+    opacity: 1;
+    color: #1e293b;
+    transform: translateY(0);
+}
+
+/* Tags/List inside card */
+.tagList {
+    margin-top: var(--spacing-md);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease 0.1s;
+}
+
+.card:hover .tagList {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tag {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    background: rgba(14, 165, 233, 0.1);
+    color: #0369a1;
+    /* Darker primary for contrast */
+    border-radius: 100px;
+    border: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 cols on tablet */
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+        /* Stack on mobile */
+    }
+
+    .card {
+        height: auto;
+        padding: var(--spacing-2xl) var(--spacing-lg);
+    }
+
+    .tagList {
+        opacity: 1;
+        transform: none;
+        margin-top: var(--spacing-lg);
+    }
+}

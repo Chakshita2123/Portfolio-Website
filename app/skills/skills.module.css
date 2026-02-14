@@ -42,12 +42,39 @@
     padding: var(--spacing-xl);
     box-shadow: var(--shadow-sm);
     transition: all 0.35s var(--ease-smooth);
+    position: relative;
+    overflow: hidden;
+    /* Spotlight vars */
+    --spotlight-color: rgba(14, 165, 233, 0.25);
 }
 
 .categoryCard:hover {
     box-shadow: var(--shadow-md);
     transform: translateY(-3px);
     border-color: rgba(80, 70, 229, 0.18);
+}
+
+/* Spotlight Glow Layer */
+.spotlight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            var(--spotlight-color),
+            transparent 60%);
+}
+
+.categoryCard:hover .spotlight {
+    opacity: 1;
+}
+
+/* Ensure content stays above glow */
+.categoryCard>* {
+    position: relative;
+    z-index: 1;
 }
 
 /* Core Focus cards get subtle emphasis */

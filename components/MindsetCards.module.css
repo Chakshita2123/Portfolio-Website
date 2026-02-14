@@ -1,0 +1,192 @@
+/* ==================== MINDSET GRID ==================== */
+.mindsetGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+    perspective: 900px;
+}
+
+/* ==================== CARD WRAPPER (3D scene) ==================== */
+.cardWrapper {
+    perspective: 800px;
+}
+
+/* ==================== CARD ==================== */
+.card {
+    position: relative;
+    background: var(--surface);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: transform 0.15s ease-out, box-shadow 0.35s var(--ease-smooth),
+        border-color 0.35s var(--ease-smooth);
+    box-shadow: var(--shadow-sm);
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.card:hover {
+    box-shadow:
+        var(--shadow-md),
+        0 0 30px rgba(14, 165, 233, 0.08);
+    border-color: rgba(14, 165, 233, 0.25);
+}
+
+/* ==================== GLOW OVERLAY ==================== */
+.glowOverlay {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card:hover .glowOverlay {
+    opacity: 1;
+}
+
+/* ==================== RIPPLE ==================== */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+            rgba(14, 165, 233, 0.25) 0%,
+            rgba(14, 165, 233, 0.08) 40%,
+            transparent 70%);
+    transform: scale(0);
+    animation: rippleExpand 0.6s ease-out forwards;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes rippleExpand {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* ==================== CARD CONTENT ==================== */
+.cardContent {
+    position: relative;
+    z-index: 3;
+}
+
+.icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: var(--spacing-md);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card:hover .icon {
+    transform: scale(1.25) translateY(-4px);
+}
+
+.title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    transition: color 0.3s ease;
+}
+
+.card:hover .title {
+    color: var(--primary);
+}
+
+.description {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+.card:hover .description {
+    color: var(--text-primary);
+}
+
+/* ==================== BORDER SHIMMER ON HOVER ==================== */
+.card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(135deg,
+            transparent 40%,
+            rgba(14, 165, 233, 0.4) 50%,
+            transparent 60%);
+    background-size: 250% 250%;
+    background-position: 0% 0%;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease, background-position 0.6s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.card:hover::before {
+    opacity: 1;
+    background-position: 100% 100%;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 992px) {
+    .mindsetGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .mindsetGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        transition: box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    .card:hover {
+        transform: none !important;
+    }
+
+    .card:hover .icon {
+        transform: none;
+    }
+
+    .ripple {
+        animation: none;
+        display: none;
+    }
+
+    .glowOverlay {
+        display: none;
+    }
+
+    .card::before {
+        display: none;
+    }
+}

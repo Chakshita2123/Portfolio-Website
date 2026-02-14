@@ -1,11 +1,11 @@
 'use client';
-import { useEffect, useRef, useMemo } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePerformanceTier } from '@/hooks/usePerformanceTier';
 import styles from './AnimatedBackground.module.css';
 
 /**
  * Optimized AnimatedBackground - Uses direct DOM manipulation for parallax
- * and memoization for particles to avoid React re-renders on mouse move.
+ * and client-only particle generation to avoid hydration mismatches.
  */
 export default function AnimatedBackground() {
     const orb1Ref = useRef(null);
@@ -16,16 +16,19 @@ export default function AnimatedBackground() {
     const rafRef = useRef(0);
     const { reducedMotion, lowTier } = usePerformanceTier();
 
-    // Memoize particles so they're only generated once
-    const particles = useMemo(() => {
-        return Array.from({ length: 25 }).map((_, i) => ({
-            id: i,
-            left: Math.random() * 100,
-            top: Math.random() * 100,
-            delay: Math.random() * 5,
-            duration: 10 + Math.random() * 20,
-            size: Math.random() * 3 + 1
-        }));
+    // Generate particles only on the client to avoid SSR hydration mismatch
+    const [particles, setParticles] = useState([]);
+    useEffect(() => {
+        setParticles(
+            Array.from({ length: 25 }).map((_, i) => ({
+                id: i,
+                left: Math.random() * 100,
+                top: Math.random() * 100,
+                delay: Math.random() * 5,
+                duration: 10 + Math.random() * 20,
+                size: Math.random() * 3 + 1
+            }))
+        );
     }, []);
 
     useEffect(() => {

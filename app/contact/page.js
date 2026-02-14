@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { FaLinkedin, FaGithub } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
+import { FaLinkedin, FaGithub, FaPaperPlane, FaMagic, FaSpinner } from 'react-icons/fa';
+import { MdEmail, MdCheckCircle, MdError } from 'react-icons/md';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import styles from './contact.module.css';
@@ -38,12 +38,80 @@ export default function ContactPage() {
         message: ''
     });
     const [focusedField, setFocusedField] = useState(null);
+    const [isRewriting, setIsRewriting] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [status, setStatus] = useState(null); // 'success' | 'error'
 
     const handleInputChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
+        // Clear status when user types
+        if (status) setStatus(null);
+    };
+
+    const handleRewrite = async () => {
+        if (!formData.message.trim()) return;
+
+        setIsRewriting(true);
+        setStatus(null);
+
+        try {
+            const response = await fetch('/api/ai', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: formData.message,
+                    mode: 'enhance-message'
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success && data.message) {
+                setFormData(prev => ({ ...prev, message: data.message.trim() }));
+            } else {
+                console.error('AI Rewrite failed:', data.error);
+                setStatus('error-ai'); // Custom error state for AI failure
+            }
+        } catch (error) {
+            console.error('AI Rewrite Error:', error);
+            setStatus('error-ai');
+        } finally {
+            setIsRewriting(false);
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!formData.name || !formData.email || !formData.message) {
+            setStatus('validation-error');
+            return;
+        }
+
+        setIsSubmitting(true);
+        setStatus(null);
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setFormData({ name: '', email: '', message: '' });
+            } else {
+                setStatus('error');
+            }
+        } catch (error) {
+            console.error('Submission Error:', error);
+            setStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -71,7 +139,7 @@ export default function ContactPage() {
                             <div className={`${styles.formContainer} ${styles.animateIn} ${styles.delay1}`}>
                                 <h2 className={styles.sectionTitle}>Send a Message</h2>
 
-                                <form className={styles.contactForm} onSubmit={(e) => e.preventDefault()}>
+                                <form className={styles.contactForm} onSubmit={handleSubmit}>
                                     <div className={`${styles.formGroup} ${focusedField === 'name' ? styles.focused : ''}`}>
                                         <label htmlFor="name" className={styles.formLabel}>Your Name</label>
                                         <input
@@ -84,6 +152,7 @@ export default function ContactPage() {
                                             onFocus={() => setFocusedField('name')}
                                             onBlur={() => setFocusedField(null)}
                                             className={styles.formInput}
+                                            required
                                         />
                                     </div>
 
@@ -99,6 +168,7 @@ export default function ContactPage() {
                                             onFocus={() => setFocusedField('email')}
                                             onBlur={() => setFocusedField(null)}
                                             className={styles.formInput}
+                                            required
                                         />
                                     </div>
 
@@ -114,24 +184,60 @@ export default function ContactPage() {
                                             onFocus={() => setFocusedField('message')}
                                             onBlur={() => setFocusedField(null)}
                                             className={styles.formTextarea}
+                                            required
                                         />
                                     </div>
 
-                                    {/* AI Assistance Placeholder */}
+                                    {/* AI Assistance */}
                                     <div className={styles.aiAssistCard}>
                                         <div className={styles.aiAssistHeader}>
                                             <span className={styles.aiAssistIcon}>✨</span>
                                             <span className={styles.aiAssistTitle}>AI Writing Assistant</span>
-                                            <span className={styles.comingSoon}>Coming Soon</span>
                                         </div>
                                         <p className={styles.aiAssistText}>
-                                            AI will help draft professional messages based on your intent.
+                                            Not sure how to phrase it? Type a rough draft above, and let AI polish it for you.
                                         </p>
+                                        <button
+                                            type="button"
+                                            onClick={handleRewrite}
+                                            disabled={isRewriting || !formData.message.trim()}
+                                            className={styles.aiRewriteBtn}
+                                        >
+                                            {isRewriting ? (
+                                                <><FaSpinner className="spin" /> Rewriting...</>
+                                            ) : (
+                                                <><FaMagic /> Enhance with AI</>
+                                            )}
+                                        </button>
+                                        {status === 'error-ai' && (
+                                            <p className={styles.errorMessage} style={{ marginTop: '0.5rem', fontSize: '0.85rem' }}>
+                                                AI service unavailable at the moment.
+                                            </p>
+                                        )}
                                     </div>
 
-                                    <button type="submit" className={`btn btn-primary ${styles.submitBtn}`} disabled>
-                                        Send Message <span>→</span>
+                                    <button
+                                        type="submit"
+                                        className={`btn btn-primary ${styles.submitBtn}`}
+                                        disabled={isSubmitting}
+                                    >
+                                        {isSubmitting ? (
+                                            <><FaSpinner className="spin" /> Sending...</>
+                                        ) : (
+                                            <>Send Message <FaPaperPlane /></>
+                                        )}
                                     </button>
+
+                                    {status === 'success' && (
+                                        <div className={styles.successMessage}>
+                                            <MdCheckCircle /> Message sent successfully!
+                                        </div>
+                                    )}
+                                    {status === 'error' && (
+                                        <div className={styles.errorMessage}>
+                                            <MdError /> Something went wrong. Please try again.
+                                        </div>
+                                    )}
 
                                     {/* Response Time Note */}
                                     <p className={styles.responseNote}>

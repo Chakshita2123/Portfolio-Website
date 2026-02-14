@@ -52,9 +52,14 @@
     transition: all var(--transition-fast);
 }
 
-.navLink:hover {
+.navLink:hover,
+.navLink.active {
     color: var(--primary);
     background: var(--primary-light);
+}
+
+.navLink.active {
+    font-weight: 600;
 }
 
 .navCta {

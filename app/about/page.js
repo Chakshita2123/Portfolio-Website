@@ -2,6 +2,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import EducationTimeline from '@/components/EducationTimeline';
 import AdaptiveIntroduction from '@/components/AdaptiveIntroduction';
+import MindsetCards from '@/components/MindsetCards';
+import SkillsOverview from '@/components/SkillsOverview';
+import PersonalTouch from '@/components/PersonalTouch';
 import styles from './about.module.css';
 
 export const metadata = {
@@ -32,23 +35,7 @@ const mindsetCards = [
     }
 ];
 
-const timeline = [
-    {
-        year: '2024',
-        title: 'AI & Modern Web Focus',
-        description: 'Deep dive into AI integrations, Next.js, and product thinking'
-    },
-    {
-        year: '2023',
-        title: 'Hackathons & Projects',
-        description: 'Built real-world projects, participated in hackathons'
-    },
-    {
-        year: '2022',
-        title: 'Frontend Foundations',
-        description: 'Mastered React, JavaScript, and modern CSS'
-    }
-];
+
 
 export default function AboutPage() {
     return (
@@ -107,79 +94,28 @@ export default function AboutPage() {
                             Product values that guide my work
                         </p>
 
-                        <div className={styles.mindsetGrid}>
-                            {mindsetCards.map((card, index) => (
-                                <div key={index} className={`${styles.mindsetCard} ${styles.animateIn}`} style={{ animationDelay: `${index * 0.1}s` }}>
-                                    <span className={styles.mindsetIcon}>{card.icon}</span>
-                                    <h3 className={styles.mindsetTitle}>{card.title}</h3>
-                                    <p className={styles.mindsetDescription}>{card.description}</p>
-                                </div>
-                            ))}
-                        </div>
+                        <MindsetCards cards={mindsetCards} />
                     </div>
                 </section>
 
                 {/* Skills Summary */}
                 <section className={`section ${styles.skillsSummary}`}>
                     <div className="container">
-                        <div className={styles.skillsContent}>
-                            <h2 className={styles.sectionTitle}>Skills at a Glance</h2>
-                            <p className={styles.paragraph}>
-                                My toolkit spans <strong>React, Next.js, TypeScript</strong>, and modern CSS
-                                on the frontend, with growing expertise in <strong>AI integrations</strong>
-                                and product development.
-                            </p>
-                            <p className={styles.paragraph}>
-                                Rather than listing everything here, I let my projects speak for themselves.
-                            </p>
+                        <h2 className={`${styles.sectionTitle} ${styles.centerText}`}>Skills at a Glance</h2>
+                        <SkillsOverview />
+
+                        <div style={{ textAlign: 'center', marginTop: '3rem' }}>
                             <a href="/projects" className="btn btn-secondary">
                                 See My Projects →
                             </a>
                         </div>
-                        <div className={`${styles.skillsAiHint} ${styles.animateIn}`}>
-                            <span className={styles.aiHintIcon}>✨</span>
-                            <span>AI-based skill insights will be added here later</span>
-                        </div>
                     </div>
                 </section>
 
-                {/* Journey Timeline */}
-                <section className={`section ${styles.journey}`}>
-                    <div className="container">
-                        <h2 className={`${styles.sectionTitle} ${styles.centerText}`}>
-                            My <span className="gradient-text">Journey</span>
-                        </h2>
 
-                        <div className={styles.timeline}>
-                            {timeline.map((item, index) => (
-                                <div key={index} className={`${styles.timelineItem} ${styles.animateIn}`} style={{ animationDelay: `${index * 0.15}s` }}>
-                                    <div className={styles.timelineYear}>{item.year}</div>
-                                    <div className={styles.timelineContent}>
-                                        <h3 className={styles.timelineTitle}>{item.title}</h3>
-                                        <p className={styles.timelineDescription}>{item.description}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
 
-                        <div className={`${styles.journeyAiHint} ${styles.animateIn}`}>
-                            <span>✨ AI-generated summaries will enhance this section later</span>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Personal Touch */}
-                <section className={`section ${styles.personal}`}>
-                    <div className="container">
-                        <h2 className={`${styles.sectionTitle} ${styles.centerText}`}>Outside Work</h2>
-                        <p className={`${styles.personalText} ${styles.animateIn}`}>
-                            When I'm not coding, you'll find me exploring new technologies,
-                            reading about product design, or working on creative side projects
-                            that blend art and tech. I believe the best developers stay curious
-                            about the world beyond their screens.
-                        </p>
-                    </div>
-                </section>
+                {/* Personal Touch (Outside Work) */}
+                <PersonalTouch />
 
                 {/* CTA Section */}
                 <section className={`section ${styles.cta}`}>

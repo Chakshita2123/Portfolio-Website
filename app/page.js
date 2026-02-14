@@ -19,13 +19,17 @@ export default function Home() {
   const { reducedMotion } = usePerformanceTier();
 
   useEffect(() => {
-    if (reducedMotion) {
+    // Check if intro has already been shown in this session
+    const hasShown = sessionStorage.getItem('welcomeShown');
+
+    if (hasShown || reducedMotion) {
       setShowIntro(false);
       setContentReveal(true);
     }
   }, [reducedMotion]);
 
   const handleIntroComplete = () => {
+    sessionStorage.setItem('welcomeShown', 'true');
     setShowIntro(false);
     window.scrollTo(0, 0);
     requestAnimationFrame(() => {

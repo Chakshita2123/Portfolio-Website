@@ -6,3 +6,4 @@
 - [x] Clean up old AI card CSS in `app/about/about.module.css` <!-- id: 3 -->
 - [x] Verify animations and responsiveness <!-- id: 4 -->
 - [x] Simplify content language (No jargon) <!-- id: 5 -->
+- [x] Show Welcome Intro only once per session <!-- id: 11 -->
