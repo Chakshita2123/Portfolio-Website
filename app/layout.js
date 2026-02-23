@@ -2,6 +2,11 @@ import "./globals.css";
 import CustomCursor from "../components/CustomCursor";
 import PortfolioExperienceProvider from "../components/PortfolioExperienceProvider";
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export const metadata = {
   title: "Chakshita.ai | AI-Powered Portfolio",
   description: "An AI-first digital identity. Not just a resume — a modern, intelligent portfolio showcasing projects, skills, and vision.",
