@@ -115,7 +115,9 @@
 
 /* Hide on mobile */
 @media (max-width: 768px) {
-    .cursor {
+
+    .cursor,
+    .cursorAmbient {
         display: none;
     }
 }

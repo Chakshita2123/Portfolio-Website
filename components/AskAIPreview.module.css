@@ -337,3 +337,43 @@
         justify-content: center;
     }
 }
+
+@media (max-width: 768px) {
+    .chatMessages {
+        padding: var(--spacing-md);
+        min-height: 220px;
+        max-height: 260px;
+    }
+
+    .chatInput {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .sendBtn {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-size-xs);
+    }
+
+    .decorCircle,
+    .decorCircle2 {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .messageBubble,
+    .messageBubbleUser {
+        max-width: 95%;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .chatHeader {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .quickBtn {
+        font-size: var(--font-size-xs);
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+}

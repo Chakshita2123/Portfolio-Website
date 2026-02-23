@@ -628,28 +628,51 @@ select:focus {
 }
 
 /* Staggered section children - layered depth on scroll */
-.reveal-section--stagger.is-visible .section > *,
-.reveal-section--stagger.is-visible .container > * {
+.reveal-section--stagger.is-visible .section>*,
+.reveal-section--stagger.is-visible .container>* {
   opacity: 0;
   animation: staggerReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.reveal-section--stagger.is-visible .section > *:nth-child(1),
-.reveal-section--stagger.is-visible .container > *:nth-child(1) { animation-delay: 0.05s; }
-.reveal-section--stagger.is-visible .section > *:nth-child(2),
-.reveal-section--stagger.is-visible .container > *:nth-child(2) { animation-delay: 0.12s; }
-.reveal-section--stagger.is-visible .section > *:nth-child(3),
-.reveal-section--stagger.is-visible .container > *:nth-child(3) { animation-delay: 0.19s; }
-.reveal-section--stagger.is-visible .section > *:nth-child(4),
-.reveal-section--stagger.is-visible .container > *:nth-child(4) { animation-delay: 0.26s; }
-.reveal-section--stagger.is-visible .section > *:nth-child(5),
-.reveal-section--stagger.is-visible .container > *:nth-child(5) { animation-delay: 0.33s; }
-.reveal-section--stagger.is-visible .section > *:nth-child(6),
-.reveal-section--stagger.is-visible .container > *:nth-child(6) { animation-delay: 0.4s; }
-.reveal-section--stagger.is-visible .section > *:nth-child(7),
-.reveal-section--stagger.is-visible .container > *:nth-child(7) { animation-delay: 0.47s; }
-.reveal-section--stagger.is-visible .section > *:nth-child(8),
-.reveal-section--stagger.is-visible .container > *:nth-child(8) { animation-delay: 0.54s; }
+.reveal-section--stagger.is-visible .section>*:nth-child(1),
+.reveal-section--stagger.is-visible .container>*:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.reveal-section--stagger.is-visible .section>*:nth-child(2),
+.reveal-section--stagger.is-visible .container>*:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.reveal-section--stagger.is-visible .section>*:nth-child(3),
+.reveal-section--stagger.is-visible .container>*:nth-child(3) {
+  animation-delay: 0.19s;
+}
+
+.reveal-section--stagger.is-visible .section>*:nth-child(4),
+.reveal-section--stagger.is-visible .container>*:nth-child(4) {
+  animation-delay: 0.26s;
+}
+
+.reveal-section--stagger.is-visible .section>*:nth-child(5),
+.reveal-section--stagger.is-visible .container>*:nth-child(5) {
+  animation-delay: 0.33s;
+}
+
+.reveal-section--stagger.is-visible .section>*:nth-child(6),
+.reveal-section--stagger.is-visible .container>*:nth-child(6) {
+  animation-delay: 0.4s;
+}
+
+.reveal-section--stagger.is-visible .section>*:nth-child(7),
+.reveal-section--stagger.is-visible .container>*:nth-child(7) {
+  animation-delay: 0.47s;
+}
+
+.reveal-section--stagger.is-visible .section>*:nth-child(8),
+.reveal-section--stagger.is-visible .container>*:nth-child(8) {
+  animation-delay: 0.54s;
+}
 
 @keyframes staggerReveal {
   from {
@@ -657,6 +680,7 @@ select:focus {
     transform: translateY(18px);
     filter: blur(2px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -780,4 +804,78 @@ select:focus {
 
 [data-page-mood="focused"] .animate-float {
   animation-duration: 10s;
+}
+
+/* ==================== RESPONSIVE - GLOBAL ==================== */
+/* Touch devices: restore default cursor */
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+
+  a,
+  button,
+  [role="button"],
+  input,
+  textarea,
+  select,
+  label {
+    cursor: auto;
+  }
+}
+
+/* Tablet breakpoint */
+@media (max-width: 992px) {
+  :root {
+    --font-size-6xl: 3rem;
+    --font-size-5xl: 2.5rem;
+    --font-size-4xl: 2rem;
+    --spacing-4xl: 4rem;
+  }
+
+  .section {
+    padding: var(--spacing-3xl) 0;
+  }
+}
+
+/* Mobile breakpoint */
+@media (max-width: 768px) {
+  :root {
+    --font-size-6xl: 2.5rem;
+    --font-size-5xl: 2rem;
+    --font-size-4xl: 1.75rem;
+    --font-size-3xl: 1.5rem;
+    --spacing-4xl: 3rem;
+    --spacing-3xl: 2.5rem;
+  }
+
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+
+  .section {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .section-title {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* Small mobile breakpoint */
+@media (max-width: 480px) {
+  :root {
+    --font-size-6xl: 2rem;
+    --font-size-5xl: 1.75rem;
+    --font-size-4xl: 1.5rem;
+    --font-size-3xl: 1.375rem;
+    --font-size-2xl: 1.25rem;
+    --spacing-4xl: 2.5rem;
+    --spacing-3xl: 2rem;
+    --spacing-2xl: 1.5rem;
+  }
+
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
 }

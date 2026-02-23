@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
@@ -14,11 +15,27 @@ const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isActive = (path) => {
     if (path === '/') return pathname === '/';
     return pathname.startsWith(path);
   };
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileMenuOpen]);
 
   return (
     <nav className={styles.navbar}>
@@ -29,7 +46,7 @@ export default function Navbar() {
           <span className={styles.logoAi}>.ai</span>
         </Link>
 
-        {/* Navigation Links */}
+        {/* Desktop Navigation Links */}
         <ul className={styles.navLinks}>
           {navItems.map((item) => (
             <li key={item.href}>
@@ -43,11 +60,53 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Right side: Theme Toggle + CTA */}
+        {/* Right side: Theme Toggle + CTA + Hamburger */}
         <div className={styles.navActions}>
           <ThemeToggle />
           <Link href="/ask-ai" className={`btn btn-primary ${styles.navCta}`}>
             Ask AI <span className={styles.ctaEmoji}>🤖</span>
+          </Link>
+          {/* Hamburger Button - Mobile Only */}
+          <button
+            className={`${styles.hamburger} ${mobileMenuOpen ? styles.hamburgerActive : ''}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            <span className={styles.hamburgerLine}></span>
+            <span className={styles.hamburgerLine}></span>
+            <span className={styles.hamburgerLine}></span>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className={styles.mobileOverlay} onClick={() => setMobileMenuOpen(false)} />
+      )}
+
+      {/* Mobile Menu */}
+      <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+        <ul className={styles.mobileNavLinks}>
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className={`${styles.mobileNavLink} ${isActive(item.href) ? styles.mobileNavLinkActive : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className={styles.mobileMenuFooter}>
+          <Link
+            href="/ask-ai"
+            className={`btn btn-primary ${styles.mobileCta}`}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Ask AI 🤖
           </Link>
         </div>
       </div>

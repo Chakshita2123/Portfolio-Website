@@ -536,3 +536,37 @@
         width: 100%;
     }
 }
+
+@media (max-width: 480px) {
+    .pageHeader {
+        padding: var(--spacing-2xl) 0 var(--spacing-lg);
+    }
+
+    .pageTitle {
+        font-size: var(--font-size-2xl);
+    }
+
+    .featuredCard {
+        padding: var(--spacing-lg);
+    }
+
+    .featuredTitle {
+        font-size: var(--font-size-xl);
+    }
+
+    .sectionTitle {
+        font-size: var(--font-size-xl);
+    }
+
+    .ctaTitle {
+        font-size: var(--font-size-2xl);
+    }
+
+    .projectCard {
+        padding: var(--spacing-lg);
+    }
+
+    .selectorCard {
+        padding: var(--spacing-md);
+    }
+}

@@ -308,6 +308,32 @@
         margin-bottom: var(--spacing-xs);
         font-weight: 600;
     }
+
+    .cardYear {
+        display: block;
+        font-size: var(--font-size-sm);
+        color: var(--primary);
+        font-family: var(--font-mono);
+    }
+}
+
+@media (max-width: 480px) {
+    .timelineCard {
+        padding: var(--spacing-md);
+    }
+
+    .cardTitle {
+        font-size: var(--font-size-base);
+    }
+
+    .cardDesc {
+        font-size: var(--font-size-sm);
+    }
+
+    .tag {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
 }
 
 @media (min-width: 769px) {

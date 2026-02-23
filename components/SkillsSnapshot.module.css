@@ -393,3 +393,17 @@
         justify-content: center;
     }
 }
+
+@media (max-width: 480px) {
+    .category {
+        padding: var(--spacing-lg);
+    }
+
+    .categoryTitle {
+        font-size: var(--font-size-lg);
+    }
+
+    .aiInsightBanner {
+        padding: var(--spacing-md);
+    }
+}

@@ -231,6 +231,13 @@
     }
 }
 
+@media (max-width: 480px) {
+    .orbitContainer {
+        transform: scale(0.6);
+        height: 300px;
+    }
+}
+
 /* ==================== LIGHT THEME OVERRIDES (Stone/Teal) ==================== */
 [data-theme='light'] .nucleus {
     box-shadow:

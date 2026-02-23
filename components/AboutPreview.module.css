@@ -239,3 +239,29 @@
         justify-content: center;
     }
 }
+
+@media (max-width: 768px) {
+    .aiCard {
+        padding: var(--spacing-lg);
+    }
+
+    .infoRow {
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .infoRow {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .summary {
+        font-size: var(--font-size-sm);
+    }
+
+    .aiCardHeader {
+        flex-wrap: wrap;
+    }
+}

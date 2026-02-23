@@ -161,6 +161,10 @@
     .mindsetGrid {
         grid-template-columns: 1fr;
     }
+
+    .card {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
 }
 
 /* ==================== REDUCED MOTION ==================== */
