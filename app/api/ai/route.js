@@ -63,9 +63,26 @@ export async function POST(request) {
             prompt = `${fullSystemPrompt}\n\nUser question: ${message}\n\nRespond helpfully and professionally:`;
         }
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = response.text();
+        // Retry helper for rate-limited requests
+        const generateWithRetry = async (prompt, retries = 3) => {
+            for (let attempt = 0; attempt < retries; attempt++) {
+                try {
+                    const result = await model.generateContent(prompt);
+                    const response = await result.response;
+                    return response.text();
+                } catch (err) {
+                    const isRateLimit = err.status === 429 || (err.message && err.message.includes('429'));
+                    if (isRateLimit && attempt < retries - 1) {
+                        // Wait before retrying (exponential backoff: 2s, 4s, 8s)
+                        await new Promise(resolve => setTimeout(resolve, 2000 * Math.pow(2, attempt)));
+                        continue;
+                    }
+                    throw err;
+                }
+            }
+        };
+
+        const text = await generateWithRetry(prompt);
 
         return Response.json({
             message: text,
@@ -75,12 +92,16 @@ export async function POST(request) {
     } catch (error) {
         console.error('AI API Error:', error);
 
+        const isRateLimit = error.status === 429 || (error.message && error.message.includes('429'));
+
         return Response.json(
             {
-                error: 'AI service error',
-                message: "Sorry, I couldn't process that request. Please try again or reach out directly via the contact page."
+                error: isRateLimit ? 'Rate limited' : 'AI service error',
+                message: isRateLimit
+                    ? "I'm getting a lot of requests right now. Please wait a moment and try again!"
+                    : "Sorry, I couldn't process that request. Please try again or reach out directly via the contact page."
             },
-            { status: 500 }
+            { status: isRateLimit ? 429 : 500 }
         );
     }
 }
