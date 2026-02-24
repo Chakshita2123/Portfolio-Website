@@ -40,6 +40,7 @@ export default function ContactPage() {
     const [focusedField, setFocusedField] = useState(null);
     const [isRewriting, setIsRewriting] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isEnhanced, setIsEnhanced] = useState(false);
     const [status, setStatus] = useState(null); // 'success' | 'error'
 
     const handleInputChange = (e) => {
@@ -71,6 +72,7 @@ export default function ContactPage() {
 
             if (data.success && data.message) {
                 setFormData(prev => ({ ...prev, message: data.message.trim() }));
+                setIsEnhanced(true);
             } else {
                 console.error('AI Rewrite failed:', data.error);
                 setStatus('error-ai'); // Custom error state for AI failure
@@ -94,18 +96,23 @@ export default function ContactPage() {
         setStatus(null);
 
         try {
-            const response = await fetch('/api/contact', {
+            // Also send via API for server-side logging
+            await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
 
-            if (response.ok) {
-                setStatus('success');
-                setFormData({ name: '', email: '', message: '' });
-            } else {
-                setStatus('error');
-            }
+            // Open mailto: to actually send the email
+            const subject = encodeURIComponent(`Message from ${formData.name}`);
+            const body = encodeURIComponent(
+                `${formData.message}\n\n---\nFrom: ${formData.name}\nEmail: ${formData.email}`
+            );
+            window.open(`mailto:chakshitajaswal2106@gmail.com?subject=${subject}&body=${body}`, '_blank');
+
+            setStatus('success');
+            setFormData({ name: '', email: '', message: '' });
+            setIsEnhanced(false);
         } catch (error) {
             console.error('Submission Error:', error);
             setStatus('error');
@@ -187,6 +194,11 @@ export default function ContactPage() {
                                             required
                                         />
                                     </div>
+                                    {isEnhanced && (
+                                        <div className={styles.enhancedBadge}>
+                                            ✨ AI Enhanced — Your message has been polished!
+                                        </div>
+                                    )}
 
                                     {/* AI Assistance */}
                                     <div className={styles.aiAssistCard}>
@@ -206,7 +218,7 @@ export default function ContactPage() {
                                             {isRewriting ? (
                                                 <><FaSpinner className="spin" /> Rewriting...</>
                                             ) : (
-                                                <><FaMagic /> Enhance with AI</>
+                                                <><FaMagic /> {isEnhanced ? 'Re-enhance' : 'Enhance with AI'}</>
                                             )}
                                         </button>
                                         {status === 'error-ai' && (

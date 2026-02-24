@@ -1,18 +1,21 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { MdEmail } from 'react-icons/md';
+import { MdEmail, MdContentCopy, MdCheck } from 'react-icons/md';
 import styles from './ContactCTA.module.css';
 
 export default function ContactCTA() {
     const [message, setMessage] = useState('');
     const [isEnhancing, setIsEnhancing] = useState(false);
     const [enhancedMessage, setEnhancedMessage] = useState('');
+    const [error, setError] = useState('');
+    const [copied, setCopied] = useState(false);
 
     const handleEnhance = async () => {
         if (!message.trim() || isEnhancing) return;
 
         setIsEnhancing(true);
+        setError('');
         try {
             const res = await fetch('/api/ai', {
                 method: 'POST',
@@ -25,9 +28,12 @@ export default function ContactCTA() {
             const data = await res.json();
             if (data.success) {
                 setEnhancedMessage(data.message);
+            } else {
+                setError(data.message || 'Enhancement failed. Please try again.');
             }
-        } catch (error) {
-            console.error('Enhancement failed:', error);
+        } catch (err) {
+            console.error('Enhancement failed:', err);
+            setError('Could not connect to AI service. Please try again.');
         } finally {
             setIsEnhancing(false);
         }
@@ -36,9 +42,21 @@ export default function ContactCTA() {
     const copyToClipboard = () => {
         if (enhancedMessage) {
             navigator.clipboard.writeText(enhancedMessage);
-            // Optional: Show a toast or small "Copied!" feedback if needed, 
-            // but for now the user can just see the text.
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
         }
+    };
+
+    const handleSendEmail = () => {
+        const subject = encodeURIComponent('Hello Chakshita!');
+        const body = encodeURIComponent(enhancedMessage || message);
+        window.open(`mailto:chakshitajaswal2106@gmail.com?subject=${subject}&body=${body}`, '_blank');
+    };
+
+    const handleReset = () => {
+        setEnhancedMessage('');
+        setError('');
+        setCopied(false);
     };
 
     return (
@@ -72,8 +90,8 @@ export default function ContactCTA() {
                         <div className={styles.aiCardContent}>
                             <h3 className={styles.aiCardTitle}>AI-Assisted Messages</h3>
                             <p className={styles.aiCardText}>
-                                Soon, AI will help you draft professional messages or generate
-                                personalized outreach — making first contact effortless.
+                                Write a rough draft below and let AI polish it into a
+                                professional message — then send it directly to Chakshita!
                             </p>
                         </div>
                         <div className={styles.aiCardPreview}>
@@ -82,7 +100,7 @@ export default function ContactCTA() {
                                     <div className={styles.resultHeader}>
                                         <span className={styles.resultLabel}>✨ Enhanced Message</span>
                                         <button
-                                            onClick={() => setEnhancedMessage('')}
+                                            onClick={handleReset}
                                             className={styles.resetBtn}
                                         >
                                             Draft New
@@ -94,12 +112,20 @@ export default function ContactCTA() {
                                         value={enhancedMessage}
                                         onClick={(e) => e.target.select()}
                                     />
-                                    <button
-                                        className={styles.previewButton}
-                                        onClick={copyToClipboard}
-                                    >
-                                        Copy to Clipboard
-                                    </button>
+                                    <div className={styles.enhancedActions}>
+                                        <button
+                                            className={styles.previewButton}
+                                            onClick={copyToClipboard}
+                                        >
+                                            {copied ? <><MdCheck /> Copied!</> : <><MdContentCopy /> Copy</>}
+                                        </button>
+                                        <button
+                                            className={styles.sendButton}
+                                            onClick={handleSendEmail}
+                                        >
+                                            <MdEmail /> Send to Chakshita
+                                        </button>
+                                    </div>
                                 </div>
                             ) : (
                                 <>
@@ -111,12 +137,15 @@ export default function ContactCTA() {
                                             onChange={(e) => setMessage(e.target.value)}
                                         />
                                     </div>
+                                    {error && (
+                                        <p className={styles.errorText}>{error}</p>
+                                    )}
                                     <button
                                         className={`${styles.previewButton} ${isEnhancing || !message.trim() ? styles.disabled : ''}`}
                                         onClick={handleEnhance}
                                         disabled={isEnhancing || !message.trim()}
                                     >
-                                        {isEnhancing ? 'Enhancing...' : '✨ Enhance with AI'}
+                                        {isEnhancing ? '✨ Enhancing...' : '✨ Enhance with AI'}
                                     </button>
                                 </>
                             )}
