@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 import { MdEmail } from 'react-icons/md';
 import styles from './ContactCTA.module.css';
 
@@ -54,10 +55,10 @@ export default function ContactCTA() {
                             I'd love to hear from you.
                         </p>
                         <div className={styles.ctas}>
-                            <button className="btn btn-primary">
+                            <Link href="/contact" className="btn btn-primary">
                                 Contact Me <span>→</span>
-                            </button>
-                            <a href="mailto:chakshitajaswal2106@gmail.com" className="btn btn-secondary">
+                            </Link>
+                            <a href="mailto:chakshitajaswal2106@gmail.com" className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
                                 <MdEmail /> Send Email
                             </a>
                         </div>
