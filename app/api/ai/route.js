@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import Groq from 'groq-sdk';
 import { systemPrompt, getContextPrompt, messageEnhancerPrompt } from '@/lib/portfolio-context';
 
 /** Build a short summary of recent conversation for context (last N messages, capped length) */
@@ -15,7 +15,7 @@ function buildConversationSummary(history, maxMessages = 6, maxChars = 800) {
 
 export async function POST(request) {
     try {
-        if (!process.env.GEMINI_API_KEY) {
+        if (!process.env.GROQ_API_KEY) {
             return Response.json(
                 {
                     error: 'AI service not configured',
@@ -34,6 +34,7 @@ export async function POST(request) {
             );
         }
 
+        // Keep character limit to save tokens
         if (message.length > 1000) {
             return Response.json(
                 { error: 'Message too long', message: 'Please keep your message under 1000 characters.' },
@@ -41,16 +42,17 @@ export async function POST(request) {
             );
         }
 
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const model = genAI.getGenerativeModel({
-            model: 'gemini-2.0-flash-lite'
+        const groq = new Groq({
+            apiKey: process.env.GROQ_API_KEY
         });
 
-        let prompt;
+        let systemMessageContent = '';
+        let userMessageContent = '';
 
         // Mode: Enhance Message (Specialized Task)
         if (mode === 'enhance-message') {
-            prompt = `${messageEnhancerPrompt}\n\nUser's draft message:\n"${message}"\n\nImproved version:`;
+            systemMessageContent = messageEnhancerPrompt;
+            userMessageContent = `User's draft message:\n"${message}"\n\nImproved version:`;
         }
         // Mode: Standard Portfolio Chat
         else {
@@ -59,17 +61,25 @@ export async function POST(request) {
                 pageContext: pageContext || null,
                 conversationSummary
             });
-            const fullSystemPrompt = systemPrompt + contextAddition;
-            prompt = `${fullSystemPrompt}\n\nUser question: ${message}\n\nRespond helpfully and professionally:`;
+            systemMessageContent = systemPrompt + contextAddition;
+            userMessageContent = message;
         }
 
         // Retry helper for rate-limited requests
-        const generateWithRetry = async (prompt, retries = 3) => {
+        const generateWithRetry = async (retries = 3) => {
             for (let attempt = 0; attempt < retries; attempt++) {
                 try {
-                    const result = await model.generateContent(prompt);
-                    const response = await result.response;
-                    return response.text();
+                    const chatCompletion = await groq.chat.completions.create({
+                        messages: [
+                            { role: "system", content: systemMessageContent },
+                            { role: "user", content: userMessageContent }
+                        ],
+                        model: "llama-3.1-8b-instant",
+                        temperature: 0.7,
+                        max_tokens: 1024,
+                    });
+
+                    return chatCompletion.choices[0]?.message?.content || "Sorry, I couldn't generate a response.";
                 } catch (err) {
                     const isRateLimit = err.status === 429 || (err.message && err.message.includes('429'));
                     if (isRateLimit && attempt < retries - 1) {
@@ -82,7 +92,7 @@ export async function POST(request) {
             }
         };
 
-        const text = await generateWithRetry(prompt);
+        const text = await generateWithRetry();
 
         return Response.json({
             message: text,
