@@ -2,7 +2,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { systemPrompt, getContextPrompt, messageEnhancerPrompt } from '@/lib/portfolio-context';
 
 /** Build a short summary of recent conversation for context (last N messages, capped length) */
-function buildConversationSummary(history, maxMessages = 6, maxChars = 800) {
+function buildConversationSummary(history, maxMessages = 10, maxChars = 1000) {
     if (!Array.isArray(history) || history.length === 0) return '';
     const recent = history.slice(-maxMessages);
     const lines = recent.map(m => {
