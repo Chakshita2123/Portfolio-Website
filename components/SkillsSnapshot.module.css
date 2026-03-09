@@ -336,41 +336,6 @@
     box-shadow: 0 0 10px var(--primary);
 }
 
-/* Light Theme Overrides */
-[data-theme='light'] .category {
-    background: rgba(255, 255, 255, 0.7);
-    border-color: rgba(0, 0, 0, 0.05);
-}
-
-[data-theme='light'] .category:hover {
-    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 0 20px -5px var(--glow-color);
-}
-
-[data-theme='light'] .categoryIcon {
-    background: rgba(0, 0, 0, 0.03);
-    border-color: rgba(0, 0, 0, 0.1);
-}
-
-[data-theme='light'] .category:hover .categoryIcon {
-    background: white;
-}
-
-[data-theme='light'] .category .tag {
-    background: rgba(0, 0, 0, 0.03);
-    border-color: rgba(0, 0, 0, 0.1);
-    color: var(--text-secondary);
-}
-
-[data-theme='light'] .category:hover .tag {
-    background: white;
-    border-color: rgba(0, 0, 0, 0.1);
-}
-
-[data-theme='light'] .category .tag:hover {
-    background: var(--glow-color);
-    color: white;
-    border-color: var(--glow-color);
-}
 
 /* Responsive */
 @media (max-width: 768px) {

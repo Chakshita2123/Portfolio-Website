@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
-import ThemeToggle from './ThemeToggle';
 
 const navItems = [
   { label: 'Home', href: '/' },
@@ -60,9 +59,8 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Right side: Theme Toggle + CTA + Hamburger */}
+        {/* Right side: CTA + Hamburger */}
         <div className={styles.navActions}>
-          <ThemeToggle />
           <Link href="/ask-ai" className={`btn btn-primary ${styles.navCta}`}>
             Ask AI <span className={styles.ctaEmoji}>🤖</span>
           </Link>
