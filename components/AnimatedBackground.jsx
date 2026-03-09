@@ -4,8 +4,9 @@ import { usePerformanceTier } from '@/hooks/usePerformanceTier';
 import styles from './AnimatedBackground.module.css';
 
 /**
- * Optimized AnimatedBackground - Uses direct DOM manipulation for parallax
- * and client-only particle generation to avoid hydration mismatches.
+ * Enhanced AnimatedBackground - Premium cinematic effects
+ * Includes: gradient orbs, aurora waves, shooting stars,
+ * perspective grid, floating particles, and parallax mouse tracking.
  */
 export default function AnimatedBackground() {
     const orb1Ref = useRef(null);
@@ -18,15 +19,28 @@ export default function AnimatedBackground() {
 
     // Generate particles only on the client to avoid SSR hydration mismatch
     const [particles, setParticles] = useState([]);
+    const [shootingStars, setShootingStars] = useState([]);
+
     useEffect(() => {
         setParticles(
-            Array.from({ length: 25 }).map((_, i) => ({
+            Array.from({ length: 30 }).map((_, i) => ({
                 id: i,
                 left: Math.random() * 100,
                 top: Math.random() * 100,
-                delay: Math.random() * 5,
-                duration: 10 + Math.random() * 20,
-                size: Math.random() * 3 + 1
+                delay: Math.random() * 8,
+                duration: 8 + Math.random() * 20,
+                size: Math.random() * 3 + 1,
+                drift: (Math.random() - 0.5) * 60,
+            }))
+        );
+        setShootingStars(
+            Array.from({ length: 4 }).map((_, i) => ({
+                id: i,
+                top: Math.random() * 50,
+                left: Math.random() * 70,
+                delay: i * 4 + Math.random() * 3,
+                duration: 1.5 + Math.random() * 1,
+                angle: 15 + Math.random() * 30,
             }))
         );
     }, []);
@@ -88,7 +102,40 @@ export default function AnimatedBackground() {
             {/* Layer 3: Foreground - strongest parallax */}
             <div ref={orb3Ref} className={styles.gradientOrb3} />
 
-            {/* Cinematic Particles - Skip when reduced motion */}
+            {/* Aurora Wave Effect */}
+            {!reduceMotion && (
+                <div className={styles.auroraContainer}>
+                    <div className={styles.auroraWave1} />
+                    <div className={styles.auroraWave2} />
+                    <div className={styles.auroraWave3} />
+                </div>
+            )}
+
+            {/* Perspective Grid Floor */}
+            <div className={styles.gridContainer}>
+                <div className={styles.perspectiveGrid} />
+            </div>
+
+            {/* Shooting Stars */}
+            {!reduceMotion && (
+                <div className={styles.shootingStarsContainer}>
+                    {shootingStars.map((star) => (
+                        <div
+                            key={star.id}
+                            className={styles.shootingStar}
+                            style={{
+                                top: `${star.top}%`,
+                                left: `${star.left}%`,
+                                animationDelay: `${star.delay}s`,
+                                animationDuration: `${star.duration}s`,
+                                '--star-angle': `${star.angle}deg`,
+                            }}
+                        />
+                    ))}
+                </div>
+            )}
+
+            {/* Enhanced Cinematic Particles */}
             {!reduceMotion && (
                 <div className={styles.particlesContainer}>
                     {particles.map((p) => (
@@ -101,12 +148,16 @@ export default function AnimatedBackground() {
                                 width: `${p.size}px`,
                                 height: `${p.size}px`,
                                 animationDelay: `${p.delay}s`,
-                                animationDuration: `${p.duration}s`
+                                animationDuration: `${p.duration}s`,
+                                '--drift-x': `${p.drift}px`,
                             }}
                         />
                     ))}
                 </div>
             )}
+
+            {/* Vignette Overlay */}
+            <div className={styles.vignetteOverlay} />
 
             {/* Cinematic Noise Overlay */}
             <div className={styles.noiseOverlay}></div>
