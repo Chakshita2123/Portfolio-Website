@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import useMouse3D from '../hooks/useMouse3D';
 import styles from './Hero.module.css';
-import AnimatedBackground from './AnimatedBackground';
 import OrbitSystem from './OrbitSystem';
 
 export default function Hero() {
@@ -18,8 +17,6 @@ export default function Hero() {
 
     return (
         <section id="home" className={styles.hero} ref={heroRef}>
-            {/* Living animated background */}
-            <AnimatedBackground />
 
             <div
                 className={`container ${styles.heroContainer}`}

@@ -1,5 +1,6 @@
 import "./globals.css";
 import CustomCursor from "../components/CustomCursor";
+import AnimatedBackground from "../components/AnimatedBackground";
 import PortfolioExperienceProvider from "../components/PortfolioExperienceProvider";
 
 export const viewport = {
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <PortfolioExperienceProvider>
+          <AnimatedBackground />
           <CustomCursor />
           {children}
         </PortfolioExperienceProvider>
