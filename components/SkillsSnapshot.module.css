@@ -1,6 +1,6 @@
 /* ==================== SKILLS SNAPSHOT - HOLOGRAPHIC TECH ==================== */
 .skills {
-    background: var(--bg-primary);
+    background: transparent;
     position: relative;
     overflow: hidden;
 }

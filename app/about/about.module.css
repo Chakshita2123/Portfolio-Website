@@ -19,7 +19,7 @@
 
 /* ==================== MAIN ABOUT ==================== */
 .mainAbout {
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 .aboutGrid {
@@ -68,14 +68,14 @@
 
 /* ==================== MINDSET ==================== */
 .mindset {
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 /* Mindset card styles moved to MindsetCards.module.css */
 
 /* ==================== SKILLS SUMMARY ==================== */
 .skillsSummary {
-    background: var(--bg-secondary);
+    background: transparent;
 }
 
 
@@ -86,7 +86,7 @@
 
 /* ==================== CTA ==================== */
 .cta {
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 .ctaContent {

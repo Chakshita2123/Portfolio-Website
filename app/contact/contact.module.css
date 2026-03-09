@@ -6,7 +6,7 @@
 .pageHeader {
     padding: var(--spacing-4xl) 0 var(--spacing-2xl);
     text-align: center;
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 .headerContent {
@@ -29,7 +29,7 @@
 
 /* ==================== CONTACT SECTION ==================== */
 .contactSection {
-    background: var(--bg-primary);
+    background: transparent;
     padding-top: 0;
 }
 
@@ -371,7 +371,7 @@
 
 /* ==================== CLOSING SECTION ==================== */
 .closingSection {
-    background: var(--bg-secondary);
+    background: transparent;
 }
 
 .closingContent {

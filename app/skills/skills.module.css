@@ -6,7 +6,7 @@
 .pageHeader {
     padding: var(--spacing-4xl) 0 var(--spacing-2xl);
     text-align: center;
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 .pageTitle {
@@ -25,7 +25,7 @@
 
 /* ==================== SKILL CATEGORIES ==================== */
 .skillCategories {
-    background: var(--bg-primary);
+    background: transparent;
     padding-top: 0;
 }
 
@@ -186,7 +186,7 @@
 
 /* ==================== AI INSIGHT ==================== */
 .aiInsight {
-    background: var(--bg-secondary);
+    background: transparent;
 }
 
 .aiCard {
@@ -286,7 +286,7 @@
 
 /* ==================== APPLICATION ==================== */
 .application {
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 .applicationContent {
@@ -316,7 +316,7 @@
 
 /* ==================== CTA ==================== */
 .cta {
-    background: var(--bg-secondary);
+    background: transparent;
 }
 
 .ctaContent {
