@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './Hero3DElement.module.css';
 
 /**
- * Hero3DElement - 3D Central Geometric Shape (Torus Knot) surrounded
- * by connected glowing neural-network nodes with interactive 360° drag-to-rotate.
- * Palette matches --accent (#6B7F5E) and --accent-light (#93A886).
+ * Hero3DElement - Refined 3D Central Geometric Shape (Torus Knot) surrounded
+ * by tightly integrated glowing neural-network nodes with interactive 360° drag-to-rotate.
+ * Glossy sage palette with crisp specular highlights and rim lighting.
  */
 export default function Hero3DElement() {
     const containerRef = useRef(null);
@@ -35,7 +35,6 @@ export default function Hero3DElement() {
             let OrbitControls;
 
             try {
-                // Try importing Three.js and OrbitControls via modern ESM CDN (esm.sh)
                 THREE = await import(/* webpackIgnore: true */ 'https://esm.sh/three@0.160.0');
                 const controlsModule = await import(/* webpackIgnore: true */ 'https://esm.sh/three@0.160.0/addons/controls/OrbitControls.js');
                 OrbitControls = controlsModule.OrbitControls;
@@ -56,11 +55,11 @@ export default function Hero3DElement() {
             // 1. Scene & Camera Setup
             scene = new THREE.Scene();
             
-            const width = container.clientWidth || 360;
-            const height = container.clientHeight || 360;
+            const width = container.clientWidth || 380;
+            const height = container.clientHeight || 380;
             
             camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-            camera.position.set(0, 0, 5.0);
+            camera.position.set(0, 0, 4.8);
 
             // 2. WebGL Renderer
             renderer = new THREE.WebGLRenderer({
@@ -75,38 +74,44 @@ export default function Hero3DElement() {
                 renderer.outputColorSpace = THREE.SRGBColorSpace;
             }
 
-            // 3. Lighting Setup
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.55);
+            // 3. Lighting Setup — High contrast, defined highlights, rim lighting & soft fill
+            // Ambient light: clear baseline illumination
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.65);
             scene.add(ambientLight);
 
-            // Key directional light from top-right-front
-            const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.15);
-            dirLight1.position.set(3, 3, 3);
-            scene.add(dirLight1);
+            // Key Light: Crisp top-front directional light for specular highlights
+            const keyLight = new THREE.DirectionalLight(0xffffff, 1.4);
+            keyLight.position.set(3.5, 3.5, 3.5);
+            scene.add(keyLight);
 
-            // Subtle sage-toned fill light from opposite corner
-            const dirLight2 = new THREE.DirectionalLight(0x93A886, 0.45);
-            dirLight2.position.set(-3, -2, -2);
-            scene.add(dirLight2);
+            // Fill Light: Soft fill light from opposite angle to prevent dark undefined sides
+            const fillLight = new THREE.DirectionalLight(0xffffff, 0.55);
+            fillLight.position.set(-3.0, -2.0, 2.0);
+            scene.add(fillLight);
 
-            // Soft rim light
-            const dirLight3 = new THREE.DirectionalLight(0xA8B5A0, 0.3);
-            dirLight3.position.set(0, -3, 2);
-            scene.add(dirLight3);
+            // Rim / Edge Light: Positioned behind/above to create an edge highlight separating from background
+            const rimLight = new THREE.DirectionalLight(0xdce7d8, 0.75);
+            rimLight.position.set(0, 4.0, -4.0);
+            scene.add(rimLight);
+
+            // Subtle lower fill
+            const bottomFill = new THREE.DirectionalLight(0x93A886, 0.35);
+            bottomFill.position.set(0, -3.5, -1.0);
+            scene.add(bottomFill);
 
             // 4. Main Combined Group
             mainGroup = new THREE.Group();
             scene.add(mainGroup);
 
-            // 5. Central Geometric Shape (Smooth Torus Knot)
-            // Visual metaphor for AI/ML + structured engineering
+            // 5. Central Geometric Shape (Glossy Refined Torus Knot)
             const centralGeo = new THREE.TorusKnotGeometry(0.92, 0.26, 128, 32, 2, 3);
             geometries.push(centralGeo);
 
+            // Glossy, reflective material with visible depth gradient and highlights
             const centralMat = new THREE.MeshStandardMaterial({
-                color: 0x6B7F5E,        // --accent (#6B7F5E)
-                roughness: 0.35,        // 0.3 - 0.4 for smooth clean sheen
-                metalness: 0.15,        // 0.1 - 0.2
+                color: 0x8FA880,        // Lighter vibrant sage green
+                roughness: 0.20,        // Glossier surface (0.15 - 0.25)
+                metalness: 0.35,        // Metallic sheen for premium depth (0.3 - 0.4)
                 flatShading: false
             });
             materials.push(centralMat);
@@ -114,64 +119,85 @@ export default function Hero3DElement() {
             const centralMesh = new THREE.Mesh(centralGeo, centralMat);
             mainGroup.add(centralMesh);
 
-            // 6. Neural Network Nodes (Spheres in loose orbital shell)
+            // 6. Neural Network Nodes — Tightly hugging the knot contour
             const isMobile = window.innerWidth <= 768;
-            const nodeCount = isMobile ? 7 : 11; // 8-14 nodes on desktop, fewer on mobile
+            const nodeCount = isMobile ? 7 : 10; // 8-12 nodes
 
-            const nodeGeo = new THREE.SphereGeometry(0.065, 20, 20);
+            const nodeGeo = new THREE.SphereGeometry(0.08, 20, 20); // Slightly larger node radius
             geometries.push(nodeGeo);
 
             const nodeMat = new THREE.MeshStandardMaterial({
                 color: 0x93A886,        // --accent-light (#93A886)
-                emissive: 0x93A886,     // subtle emissive glow
-                emissiveIntensity: 0.4,
-                roughness: 0.3,
-                metalness: 0.1
+                emissive: 0x93A886,     // Bright glowing points
+                emissiveIntensity: 0.55, // Enhanced emissive glow
+                roughness: 0.2,
+                metalness: 0.2
             });
             materials.push(nodeMat);
 
-            // Generate organic distribution around central shape using spherical coordinates
+            // Position nodes closely hugging the outer contour of the torus knot (like orbiting satellites)
             const basePositions = [];
-            const phiOffset = Math.PI * (3 - Math.sqrt(5)); // Golden angle
+            const surfaceAnchors = [];
 
             for (let i = 0; i < nodeCount; i++) {
-                const y = 1 - (i / (nodeCount - 1)) * 2; // y goes from 1 to -1
-                const radiusAtY = Math.sqrt(1 - y * y);
-                const theta = phiOffset * i;
+                const u = (i / nodeCount) * Math.PI * 2;
+                
+                // Torus knot centerline formula (p=2, q=3)
+                const r0 = 0.92 + 0.18 * Math.cos(3 * u);
+                const knotX = r0 * Math.cos(2 * u);
+                const knotY = r0 * Math.sin(2 * u);
+                const knotZ = 0.42 * Math.sin(3 * u);
 
-                // Shell radius between 1.75 and 2.15 with slight organic variation
-                const shellRadius = 1.8 + Math.sin(i * 1.7) * 0.25;
+                const surfaceAnchor = new THREE.Vector3(knotX, knotY, knotZ);
+                surfaceAnchors.push(surfaceAnchor);
 
-                const posX = Math.cos(theta) * radiusAtY * shellRadius;
-                const posY = y * shellRadius;
-                const posZ = Math.sin(theta) * radiusAtY * shellRadius;
+                // Offset outward along the radial normal from knot center line
+                const normDir = surfaceAnchor.clone().normalize();
+                
+                // Tight shell distance: sits just outside the knot silhouette (1.25 - 1.40 units)
+                const offsetDist = 0.32 + Math.sin(i * 2.1) * 0.08;
+                const nodePos = surfaceAnchor.clone().add(normDir.multiplyScalar(offsetDist));
 
                 const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
-                nodeMesh.position.set(posX, posY, posZ);
+                nodeMesh.position.copy(nodePos);
                 mainGroup.add(nodeMesh);
 
                 const nodeData = {
                     mesh: nodeMesh,
-                    basePos: new THREE.Vector3(posX, posY, posZ),
-                    currentPos: new THREE.Vector3(posX, posY, posZ),
-                    pulsePhase: i * 0.85,
-                    pulseSpeed: 1.4 + (i % 3) * 0.3,
-                    baseScale: 1.0
+                    basePos: nodePos.clone(),
+                    currentPos: nodePos.clone(),
+                    pulsePhase: i * 0.9,
+                    pulseSpeed: 1.5 + (i % 3) * 0.35,
+                    anchorPos: surfaceAnchor
                 };
 
                 nodeObjects.push(nodeData);
-                basePositions.push(new THREE.Vector3(posX, posY, posZ));
+                basePositions.push(nodePos);
             }
 
-            // 7. Neural Network Connecting Lines
-            // Connect nearby nodes only (distance between 1.0 and 2.2 units, max 2-3 links per node)
+            // 7. Neural Network Connecting Lines (Nearest neighbor connections + knot anchors)
             const connectionPairs = [];
             const nodeLinkCount = new Array(nodeCount).fill(0);
 
+            // Connect each node to its 2 nearest neighboring nodes
             for (let i = 0; i < nodeCount; i++) {
-                for (let j = i + 1; j < nodeCount; j++) {
-                    const dist = basePositions[i].distanceTo(basePositions[j]);
-                    if (dist >= 0.8 && dist <= 2.1 && nodeLinkCount[i] < 3 && nodeLinkCount[j] < 3) {
+                // Find nearest neighbors sorted by distance
+                const distances = [];
+                for (let j = 0; j < nodeCount; j++) {
+                    if (i !== j) {
+                        const d = basePositions[i].distanceTo(basePositions[j]);
+                        distances.push({ index: j, dist: d });
+                    }
+                }
+                distances.sort((a, b) => a.dist - b.dist);
+
+                // Connect to up to 2 nearest neighbors if not already linked
+                for (let n = 0; n < Math.min(2, distances.length); n++) {
+                    const j = distances[n].index;
+                    const pairKey = i < j ? `${i}-${j}` : `${j}-${i}`;
+                    const alreadyExists = connectionPairs.some(([a, b]) => (a === i && b === j) || (a === j && b === i));
+                    
+                    if (!alreadyExists && nodeLinkCount[i] < 3 && nodeLinkCount[j] < 3 && distances[n].dist < 1.4) {
                         connectionPairs.push([i, j]);
                         nodeLinkCount[i]++;
                         nodeLinkCount[j]++;
@@ -179,10 +205,12 @@ export default function Hero3DElement() {
                 }
             }
 
-            // Also connect 2 select nodes to the central core for visual cohesion
+            // Connect 3-4 select nodes to the nearest points on the torus knot surface itself
             centralConnections = [
-                { nodeIndex: 0, anchor: new THREE.Vector3(0.5, 0.4, 0.3) },
-                { nodeIndex: Math.floor(nodeCount / 2), anchor: new THREE.Vector3(-0.4, -0.3, 0.4) }
+                { nodeIndex: 0, anchor: surfaceAnchors[0] },
+                { nodeIndex: Math.floor(nodeCount / 3), anchor: surfaceAnchors[Math.floor(nodeCount / 3)] },
+                { nodeIndex: Math.floor((2 * nodeCount) / 3), anchor: surfaceAnchors[Math.floor((2 * nodeCount) / 3)] },
+                { nodeIndex: nodeCount - 1, anchor: surfaceAnchors[nodeCount - 1] }
             ];
 
             nodeConnections = connectionPairs;
@@ -198,7 +226,7 @@ export default function Hero3DElement() {
             const lineMaterial = new THREE.LineBasicMaterial({
                 color: 0x93A886,
                 transparent: true,
-                opacity: 0.35,          // Low opacity so lines read as subtle connections
+                opacity: 0.45,          // Increased opacity for clearer visibility
                 depthWrite: false
             });
             materials.push(lineMaterial);
@@ -260,20 +288,20 @@ export default function Hero3DElement() {
                 const posAttr = lineGeometry.attributes.position;
                 let lineVertexIdx = 0;
 
-                nodeObjects.forEach((node, idx) => {
+                nodeObjects.forEach((node) => {
                     const pulse = Math.sin(clockTime * node.pulseSpeed + node.pulsePhase);
                     
-                    // Subtle scale breathing: 0.90x to 1.15x
+                    // Subtle scale breathing: 0.92x to 1.15x
                     const scale = 1.0 + pulse * 0.12;
                     node.mesh.scale.set(scale, scale, scale);
 
                     // Micro-orbital drift
-                    const driftOffset = pulse * 0.04;
+                    const driftOffset = pulse * 0.025;
                     node.currentPos.copy(node.basePos).multiplyScalar(1.0 + driftOffset);
                     node.mesh.position.copy(node.currentPos);
                 });
 
-                // Update dynamic line positions
+                // Update dynamic line positions between connected nodes
                 for (let k = 0; k < nodeConnections.length; k++) {
                     const [i, j] = nodeConnections[k];
                     const posA = nodeObjects[i].currentPos;
@@ -288,7 +316,7 @@ export default function Hero3DElement() {
                     posAttr.array[lineVertexIdx++] = posB.z;
                 }
 
-                // Update lines connected to central core
+                // Update dynamic lines connecting select nodes directly to knot surface anchors
                 for (let c = 0; c < centralConnections.length; c++) {
                     const conn = centralConnections[c];
                     const nodePos = nodeObjects[conn.nodeIndex].currentPos;
