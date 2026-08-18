@@ -1,6 +1,6 @@
 .activitySection {
     padding: var(--spacing-2xl) 0;
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 .card {

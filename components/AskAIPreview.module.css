@@ -1,5 +1,5 @@
 .askAi {
-    background: var(--bg-primary);
+    background: transparent;
     padding: var(--spacing-4xl) 0;
     overflow: hidden;
 }

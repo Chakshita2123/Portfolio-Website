@@ -1,6 +1,6 @@
 .hero {
     padding: calc(var(--navbar-height) + var(--spacing-3xl)) 0 var(--spacing-3xl);
-    background: var(--bg-primary);
+    background: transparent;
     position: relative;
     overflow: hidden;
     min-height: 85vh;

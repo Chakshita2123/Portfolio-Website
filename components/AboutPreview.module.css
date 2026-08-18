@@ -1,5 +1,5 @@
 .about {
-    background: var(--bg-primary);
+    background: transparent;
     padding: var(--spacing-3xl) 0;
 }
 
