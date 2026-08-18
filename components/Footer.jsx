@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
+import { MdEmail, MdArrowOutward } from 'react-icons/md';
 import styles from './Footer.module.css';
 
 const navLinks = [
@@ -9,6 +9,7 @@ const navLinks = [
     { name: 'About', href: '/about' },
     { name: 'Skills', href: '/skills' },
     { name: 'Projects', href: '/projects' },
+    { name: 'Ask AI', href: '/ask-ai' },
     { name: 'Contact', href: '/contact' },
 ];
 
@@ -22,10 +23,10 @@ export default function Footer() {
     return (
         <footer className={styles.footer}>
             <div className={`container ${styles.footerContainer}`}>
-                {/* Main Content */}
-                <div className={styles.mainContent}>
-                    {/* Branding */}
-                    <div className={styles.branding}>
+                {/* 4-Column Main Content */}
+                <div className={styles.columnsGrid}>
+                    {/* Col 1: Brand */}
+                    <div className={styles.brandCol}>
                         <Link href="/" className={styles.logo}>
                             <span className={styles.logoText}>Chakshita</span>
                             <span className={styles.logoAi}>.ai</span>
@@ -33,52 +34,73 @@ export default function Footer() {
                         <p className={styles.brandTagline}>
                             Full-Stack Developer &amp; Applied AI/ML Builder
                         </p>
+                        <p className={styles.brandBio}>
+                            Building production-ready software and intelligent systems end-to-end.
+                        </p>
+                        <div className={styles.availability}>
+                            <span className={styles.statusDot}></span>
+                            <span>Open for opportunities</span>
+                        </div>
                     </div>
 
-                    {/* Navigation Links */}
-                    <nav className={styles.navSection}>
-                        <h4 className={styles.sectionTitle}>Navigate</h4>
-                        <ul className={styles.navLinks}>
+                    {/* Col 2: Navigate */}
+                    <div className={styles.navCol}>
+                        <h4 className={styles.colTitle}>Navigate</h4>
+                        <ul className={styles.linksList}>
                             {navLinks.map((link, index) => (
                                 <li key={index}>
-                                    <Link href={link.href} className={styles.navLink}>
+                                    <Link href={link.href} className={styles.linkItem}>
                                         {link.name}
                                     </Link>
                                 </li>
                             ))}
                         </ul>
-                    </nav>
+                    </div>
 
-                    {/* Social Links */}
-                    <div className={styles.socialSection}>
-                        <h4 className={styles.sectionTitle}>Connect</h4>
-                        <div className={styles.socialLinks}>
+                    {/* Col 3: Connect */}
+                    <div className={styles.connectCol}>
+                        <h4 className={styles.colTitle}>Connect</h4>
+                        <ul className={styles.linksList}>
                             {socialLinks.map((link, index) => (
-                                <a
-                                    key={index}
-                                    href={link.url}
-                                    target={link.url.startsWith('http') ? '_blank' : undefined}
-                                    rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                                    className={styles.socialLink}
-                                    title={link.name}
-                                >
-                                    <span className={styles.socialIcon}>{link.icon}</span>
-                                    <span className={styles.socialName}>{link.name}</span>
-                                </a>
+                                <li key={index}>
+                                    <a
+                                        href={link.url}
+                                        target={link.url.startsWith('http') ? '_blank' : undefined}
+                                        rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                        className={styles.socialLinkItem}
+                                    >
+                                        <span className={styles.socialIcon}>{link.icon}</span>
+                                        <span>{link.name}</span>
+                                        {link.url.startsWith('http') && (
+                                            <MdArrowOutward className={styles.arrowIcon} />
+                                        )}
+                                    </a>
+                                </li>
                             ))}
-                        </div>
+                        </ul>
+                    </div>
+
+                    {/* Col 4: Get in Touch */}
+                    <div className={styles.ctaCol}>
+                        <h4 className={styles.colTitle}>Get in Touch</h4>
+                        <p className={styles.ctaText}>
+                            Have a project in mind or interested in collaborating? Let's connect.
+                        </p>
+                        <Link href="/contact" className={styles.contactBtn}>
+                            Start a Conversation →
+                        </Link>
                     </div>
                 </div>
 
-{/* Divider */}
+                {/* Divider */}
                 <div className={styles.divider}></div>
 
-                {/* Bottom */}
-                <div className={styles.bottom}>
+                {/* Bottom Row */}
+                <div className={styles.bottomRow}>
                     <p className={styles.copyright}>
-                        © 2026 Chakshita.ai
+                        © {new Date().getFullYear()} Chakshita Jaswal. All rights reserved.
                     </p>
-                    <p className={styles.madeWith}>
+                    <p className={styles.taglineNote}>
                         Designed with intention
                     </p>
                 </div>

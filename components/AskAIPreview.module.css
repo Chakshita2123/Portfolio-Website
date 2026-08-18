@@ -122,8 +122,8 @@
 /* Chat Messages */
 .chatMessages {
     padding: var(--spacing-lg);
-    min-height: 280px;
-    max-height: 320px;
+    min-height: 220px;
+    max-height: 260px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;

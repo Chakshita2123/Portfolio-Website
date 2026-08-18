@@ -42,7 +42,7 @@
 
 .projectCard {
     background: var(--bg-contrast-elevated);
-    border: 1px solid var(--border-contrast);
+    border: 1px solid rgba(43, 46, 39, 0.1);
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
     display: flex;
@@ -50,13 +50,13 @@
     gap: var(--spacing-lg);
     transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
     position: relative;
-    box-shadow: var(--shadow-contrast);
+    box-shadow: 0 4px 16px rgba(43, 46, 39, 0.15);
 }
 
 .projectCard:hover {
-    box-shadow: 0 12px 28px rgba(31, 36, 32, 0.18);
+    box-shadow: 0 14px 32px rgba(43, 46, 39, 0.22);
     transform: translateY(-4px);
-    border-color: var(--accent-hover);
+    border-color: var(--accent);
 }
 
 .cardHeader {
@@ -70,7 +70,7 @@
 .cardTitle {
     font-size: var(--font-size-2xl);
     font-weight: 700;
-    color: var(--text-on-contrast);
+    color: var(--text-primary);
 }
 
 .badges {
@@ -85,9 +85,8 @@
     display: inline-block;
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--text-on-contrast-muted);
-    background: var(--bg-contrast);
-    border: 1px solid var(--border-contrast);
+    color: var(--text-inverse);
+    background: var(--accent);
     padding: 3px var(--spacing-sm);
     border-radius: var(--radius-full);
 }
@@ -96,17 +95,15 @@
     display: inline-block;
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--text-on-contrast) !important;
-    background: rgba(107, 127, 94, 0.2);
-    border: 1px solid var(--border-contrast);
+    color: var(--text-inverse) !important;
+    background: var(--accent);
     padding: 3px var(--spacing-sm);
     border-radius: var(--radius-full);
     transition: all var(--transition-fast);
 }
 
 .caseStudyBadge:hover {
-    background: rgba(107, 127, 94, 0.35);
-    color: var(--accent-hover) !important;
+    background: var(--accent-hover);
 }
 
 .cardMeta {
@@ -126,12 +123,12 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--accent-hover);
+    color: var(--accent);
 }
 
 .cardMetaText {
     font-size: var(--font-size-sm);
-    color: var(--text-on-contrast-muted);
+    color: var(--text-secondary);
     line-height: 1.6;
 }
 
@@ -147,9 +144,9 @@
     padding: 0.25rem 0.65rem;
     font-size: var(--font-size-xs);
     font-weight: 500;
-    color: var(--text-on-contrast);
-    background: var(--bg-contrast);
-    border: 1px solid var(--border-contrast);
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
 }
 
@@ -159,7 +156,7 @@
     gap: var(--spacing-sm);
     align-items: center;
     padding-top: var(--spacing-md);
-    border-top: 1px solid var(--border-contrast);
+    border-top: 1px solid var(--border-subtle);
 }
 
 .primaryAction {
@@ -174,29 +171,30 @@
 }
 
 .secondaryAction {
-    background: var(--bg-contrast);
-    color: var(--text-on-contrast) !important;
-    border: 1px solid var(--border-contrast);
+    background: var(--bg-primary);
+    color: var(--text-primary) !important;
+    border: 1.5px solid var(--border-subtle);
 }
 
 .secondaryAction:hover {
-    border-color: var(--accent-hover);
-    color: var(--accent-hover) !important;
+    border-color: var(--accent);
+    color: var(--accent) !important;
+    background: var(--surface-elevated);
 }
 
 .apkBtn {
-    color: var(--text-on-contrast) !important;
-    border-color: var(--border-contrast);
-    background: var(--bg-contrast);
+    color: var(--text-primary) !important;
+    border: 1.5px solid var(--border-subtle);
+    background: var(--bg-primary);
 }
 
 .apkBtn:hover {
-    border-color: var(--accent-hover);
-    background: var(--bg-contrast-elevated);
+    border-color: var(--accent);
+    background: var(--surface-elevated);
 }
 
 .caseStudyLink {
-    color: var(--text-on-contrast) !important;
+    color: var(--accent) !important;
     font-weight: 600;
 }
 
@@ -208,11 +206,11 @@
 .wip {
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--text-on-contrast-muted);
+    color: var(--text-secondary);
     padding: 0.55rem 1rem;
-    border: 1px solid var(--border-contrast);
+    border: 1.5px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    background: var(--bg-contrast);
+    background: var(--bg-primary);
 }
 
 /* ==================== CTA ==================== */

@@ -15,7 +15,7 @@
 
   /* Contrast section (Used deliberately in Projects section) */
   --bg-contrast: #A8B5A0;      /* Muted sage green - contrast section background */
-  --bg-contrast-elevated: #BFC9B8; /* Lighter sage - cards on the contrast section */
+  --bg-contrast-elevated: #F7F7F0; /* Light neutral for cards to create distinct contrast against sage section */
   --border-contrast: #98A690;  /* Subtle border on contrast section */
   --border-contrast-subtle: rgba(31, 36, 32, 0.12);
 

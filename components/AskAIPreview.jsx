@@ -14,6 +14,14 @@ export default function AskAIPreview() {
         {
             role: 'ai',
             content: "Hi! 👋 I'm Chakshita's AI assistant. Ask me anything about her skills, projects, or experience!"
+        },
+        {
+            role: 'user',
+            content: "What's your primary tech stack and focus?"
+        },
+        {
+            role: 'ai',
+            content: "I specialize in Full-Stack web & mobile development (Next.js, React, Node.js, MongoDB) and Applied AI/ML with real custom models."
         }
     ]);
     const [inputValue, setInputValue] = useState('');
@@ -128,7 +136,7 @@ export default function AskAIPreview() {
 
                             {/* Chat Messages */}
                             <div className={styles.chatMessages}>
-                                {messages.slice(-3).map((msg, index) => (
+                                {messages.slice(-4).map((msg, index) => (
                                     <div key={index} className={msg.role === 'ai' ? styles.messageBot : styles.messageUser}>
                                         <div className={msg.role === 'ai' ? styles.messageBubble : styles.messageBubbleUser}>
                                             <p>{msg.content}</p>

@@ -3,8 +3,6 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { usePerformanceTier } from '@/hooks/usePerformanceTier';
-import ScrollThoughts from '@/components/ScrollThoughts';
-import SystemLog from '@/components/SystemLog';
 
 const PAGE_MOOD_MAP = {
     '/': 'dynamic',
@@ -37,8 +35,6 @@ export default function PortfolioExperienceProvider({ children }) {
     return (
         <>
             {children}
-            {!reducedMotion && <ScrollThoughts />}
-            <SystemLog pathname={pathname} />
         </>
     );
 }

@@ -45,8 +45,6 @@ export default function Home() {
             <FeaturedProjects />
           </ScrollReveal>
 
-          <Section3DAccent variant="light" align="right" />
-
           <ScrollReveal stagger>
             <GitHubActivity />
           </ScrollReveal>

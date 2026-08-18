@@ -25,8 +25,8 @@ export default function GitHubActivity() {
                     </div>
                     <div className={styles.chartWrapper}>
                         <img
-                            src="https://ghchart.rshah.org/6b7f5e/Chakshita2123"
-                            alt="Chakshita's GitHub contribution graph"
+                            src="https://ghchart.rshah.org/6B7F5E/Chakshita2123"
+                            alt="GitHub contribution graph"
                             className={styles.chartImg}
                             loading="lazy"
                         />
