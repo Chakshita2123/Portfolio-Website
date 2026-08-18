@@ -1,15 +1,15 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import EducationTimeline from '@/components/EducationTimeline';
-import AdaptiveIntroduction from '@/components/AdaptiveIntroduction';
 import MindsetCards from '@/components/MindsetCards';
 import SkillsOverview from '@/components/SkillsOverview';
 import PersonalTouch from '@/components/PersonalTouch';
+import CurrentlyBuilding from '@/components/CurrentlyBuilding';
 import styles from './about.module.css';
 
 export const metadata = {
-    title: "About | Chakshita.ai",
-    description: "Learn about Chakshita - a frontend developer with an AI-first mindset, building intelligent, user-centric web experiences.",
+    title: "About | Chakshita",
+    description: "Chakshita — full-stack developer and applied AI/ML builder. B.Tech CSE student building real products end-to-end.",
 };
 
 const mindsetCards = [
@@ -35,8 +35,6 @@ const mindsetCards = [
     }
 ];
 
-
-
 export default function AboutPage() {
     return (
         <>
@@ -45,9 +43,9 @@ export default function AboutPage() {
                 {/* Page Header */}
                 <section className={styles.pageHeader}>
                     <div className="container">
-                        <span className={`ai-badge ${styles.animateIn}`}>About Me</span>
+                        <span className={`section-label ${styles.animateIn}`}>About Me</span>
                         <h1 className={`${styles.pageTitle} ${styles.animateIn} ${styles.delay1}`}>
-                            Building intelligent, user-centric web experiences with a product mindset.
+                            Building real products end-to-end — from frontends to ML models.
                         </h1>
                     </div>
                 </section>
@@ -58,29 +56,26 @@ export default function AboutPage() {
                         <div className={`${styles.storyContent} ${styles.animateIn} ${styles.delay2}`}>
                             <h2 className={styles.sectionTitle}>The Story</h2>
                             <p className={styles.paragraph}>
-                                I'm Chakshita — a frontend developer passionate about creating experiences
-                                that feel intuitive, look beautiful, and work flawlessly. My journey started
-                                with curiosity about how websites work, and evolved into a deep commitment to
-                                building products that genuinely help people.
+                                I'm a full-stack developer with a growing focus on applied AI/ML —
+                                building products end-to-end rather than just wrapping LLM APIs.
+                                My work spans React/Next.js frontends, Node.js/MongoDB backends, and
+                                increasingly, real model training (regression, prediction pipelines)
+                                alongside LLM integration for features like OCR, chat, and recommendations.
                             </p>
                             <p className={styles.paragraph}>
-                                I focus on the intersection of <strong>frontend development</strong> and
-                                <strong> AI-powered thinking</strong>. I believe the future of web development
-                                isn't just about writing code — it's about creating intelligent systems that
-                                understand users and adapt to their needs.
-                            </p>
-                            <p className={styles.paragraph}>
-                                The problems I enjoy solving most are ones where technology can feel invisible —
-                                where the experience is so smooth that users don't think about the engineering
-                                behind it. That's the kind of work that excites me.
+                                Currently a B.Tech CSE student, building projects that solve real
+                                problems — from AI-assisted code review to native Android apps to
+                                ML-driven predictions. Currently open to internships and full-time
+                                opportunities.
                             </p>
                         </div>
 
-                        <AdaptiveIntroduction />
+                        <div className={styles.sidebarContent}>
+                            <CurrentlyBuilding />
+                        </div>
                     </div>
                 </section>
 
-                {/* Education Section */}
                 {/* Education Section */}
                 <EducationTimeline />
 
@@ -111,8 +106,6 @@ export default function AboutPage() {
                         </div>
                     </div>
                 </section>
-
-
 
                 {/* Personal Touch (Outside Work) */}
                 <PersonalTouch />

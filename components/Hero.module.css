@@ -1,5 +1,5 @@
 .hero {
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     padding-top: var(--navbar-height);
@@ -9,7 +9,7 @@
 
 .heroContainer {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.2fr 0.8fr;
     gap: var(--spacing-3xl);
     align-items: center;
     position: relative;
@@ -18,22 +18,22 @@
 
 /* Content Column */
 .heroContent {
-    max-width: 600px;
+    max-width: 640px;
 }
 
 .greeting {
     display: inline-block;
-    font-size: var(--font-size-lg);
-    font-weight: 500;
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
 }
 
 .headline {
-    font-size: var(--font-size-5xl);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
     color: var(--text-primary);
     margin-bottom: var(--spacing-lg);
 }
@@ -43,12 +43,27 @@
     color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: var(--spacing-2xl);
+    max-width: 540px;
 }
 
 .ctas {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-3xl);
+}
+
+.resumeBtn {
+    border: 1px solid var(--border-medium);
+    background: var(--surface);
+    color: var(--text-primary);
+}
+
+.resumeBtn:hover {
+    background: var(--surface-elevated);
+    border-color: var(--primary);
+    color: var(--primary);
 }
 
 /* Stats */
@@ -80,133 +95,56 @@
     background: var(--border-light);
 }
 
-/* Visual Column */
+/* Visual Column — subtle decorative element */
 .heroVisual {
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1000px;
-    /* Enable 3D space for children */
 }
 
-.visualContainer {
+.visualDecor {
     position: relative;
-    width: 500px;
-    /* Increased for OrbitSystem */
-    height: 500px;
+    width: 320px;
+    height: 320px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transform-style: preserve-3d;
-    transition: transform 0.1s ease-out;
-    /* Maintain 3D for children */
 }
 
-/* Floating Cards - Optimized for performance */
-.floatingCard {
+.decorRing {
     position: absolute;
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-sm) var(--spacing-md);
-    background: var(--surface);
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
     border: 1px solid var(--border-light);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    color: var(--text-primary);
-    transform: translateZ(20px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Removed backdrop-filter for performance */
-    will-change: transform;
+    animation: slowSpin 30s linear infinite;
 }
 
-.floatingCard:hover {
-    transform: translateZ(40px) scale(1.05);
-    /* Extra lift on hover */
-    box-shadow: var(--shadow-xl), 0 0 20px rgba(14, 165, 233, 0.2);
-    border-color: var(--primary);
-    z-index: 20;
-}
-
-.cardIcon {
-    font-size: 1.2em;
-}
-
-.card1 {
-    top: 5%;
-    right: 5%;
-    animation: floatCard1 6s ease-in-out infinite;
-}
-
-.card2 {
-    bottom: 25%;
-    left: 0;
-    animation: floatCard2 7s ease-in-out infinite;
-}
-
-.card3 {
-    bottom: 5%;
-    right: 15%;
-    animation: floatCard3 8s ease-in-out infinite;
-}
-
-@keyframes floatCard1 {
-
-    0%,
-    100% {
-        transform: translateZ(20px) translateY(0);
-    }
-
-    50% {
-        transform: translateZ(20px) translateY(-10px);
-    }
-}
-
-@keyframes floatCard2 {
-
-    0%,
-    100% {
-        transform: translateZ(30px) translateY(0);
-    }
-
-    50% {
-        transform: translateZ(30px) translateY(-15px);
-    }
-}
-
-@keyframes floatCard3 {
-
-    0%,
-    100% {
-        transform: translateZ(25px) translateY(0);
-    }
-
-    50% {
-        transform: translateZ(25px) translateY(-12px);
-    }
-}
-
-/* Background - Now handled by AnimatedBackground component */
-
-/* Scroll Hint - Subtle and understated */
-.scrollHint {
+.decorRingInner {
     position: absolute;
-    bottom: var(--spacing-2xl);
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    animation: heroFadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 1s;
-    opacity: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(14, 165, 233, 0.12);
+    animation: slowSpinReverse 20s linear infinite;
 }
 
-.scrollHintText {
-    font-size: var(--font-size-sm);
-    color: var(--text-tertiary);
-    font-weight: 400;
-    letter-spacing: 0.01em;
+.decorDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    opacity: 0.6;
+}
+
+@keyframes slowSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes slowSpinReverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
 }
 
 /* Responsive */
@@ -235,21 +173,22 @@
 
 @media (max-width: 768px) {
     .headline {
-        font-size: var(--font-size-4xl);
+        font-size: var(--font-size-3xl);
     }
 
     .ctas {
         flex-direction: column;
+        width: 100%;
     }
 
-    .ctas button {
+    .ctas .btn {
         width: 100%;
     }
 }
 
 @media (max-width: 480px) {
     .headline {
-        font-size: var(--font-size-3xl);
+        font-size: var(--font-size-2xl);
     }
 
     .description {
@@ -257,7 +196,7 @@
     }
 
     .greeting {
-        font-size: var(--font-size-base);
+        font-size: var(--font-size-xl);
     }
 
     .stats {
@@ -268,17 +207,13 @@
     .statNumber {
         font-size: var(--font-size-xl);
     }
-
-    .scrollHint {
-        bottom: var(--spacing-md);
-    }
 }
 
 /* ==================== PAGE LOAD ANIMATIONS ==================== */
 @keyframes heroFadeInUp {
     from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(30px);
     }
 
     to {
@@ -289,21 +224,21 @@
 
 .animateIn {
     opacity: 0;
-    animation: heroFadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .delay1 {
-    animation-delay: 0.2s;
+    animation-delay: 0.15s;
 }
 
 .delay2 {
-    animation-delay: 0.4s;
+    animation-delay: 0.3s;
 }
 
 .delay3 {
-    animation-delay: 0.6s;
+    animation-delay: 0.45s;
 }
 
 .delay4 {
-    animation-delay: 0.8s;
+    animation-delay: 0.6s;
 }

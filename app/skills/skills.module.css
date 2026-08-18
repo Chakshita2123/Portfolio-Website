@@ -44,14 +44,13 @@
     transition: all 0.35s var(--ease-smooth);
     position: relative;
     overflow: hidden;
-    /* Spotlight vars */
-    --spotlight-color: rgba(14, 165, 233, 0.25);
+    --spotlight-color: rgba(14, 165, 233, 0.15);
 }
 
 .categoryCard:hover {
     box-shadow: var(--shadow-md);
     transform: translateY(-3px);
-    border-color: rgba(80, 70, 229, 0.18);
+    border-color: var(--border-medium);
 }
 
 /* Spotlight Glow Layer */
@@ -75,11 +74,6 @@
 .categoryCard>* {
     position: relative;
     z-index: 1;
-}
-
-/* Core Focus cards get subtle emphasis */
-.categoryCard.coreCategory {
-    border-top: 3px solid var(--primary);
 }
 
 .cardHeader {
@@ -117,21 +111,15 @@
 }
 
 .levelCore {
-    background: linear-gradient(135deg, rgba(80, 70, 229, 0.12), rgba(124, 58, 237, 0.12));
+    background: rgba(14, 165, 233, 0.12);
     color: var(--primary);
-    border: 1px solid rgba(80, 70, 229, 0.2);
+    border: 1px solid rgba(14, 165, 233, 0.2);
 }
 
 .levelWorking {
     background: rgba(16, 185, 129, 0.1);
-    color: #059669;
+    color: #10b981;
     border: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-.levelExploring {
-    background: rgba(245, 158, 11, 0.1);
-    color: #D97706;
-    border: 1px solid rgba(245, 158, 11, 0.2);
 }
 
 /* Skill List */
@@ -152,7 +140,7 @@
 }
 
 .skillItem:hover {
-    background: var(--primary-light);
+    background: var(--surface-elevated);
 }
 
 .skillHeader {
@@ -165,11 +153,6 @@
     width: 24px;
     height: 24px;
     object-fit: contain;
-    transition: transform 0.3s ease;
-}
-
-.skillItem:hover .skillIcon {
-    transform: scale(1.15) rotate(5deg);
 }
 
 .skillName {
@@ -184,104 +167,76 @@
     line-height: 1.5;
 }
 
-/* ==================== AI INSIGHT ==================== */
-.aiInsight {
+/* ==================== CERTIFICATIONS ==================== */
+.certificationsSection {
     background: transparent;
+    padding-top: var(--spacing-xl);
 }
 
-.aiCard {
-    background: linear-gradient(135deg, rgba(80, 70, 229, 0.04), rgba(124, 58, 237, 0.06));
-    border: 1.5px solid rgba(80, 70, 229, 0.2);
-    border-radius: var(--radius-2xl);
+.certCard {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
     padding: var(--spacing-2xl);
-    position: relative;
-    overflow: hidden;
-    max-width: 700px;
-    margin: 0 auto;
+    box-shadow: var(--shadow-sm);
 }
 
-.aiCard::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--accent-gradient);
-}
-
-.aiCardContent {
-    position: relative;
-    z-index: 1;
-}
-
-.aiCardHeader {
+.certHeader {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-lg);
-}
-
-.aiIcon {
-    font-size: var(--font-size-2xl);
-}
-
-.aiTitle {
-    font-size: var(--font-size-xl);
-    font-weight: 700;
-    color: var(--primary);
-}
-
-.aiDescription {
-    font-size: var(--font-size-base);
-    color: var(--text-secondary);
-    line-height: 1.7;
+    gap: var(--spacing-md);
     margin-bottom: var(--spacing-xl);
 }
 
-/* Preview Bars */
-.aiPreviewBars {
+.certIcon {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.certTitle {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.certSubtitle {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.certChips {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.certChip {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: 4px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-fast);
 }
 
-.previewBar {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
+.certChip:hover {
+    border-color: var(--border-medium);
+    transform: translateY(-2px);
 }
 
-.barLabel {
+.certName {
     font-size: var(--font-size-sm);
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text-primary);
-    min-width: 100px;
+    line-height: 1.4;
 }
 
-.barTrack {
-    flex: 1;
-    height: 8px;
-    background: var(--border-light);
-    border-radius: var(--radius-full);
-    overflow: hidden;
-}
-
-.barFill {
-    height: 100%;
-    background: var(--accent-gradient);
-    border-radius: var(--radius-full);
-    opacity: 0.6;
-}
-
-.aiCardDecor {
-    position: absolute;
-    top: -50px;
-    right: -50px;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(80, 70, 229, 0.1) 0%, transparent 70%);
-    pointer-events: none;
+.certIssuer {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    font-weight: 500;
 }
 
 /* ==================== APPLICATION ==================== */
@@ -376,18 +331,8 @@
         font-size: var(--font-size-3xl);
     }
 
-    .aiCard {
-        padding: var(--spacing-xl);
-    }
-
-    .previewBar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-xs);
-    }
-
-    .barLabel {
-        min-width: auto;
+    .certChips {
+        grid-template-columns: 1fr;
     }
 }
 

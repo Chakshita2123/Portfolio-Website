@@ -84,9 +84,9 @@ export default function AskAIPreview() {
             <div className="container">
                 <div className={styles.wrapper}>
                     <div className={styles.content}>
-                        <span className="ai-badge">AI Assistant</span>
+                        <span className="section-label">AI Assistant</span>
                         <h2 className="section-title">
-                            Ask <span className="gradient-text">Chakshita AI</span>
+                            Ask <span className="gradient-text">AI</span>
                         </h2>
                         <p className="section-subtitle">
                             Get instant answers about my skills, projects, or experience.

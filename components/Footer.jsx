@@ -31,7 +31,7 @@ export default function Footer() {
                             <span className={styles.logoAi}>.ai</span>
                         </Link>
                         <p className={styles.brandTagline}>
-                            An AI-ready personal portfolio
+                            Full-Stack Developer &amp; Applied AI/ML Builder
                         </p>
                     </div>
 
@@ -70,13 +70,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* AI Note */}
-                <div className={styles.aiNote}>
-                    <span className={styles.aiNoteIcon}>✨</span>
-                    <span>Designed as an AI-ready portfolio — UI first, intelligence later.</span>
-                </div>
-
-                {/* Divider */}
+{/* Divider */}
                 <div className={styles.divider}></div>
 
                 {/* Bottom */}

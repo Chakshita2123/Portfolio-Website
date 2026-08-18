@@ -5,22 +5,22 @@ const skillCategories = [
     {
         title: 'Frontend',
         icon: '🎨',
-        skills: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Framer Motion']
+        skills: ['React', 'Next.js 15', 'TypeScript', 'JavaScript', 'CSS Modules', 'HTML/CSS']
     },
     {
         title: 'Backend',
         icon: '⚙️',
-        skills: ['Node.js', 'Express', 'Python', 'MongoDB', 'PostgreSQL']
+        skills: ['Node.js', 'Express', 'Python', 'MongoDB', 'REST APIs', 'NextAuth']
     },
     {
-        title: 'AI & Data',
-        icon: '🧠',
-        skills: ['OpenAI API', 'LangChain', 'RAG Systems', 'Vector DBs', 'Pandas']
+        title: 'AI / ML & Automation',
+        icon: '🤖',
+        skills: ['Gemini API', 'Groq', 'scikit-learn', 'XGBoost', 'Prompt Engineering', 'Gemini Vision']
     },
     {
-        title: 'Tools',
+        title: 'Tools & Platforms',
         icon: '🛠️',
-        skills: ['Git', 'Docker', 'Figma', 'Vercel', 'VS Code']
+        skills: ['Git / GitHub', 'Capacitor', 'Monaco Editor', 'Vercel', 'VS Code', 'Postman']
     }
 ];
 

@@ -1,5 +1,6 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { FaAward } from 'react-icons/fa';
 import styles from './SkillsSnapshot.module.css';
 
 const skillCategories = [
@@ -13,7 +14,7 @@ const skillCategories = [
             { name: 'HTML/CSS', icon: 'html,css' },
             { name: 'TypeScript', icon: 'ts' }
         ],
-        aiInsight: 'Core strength - React component architecture and modern CSS'
+        insight: 'Core strength — React/Next.js component architecture and modern CSS'
     },
     {
         title: 'Backend',
@@ -22,20 +23,22 @@ const skillCategories = [
             { name: 'Node.js', icon: 'nodejs' },
             { name: 'Express', icon: 'express' },
             { name: 'Python', icon: 'py' },
+            { name: 'MongoDB', icon: 'mongodb' },
             { name: 'REST APIs', icon: 'postman' }
         ],
-        aiInsight: 'Full-stack capability for complete project development'
+        insight: 'Full-stack capability — from API design to database modelling'
     },
     {
-        title: 'AI / Automation',
+        title: 'AI / ML & Automation',
         icon: '🤖',
         skills: [
-            { name: 'OpenAI API', icon: 'tensorflow' },
-            { name: 'LangChain', icon: 'py' },
-            { name: 'Prompt Engineering', icon: 'react' },
-            { name: 'Chatbots', icon: 'githubactions' }
+            { name: 'Gemini API', icon: 'tensorflow' },
+            { name: 'Groq', icon: 'py' },
+            { name: 'scikit-learn / XGBoost', icon: 'py' },
+            { name: 'Capacitor', icon: 'androidstudio' },
+            { name: 'Prompt Engineering', icon: 'react' }
         ],
-        aiInsight: 'Practical AI integration with production-ready features'
+        insight: 'Real model training + LLM integration — not just API wrappers'
     },
     {
         title: 'Tools & Platforms',
@@ -45,41 +48,47 @@ const skillCategories = [
             { name: 'VS Code', icon: 'vscode' },
             { name: 'Figma', icon: 'figma' },
             { name: 'Vercel', icon: 'vercel' },
-            { name: 'MongoDB', icon: 'mongodb' }
+            { name: 'Postman', icon: 'postman' }
         ],
-        aiInsight: 'Modern development workflow and deployment expertise'
+        insight: 'Modern development workflow and rapid shipping'
     }
 ];
 
-const aiInsights = [
-    { icon: '🎯', text: 'Strongest in React/Next.js with practical AI integration experience' },
-    { icon: '💡', text: 'Product-focused mindset - builds features that solve real problems' },
-    { icon: '🚀', text: 'Rapidly adapts to new technologies and frameworks' },
-    { icon: '✨', text: 'Combines clean code practices with user-centered design' }
+const certifications = [
+    {
+        name: 'Meta Marketing Analytics Professional Certificate',
+        issuer: 'Meta'
+    },
+    {
+        name: 'Finance for Everyone Specialization',
+        issuer: 'McMaster University'
+    },
+    {
+        name: 'Google Prompting Essentials Specialization',
+        issuer: 'Google'
+    },
+    {
+        name: 'IBM Generative AI Fundamentals Specialization',
+        issuer: 'IBM'
+    },
+    {
+        name: 'Prompt Design in Vertex AI',
+        issuer: 'Google Cloud'
+    },
+    {
+        name: 'Build Real World AI Applications with Gemini and Imagen',
+        issuer: 'Google Cloud'
+    }
 ];
 
 export default function SkillsSnapshot() {
     const [activeCategory, setActiveCategory] = useState(null);
-    const [currentInsightIndex, setCurrentInsightIndex] = useState(0);
-    const [isVisible, setIsVisible] = useState(true);
-
-    // Rotate AI insights
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIsVisible(false);
-            setTimeout(() => {
-                setCurrentInsightIndex((prev) => (prev + 1) % aiInsights.length);
-                setIsVisible(true);
-            }, 300);
-        }, 4000);
-        return () => clearInterval(interval);
-    }, []);
 
     return (
         <section className={`section ${styles.skills}`}>
             <div className="container">
                 <div className={styles.header}>
-                    <span className="ai-badge">Skills</span>
+                    <span className="section-label">Skills</span>
                     <h2 className="section-title">
                         Technologies I <span className="gradient-text">Work With</span>
                     </h2>
@@ -117,31 +126,26 @@ export default function SkillsSnapshot() {
                                 ))}
                             </div>
 
-                            {/* AI Insight on Hover */}
+                            {/* Subtle insight on hover */}
                             <div className={styles.categoryInsight}>
-                                <span className={styles.insightIcon}>✨</span>
-                                <span className={styles.insightText}>{category.aiInsight}</span>
+                                <span className={styles.insightText}>{category.insight}</span>
                             </div>
                         </div>
                     ))}
                 </div>
 
-                {/* AI Insight Banner */}
-                <div className={styles.aiInsightBanner}>
-                    <div className={styles.insightBadge}>
-                        <span className={styles.sparkle}>✨</span>
-                        <span>AI Insight</span>
+                {/* Certifications Strip */}
+                <div className={styles.certificationsSection}>
+                    <div className={styles.certHeader}>
+                        <FaAward className={styles.certIcon} />
+                        <h3 className={styles.certTitle}>Certifications</h3>
                     </div>
-                    <div className={`${styles.insightContent} ${isVisible ? styles.insightVisible : styles.insightHidden}`}>
-                        <span className={styles.insightEmoji}>{aiInsights[currentInsightIndex].icon}</span>
-                        <span className={styles.insightMessage}>{aiInsights[currentInsightIndex].text}</span>
-                    </div>
-                    <div className={styles.insightDots}>
-                        {aiInsights.map((_, idx) => (
-                            <span
-                                key={idx}
-                                className={`${styles.insightDot} ${currentInsightIndex === idx ? styles.insightDotActive : ''}`}
-                            />
+                    <div className={styles.certChips}>
+                        {certifications.map((cert, index) => (
+                            <div key={index} className={styles.certChip}>
+                                <span className={styles.certName}>{cert.name}</span>
+                                <span className={styles.certIssuer}>{cert.issuer}</span>
+                            </div>
                         ))}
                     </div>
                 </div>

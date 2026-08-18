@@ -1,147 +1,134 @@
 'use client';
-import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaAndroid, FaBookOpen } from 'react-icons/fa';
 import styles from './FeaturedProjects.module.css';
 
 const projects = [
     {
         id: 1,
-        title: 'AI Study Assistant',
-        problem: 'Students struggle to find relevant study material quickly',
-        techStack: ['React', 'Node.js', 'OpenAI API', 'MongoDB'],
-        liveUrl: '#',
-        githubUrl: '#',
-        relevance: { student: 10, recruiter: 8, founder: 6 },
-        personaHighlight: {
-            student: 'Perfect for understanding AI-powered learning tools',
-            recruiter: 'Demonstrates full-stack AI integration skills',
-            founder: 'Shows ability to build user-centric AI products'
-        }
+        title: 'Code Review AI',
+        problem: 'Developers need fast, structured feedback on code — not generic AI chat responses.',
+        description: 'Full-stack AI-powered code review platform with streaming reviews (SSE), multiple review templates, GitHub PR review, an AI chat assistant with LaTeX rendering, and PDF export.',
+        techStack: ['Next.js 15', 'TypeScript', 'MongoDB', 'NextAuth', 'Gemini/Groq', 'Monaco Editor'],
+        liveUrl: 'https://code-review-ai-blond.vercel.app/',
+        githubUrl: 'https://github.com/Chakshita2123/Code-Review-AI',
+        status: 'live'
     },
     {
         id: 2,
-        title: 'Task Flow Dashboard',
-        problem: 'Teams need a simple way to visualize project progress',
-        techStack: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL'],
-        liveUrl: '#',
-        githubUrl: '#',
-        relevance: { student: 7, recruiter: 9, founder: 10 },
-        personaHighlight: {
-            student: 'Great example of collaborative tooling',
-            recruiter: 'Shows TypeScript and database expertise',
-            founder: 'Demonstrates product thinking and team tooling'
-        }
+        title: 'MARKD — Attendance Tracker',
+        problem: 'Students need a reliable, mobile-native way to track attendance without relying on spreadsheets or fragile college portals.',
+        description: 'Cross-platform attendance tracker with Google OAuth, native Android sign-in via Capacitor, AI-powered timetable upload (Gemini Vision + Groq fallback), and balance tracking.',
+        techStack: ['React', 'Node.js', 'MongoDB', 'Capacitor (Android)', 'Gemini Vision', 'Groq'],
+        liveUrl: 'https://attendance-tracker-ruddy-ten.vercel.app/',
+        githubUrl: 'https://github.com/Chakshita2123/Attendance-Tracker-Chakshita',
+        apkUrl: 'https://github.com/Chakshita2123/Attendance-Tracker-Chakshita/releases/download/v1.0/app-debug.apk',
+        caseStudyUrl: '/projects/markd',
+        status: 'live',
+        hasCaseStudy: true
     },
     {
         id: 3,
-        title: 'E-Commerce Platform',
-        problem: 'Small businesses need affordable online storefronts',
-        techStack: ['React', 'Express', 'Stripe', 'MongoDB'],
-        liveUrl: '#',
-        githubUrl: '#',
-        relevance: { student: 5, recruiter: 7, founder: 10 },
-        personaHighlight: {
-            student: 'Learn payment integration patterns',
-            recruiter: 'Full-stack development with real business impact',
-            founder: 'Ready-to-deploy solution for small businesses'
-        }
+        title: 'Journey Curator',
+        problem: 'Most "AI travel planners" are just LLM wrappers with no real predictive intelligence.',
+        description: 'Travel planning platform built around a real ML core — a trip cost predictor trained with scikit-learn/XGBoost — combined with Gemini/Groq for planning assistance.',
+        techStack: ['Next.js 15', 'TypeScript', 'MongoDB', 'Python', 'scikit-learn/XGBoost'],
+        liveUrl: null,
+        githubUrl: 'https://github.com/Chakshita2123/Journey-Curator-AI',
+        status: 'in-progress'
     },
     {
         id: 4,
-        title: 'Portfolio Website',
-        problem: 'Traditional portfolios fail to communicate thinking',
+        title: 'This Portfolio',
+        problem: 'Traditional portfolios are static PDFs disguised as websites — they don\'t demonstrate how someone actually builds.',
+        description: 'A clean, AI-integrated personal portfolio with an embedded AI assistant grounded in real project data.',
         techStack: ['Next.js', 'React', 'CSS Modules', 'Gemini API'],
-        liveUrl: '#',
-        githubUrl: '#',
-        relevance: { student: 8, recruiter: 10, founder: 7 },
-        personaHighlight: {
-            student: 'See how to build a standout portfolio',
-            recruiter: 'Live example of modern frontend + AI skills',
-            founder: 'Demonstrates product thinking and innovation'
-        }
+        liveUrl: 'https://portfolio-website-zeta-seven-42.vercel.app/',
+        githubUrl: 'https://github.com/Chakshita2123/Portfolio-Website',
+        status: 'live'
     }
 ];
 
-const personas = [
-    { value: 'recruiter', label: '💼 Recruiter' },
-    { value: 'student', label: '🎓 Student' },
-    { value: 'founder', label: '🚀 Founder' }
-];
-
 export default function FeaturedProjects() {
-    const [selectedPersona, setSelectedPersona] = useState('recruiter');
-
-    // Sort projects by relevance and take top 3
-    const sortedProjects = useMemo(() => {
-        return [...projects]
-            .sort((a, b) => b.relevance[selectedPersona] - a.relevance[selectedPersona])
-            .slice(0, 3);
-    }, [selectedPersona]);
-
-    const currentPersona = personas.find(p => p.value === selectedPersona);
-
     return (
         <section id="projects" className={`section ${styles.projects}`}>
             <div className="container">
                 <div className={styles.header}>
-                    <span className="ai-badge">Projects</span>
+                    <span className="section-label">Projects</span>
                     <h2 className="section-title">
                         Featured <span className="gradient-text">Work</span>
                     </h2>
                     <p className="section-subtitle">
-                        Real problems solved with modern technology.
+                        Real problems solved with real technology — end-to-end.
                     </p>
-                </div>
-
-                {/* Persona Selector */}
-                <div className={styles.personaSelector}>
-                    <label className={styles.personaLabel}>I am a:</label>
-                    <div className={styles.personaButtons}>
-                        {personas.map(persona => (
-                            <button
-                                key={persona.value}
-                                className={`${styles.personaBtn} ${selectedPersona === persona.value ? styles.personaBtnActive : ''}`}
-                                onClick={() => setSelectedPersona(persona.value)}
-                            >
-                                {persona.label}
-                            </button>
-                        ))}
-                    </div>
-                    <div className={styles.aiRecommendation}>
-                        <span className={styles.aiRecIcon}>✨</span>
-                        <span>Showing top projects for {currentPersona?.label}</span>
-                    </div>
                 </div>
 
                 {/* Project Cards */}
                 <div className={styles.grid}>
-                    {sortedProjects.map((project, index) => (
+                    {projects.map((project) => (
                         <div key={project.id} className={`${styles.card} card-3d`}>
-                            {index === 0 && (
-                                <span className={styles.topPick}>⭐ Top Pick</span>
-                            )}
+                            <div className={styles.cardTop}>
+                                {project.status === 'in-progress' && (
+                                    <span className={styles.statusBadge}>In Progress</span>
+                                )}
+                                {project.hasCaseStudy && (
+                                    <span className={styles.caseStudyBadge}>Case Study Available</span>
+                                )}
+                            </div>
+
                             <div className={styles.cardContent}>
                                 <h3 className={styles.cardTitle}>{project.title}</h3>
-                                <p className={styles.cardHighlight}>
-                                    💡 {project.personaHighlight[selectedPersona]}
-                                </p>
                                 <p className={styles.cardProblem}>
-                                    <span className={styles.problemLabel}>Problem:</span> {project.problem}
+                                    <span className={styles.problemLabel}>Problem:</span>{' '}
+                                    {project.problem}
                                 </p>
+                                <p className={styles.cardDesc}>{project.description}</p>
                                 <div className={styles.techStack}>
                                     {project.techStack.map((tech, idx) => (
                                         <span key={idx} className="tag">{tech}</span>
                                     ))}
                                 </div>
                             </div>
+
                             <div className={styles.cardActions}>
-                                <a href={project.liveUrl} className="btn btn-primary">
-                                    Live Demo
-                                </a>
-                                <a href={project.githubUrl} className="btn btn-secondary">
+                                {project.liveUrl ? (
+                                    <a
+                                        href={project.liveUrl}
+                                        className="btn btn-primary"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <FaExternalLinkAlt /> Live Demo
+                                    </a>
+                                ) : (
+                                    <span className={styles.wip}>In Progress</span>
+                                )}
+
+                                <a
+                                    href={project.githubUrl}
+                                    className="btn btn-secondary"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
                                     <FaGithub /> GitHub
                                 </a>
+
+                                {project.apkUrl && (
+                                    <a
+                                        href={project.apkUrl}
+                                        className={`btn btn-secondary ${styles.apkBtn}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <FaAndroid /> APK
+                                    </a>
+                                )}
+
+                                {project.caseStudyUrl && (
+                                    <Link href={project.caseStudyUrl} className={`btn btn-ghost ${styles.caseStudyBtn}`}>
+                                        <FaBookOpen /> Deep Dive →
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     ))}
@@ -150,7 +137,7 @@ export default function FeaturedProjects() {
                 {/* View All Link */}
                 <div className={styles.viewAll}>
                     <Link href="/projects" className="btn btn-ghost">
-                        View All Projects →
+                        View All Projects &amp; Case Studies →
                     </Link>
                 </div>
             </div>

@@ -1,128 +1,31 @@
 'use client';
-import { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import styles from './AboutPreview.module.css';
 
-const STUDENT_SUMMARY_PROMPT = 'Summarize Chakshita in 3 short paragraphs for a student: her collaborative nature, learning journey, and why she is a great peer to work with. Be friendly and encouraging.';
-const FOUNDER_SUMMARY_PROMPT = 'Summarize Chakshita in 3 short paragraphs for a founder: her product mindset, ability to ship fast, and technical expertise in building MVP to scale. Be business-focused and impactful.';
-
-const personas = [
-    { value: 'recruiter', label: '💼 Recruiter', icon: '💼' },
-    { value: 'student', label: '🎓 Student', icon: '🎓' },
-    { value: 'founder', label: '🚀 Founder', icon: '🚀' }
-];
-
-const personaIntros = {
-    recruiter: {
-        title: "For Recruiters",
-        description: "Chakshita is ideal for roles requiring frontend development with AI integration. She demonstrates strong React/Next.js skills, practical AI implementation experience, and product-focused thinking. Currently available for internships, full-time positions, and collaborative projects.",
-        highlights: ["React/Next.js Expert", "AI Integration", "Product Thinking"]
-    },
-    student: {
-        title: "For Fellow Students",
-        description: "Hi! I'm Chakshita, a B.Tech student passionate about building real-world projects. I love combining frontend development with AI to create intelligent applications. Always excited to connect, collaborate, and learn together!",
-        highlights: ["Learning Together", "Project Collaboration", "AI Exploration"]
-    },
-    founder: {
-        title: "For Founders",
-        description: "Looking for someone who can build AI-powered features quickly? I combine frontend skills with practical AI integration experience. I focus on shipping working products, not just technical demos. Let's build something impactful together.",
-        highlights: ["Ship Fast", "AI-Powered", "Product Focus"]
-    }
-};
-
 export default function AboutPreview() {
-    const [selectedPersona, setSelectedPersona] = useState('recruiter');
-    const [isAnimating, setIsAnimating] = useState(false);
-    const [displayedIntro, setDisplayedIntro] = useState(personaIntros.recruiter);
-    const [aiSummary, setAiSummary] = useState(null);
-    const [summaryLoading, setSummaryLoading] = useState(false);
-    const [summaryError, setSummaryError] = useState(false);
-    const [isHovered, setIsHovered] = useState(false);
-
-    // Auto-cycle personas
-    useEffect(() => {
-        if (isHovered) return;
-
-        const interval = setInterval(() => {
-            setSelectedPersona(prev => {
-                const currentIndex = personas.findIndex(p => p.value === prev);
-                const nextIndex = (currentIndex + 1) % personas.length;
-                return personas[nextIndex].value;
-            });
-        }, 3000);
-
-        return () => clearInterval(interval);
-    }, [isHovered]);
-
-    // Reset summary when persona changes
-    useEffect(() => {
-        setAiSummary(null);
-        setSummaryError(false);
-    }, [selectedPersona]);
-
-    const fetchPersonaSummary = useCallback(async () => {
-        if (summaryLoading || aiSummary) return;
-        setSummaryLoading(true);
-        setSummaryError(false);
-
-        let prompt = RECRUITER_SUMMARY_PROMPT;
-        if (selectedPersona === 'student') prompt = STUDENT_SUMMARY_PROMPT;
-        if (selectedPersona === 'founder') prompt = FOUNDER_SUMMARY_PROMPT;
-
-        try {
-            const res = await fetch('/api/ai', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    message: prompt,
-                    context: selectedPersona,
-                    pageContext: 'home',
-                    conversationHistory: []
-                })
-            });
-            const data = await res.json();
-            if (res.ok && data.message) {
-                setAiSummary(data.message);
-            } else {
-                setSummaryError(true);
-            }
-        } catch {
-            setSummaryError(true);
-        } finally {
-            setSummaryLoading(false);
-        }
-    }, [summaryLoading, aiSummary, selectedPersona]);
-
-    useEffect(() => {
-        setIsAnimating(true);
-        const timer = setTimeout(() => {
-            setDisplayedIntro(personaIntros[selectedPersona]);
-            setIsAnimating(false);
-        }, 200);
-        return () => clearTimeout(timer);
-    }, [selectedPersona]);
-
-    const currentPersonaLabel = personas.find(p => p.value === selectedPersona)?.label || 'Recruiter';
-
     return (
         <section id="about" className={`section ${styles.about}`}>
             <div className={`container ${styles.aboutContainer}`}>
                 <div className={styles.content}>
-                    <span className="ai-badge">About Me</span>
+                    <span className="section-label">About Me</span>
 
                     <h2 className="section-title">
-                        Developer. Designer. <span className="gradient-text">Builder.</span>
+                        Developer. Builder. <span className="gradient-text">Problem Solver.</span>
                     </h2>
 
                     <p className={styles.summary}>
-                        I'm a passionate frontend developer focused on creating intuitive,
-                        performant web applications. With a strong foundation in modern
-                        JavaScript frameworks and a keen eye for design, I bridge the gap
-                        between beautiful interfaces and powerful functionality.
+                        I'm a full-stack developer with a growing focus on applied AI/ML —
+                        building products end-to-end rather than just wrapping LLM APIs.
+                        My work spans React/Next.js frontends, Node.js/MongoDB backends, and
+                        increasingly, real model training (regression, prediction pipelines)
+                        alongside LLM integration for features like OCR, chat, and recommendations.
                     </p>
 
                     <p className={styles.summary}>
-                        Currently exploring the intersection of AI and user experience —
-                        building tools that don't just work, but think and adapt.
+                        Currently a B.Tech CSE student, building projects that solve real
+                        problems — from AI-assisted code review to native Android apps to
+                        ML-driven predictions. Currently open to internships and full-time
+                        opportunities.
                     </p>
 
                     <div className={styles.infoRow}>
@@ -134,66 +37,20 @@ export default function AboutPreview() {
                             <span className={styles.infoIcon}>📍</span>
                             <span className={styles.infoText}>India</span>
                         </div>
+                        <div className={styles.infoItem}>
+                            <span className={styles.infoIcon}>💼</span>
+                            <span className={styles.infoText}>Open to opportunities</span>
+                        </div>
                     </div>
                 </div>
 
-                {/* AI Personalization Card */}
-                <div
-                    className={`${styles.aiCard} card-3d`}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                >
-                    <div className={styles.aiCardHeader}>
-                        <span className={styles.aiIcon}>✨</span>
-                        <span className={styles.aiTitle}>AI Personalized Intro</span>
-                    </div>
-
-                    {/* Persona Selector */}
-                    <div className={styles.personaSelector}>
-                        <span className={styles.personaLabel}>I am a:</span>
-                        <div className={styles.personaButtons}>
-                            {personas.map(persona => (
-                                <button
-                                    key={persona.value}
-                                    className={`${styles.personaBtn} ${selectedPersona === persona.value ? styles.personaBtnActive : ''}`}
-                                    onClick={() => setSelectedPersona(persona.value)}
-                                >
-                                    {persona.label}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Personalized Content */}
-                    <div className={`${styles.personalizedContent} ${isAnimating ? styles.fadeOut : styles.fadeIn}`}>
-                        <h4 className={styles.introTitle}>{displayedIntro.title}</h4>
-                        <p className={styles.introDescription}>{displayedIntro.description}</p>
-                        <div className={styles.highlights}>
-                            {displayedIntro.highlights.map((highlight, idx) => (
-                                <span key={idx} className={styles.highlightTag}>{highlight}</span>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* AI summary for recruiters - delight */}
-                    <div className={styles.recruiterSummaryBlock}>
-                        <button
-                            type="button"
-                            className={styles.recruiterSummaryBtn}
-                            onClick={fetchPersonaSummary}
-                            disabled={summaryLoading}
-                        >
-                            {summaryLoading ? 'Generating…' : `Get AI summary (for ${currentPersonaLabel})`}
-                        </button>
-                        {summaryError && (
-                            <p className={styles.recruiterSummaryFallback}>
-                                Summary unavailable. Use the Ask AI page or contact directly.
-                            </p>
-                        )}
-                        {aiSummary && (
-                            <div className={styles.recruiterSummaryText}>{aiSummary}</div>
-                        )}
-                    </div>
+                <div className={styles.actions}>
+                    <Link href="/about" className="btn btn-secondary">
+                        More About Me →
+                    </Link>
+                    <Link href="/projects" className="btn btn-ghost">
+                        See My Work →
+                    </Link>
                 </div>
             </div>
         </section>
