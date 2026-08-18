@@ -1,6 +1,6 @@
 /* =====================================================
    CHAKSHITA - DESIGN SYSTEM
-   Warm Contrast Palette (Mid-Tone Beige & Deep Brown)
+   Warm Contrast Palette (Dusty Pink & Deep Mauve-Brown)
    ===================================================== */
 
 /* Google Fonts - Inter */
@@ -9,48 +9,48 @@
 /* ==================== CSS VARIABLES ==================== */
 :root {
   /* Base (Light Sections) */
-  --bg-primary: #E8DFD3;       /* Warm beige - main background */
-  --bg-elevated: #F5EEE3;      /* Lighter cream - cards on light sections */
-  --border-subtle: #D3C6B4;    /* Soft border tone */
+  --bg-primary: #F2E1DE;       /* Warm dusty pink - main background */
+  --bg-elevated: #FBF0EE;      /* Lighter blush - cards on light sections */
+  --border-subtle: #E3C4C0;    /* Soft pink border tone */
 
   /* Dark Contrast Sections */
-  --bg-dark: #2A2118;          /* Deep warm brown - contrast section backgrounds */
-  --bg-dark-elevated: #3A2E22; /* Slightly lighter warm brown - cards on dark sections */
-  --border-dark: #4A3B2C;      /* Subtle border on dark sections */
-  --border-dark-subtle: rgba(242, 235, 225, 0.12);
+  --bg-dark: #2E1F1E;          /* Deep mauve-brown - contrast section backgrounds */
+  --bg-dark-elevated: #3F2B29; /* Slightly lighter mauve-brown - cards on dark sections */
+  --border-dark: #4F3735;      /* Subtle border on dark sections */
+  --border-dark-subtle: rgba(245, 231, 228, 0.12);
 
   /* Text Colors */
-  --text-primary: #1A1512;     /* Near-black warm brown - headings on light bg */
-  --text-secondary: #5C5148;   /* Muted brown-grey - body/secondary text on light bg */
-  --text-tertiary: #877A6F;    /* Lighter muted brown - small labels */
-  --text-on-dark: #F2EBE1;     /* Warm off-white - text on dark sections */
-  --text-on-dark-muted: #C4B8A8; /* Muted warm grey - secondary text on dark sections */
-  --text-inverse: #F2EBE1;
+  --text-primary: #241715;     /* Near-black warm mauve - headings on light bg */
+  --text-secondary: #6B4F4C;   /* Muted rosy-brown - body/secondary text on light bg */
+  --text-tertiary: #8A6B68;    /* Lighter muted rosy-brown - small labels */
+  --text-on-dark: #F5E7E4;     /* Warm blush-white - text on dark sections */
+  --text-on-dark-muted: #C9A8A3; /* Muted dusty rose - secondary text on dark sections */
+  --text-inverse: #F5E7E4;
 
-  /* Accent (Burnt Terracotta) */
-  --accent: #B8441F;           /* Bold burnt terracotta - CTAs, links, highlights */
-  --accent-hover: #96371A;     /* Darker terracotta - hover state */
-  --accent-light: #E8956F;     /* Lighter terracotta - accent on dark backgrounds */
-  --accent-subtle: rgba(184, 68, 31, 0.12);
+  /* Accent (Bold Rose/Berry Pink) */
+  --accent: #C23B5A;           /* Bold rose/berry pink - CTAs, links, highlights */
+  --accent-hover: #9E2E48;     /* Darker berry pink - hover state */
+  --accent-light: #F0879E;     /* Lighter rose pink - accent on dark backgrounds */
+  --accent-subtle: rgba(194, 59, 90, 0.12);
 
   /* Surface Aliases */
   --surface: var(--bg-elevated);
-  --surface-elevated: #FAF5EE;
+  --surface-elevated: #FDF7F6;
   --primary: var(--accent);
   --primary-hover: var(--accent-hover);
   --primary-light: var(--accent-subtle);
   --border-light: var(--border-subtle);
-  --border-medium: #BFB09D;
+  --border-medium: #D6AEA9;
 
   /* Shadow System - Soft and Warm */
-  --shadow-sm: 0 1px 3px rgba(26, 21, 18, 0.05);
-  --shadow-md: 0 4px 12px rgba(26, 21, 18, 0.08);
-  --shadow-lg: 0 10px 24px -4px rgba(26, 21, 18, 0.1);
-  --shadow-xl: 0 20px 32px -8px rgba(26, 21, 18, 0.14);
+  --shadow-sm: 0 1px 3px rgba(36, 23, 21, 0.05);
+  --shadow-md: 0 4px 12px rgba(36, 23, 21, 0.08);
+  --shadow-lg: 0 10px 24px -4px rgba(36, 23, 21, 0.1);
+  --shadow-xl: 0 20px 32px -8px rgba(36, 23, 21, 0.14);
   --shadow-dark: 0 8px 24px rgba(0, 0, 0, 0.35);
 
   /* Navbar */
-  --navbar-bg: rgba(232, 223, 211, 0.92);
+  --navbar-bg: rgba(242, 225, 222, 0.94);
   --navbar-border: var(--border-subtle);
 
   /* Typography */
@@ -195,7 +195,7 @@ img {
   line-height: 1.65;
 }
 
-/* Gradient / Highlight Text */
+/* Highlight Text */
 .gradient-text {
   color: var(--accent);
   background: none;
@@ -217,7 +217,7 @@ img {
   cursor: pointer;
 }
 
-/* Primary Button: Solid Terracotta fill */
+/* Primary Button: Solid Berry Pink fill */
 .btn-primary {
   background: var(--accent);
   color: var(--text-on-dark) !important;
@@ -258,7 +258,7 @@ img {
 
 .btn-ghost:hover {
   color: var(--accent) !important;
-  background: rgba(184, 68, 31, 0.08);
+  background: rgba(194, 59, 90, 0.08);
 }
 
 /* Cards */

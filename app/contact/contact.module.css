@@ -110,8 +110,8 @@
 
 .enhancedBadge {
     padding: var(--spacing-sm) var(--spacing-md);
-    background: rgba(184, 68, 31, 0.1);
-    border: 1px solid rgba(184, 68, 31, 0.2);
+    background: rgba(194, 59, 90, 0.1);
+    border: 1px solid rgba(194, 59, 90, 0.2);
     border-radius: var(--radius-md);
     font-size: var(--font-size-xs);
     font-weight: 600;

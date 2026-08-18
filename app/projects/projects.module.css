@@ -56,7 +56,7 @@
 .projectCard:hover {
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     transform: translateY(-4px);
-    border-color: rgba(232, 149, 111, 0.4);
+    border-color: rgba(240, 135, 158, 0.4);
 }
 
 .cardHeader {
@@ -97,15 +97,15 @@
     font-size: var(--font-size-xs);
     font-weight: 600;
     color: var(--accent-light) !important;
-    background: rgba(184, 68, 31, 0.2);
-    border: 1px solid rgba(232, 149, 111, 0.3);
+    background: rgba(194, 59, 90, 0.2);
+    border: 1px solid rgba(240, 135, 158, 0.3);
     padding: 3px var(--spacing-sm);
     border-radius: var(--radius-full);
     transition: all var(--transition-fast);
 }
 
 .caseStudyBadge:hover {
-    background: rgba(184, 68, 31, 0.35);
+    background: rgba(194, 59, 90, 0.35);
     color: var(--text-on-dark) !important;
 }
 
@@ -186,13 +186,13 @@
 
 .apkBtn {
     color: var(--accent-light) !important;
-    border-color: rgba(232, 149, 111, 0.3);
+    border-color: rgba(240, 135, 158, 0.3);
     background: var(--bg-dark);
 }
 
 .apkBtn:hover {
     border-color: var(--accent-light);
-    background: rgba(184, 68, 31, 0.15);
+    background: rgba(194, 59, 90, 0.15);
 }
 
 .caseStudyLink {

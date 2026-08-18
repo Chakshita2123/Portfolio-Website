@@ -102,7 +102,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(42, 33, 24, 0.5);
+    background: rgba(46, 31, 30, 0.5);
     z-index: 999;
 }
 
@@ -185,7 +185,7 @@
 }
 
 .conversationActive {
-    background: rgba(184, 68, 31, 0.12);
+    background: rgba(194, 59, 90, 0.12);
 }
 
 .conversationInfo {
@@ -247,7 +247,7 @@
     font-size: var(--font-size-xs);
     font-weight: 600;
     color: var(--accent);
-    background: rgba(184, 68, 31, 0.1);
+    background: rgba(194, 59, 90, 0.1);
     border: none;
     border-radius: var(--radius-md);
     cursor: pointer;
@@ -326,7 +326,7 @@
     font-size: var(--font-size-xs);
     font-weight: 600;
     color: var(--accent);
-    background: rgba(184, 68, 31, 0.1);
+    background: rgba(194, 59, 90, 0.1);
     border-radius: var(--radius-full);
 }
 

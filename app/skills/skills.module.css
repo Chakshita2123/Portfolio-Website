@@ -44,7 +44,7 @@
     transition: all 0.35s var(--ease-smooth);
     position: relative;
     overflow: hidden;
-    --spotlight-color: rgba(184, 68, 31, 0.1);
+    --spotlight-color: rgba(194, 59, 90, 0.1);
 }
 
 .categoryCard:hover {
@@ -111,9 +111,9 @@
 }
 
 .levelCore {
-    background: rgba(184, 68, 31, 0.1);
+    background: rgba(194, 59, 90, 0.1);
     color: var(--accent);
-    border: 1px solid rgba(184, 68, 31, 0.2);
+    border: 1px solid rgba(194, 59, 90, 0.2);
 }
 
 .levelWorking {
@@ -134,7 +134,7 @@
     flex-direction: column;
     gap: var(--spacing-xs);
     padding: var(--spacing-md) var(--spacing-lg);
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     border-radius: var(--radius-lg);
     transition: all 0.25s ease;
 }
@@ -215,7 +215,7 @@
     flex-direction: column;
     gap: 4px;
     padding: var(--spacing-md) var(--spacing-lg);
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     border: 1px solid var(--border-light);
     border-radius: var(--radius-lg);
     transition: all var(--transition-fast);
