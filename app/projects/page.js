@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { FaGithub, FaExternalLinkAlt, FaAndroid, FaBookOpen } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaAndroid, FaArrowRight } from 'react-icons/fa';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import GitHubActivity from '@/components/GitHubActivity';
@@ -60,25 +60,24 @@ export default function ProjectsPage() {
                 {/* Page Header */}
                 <section className={styles.pageHeader}>
                     <div className="container">
-                        <span className={`section-label ${styles.animateIn}`}>Portfolio</span>
-                        <h1 className={`${styles.pageTitle} ${styles.animateIn} ${styles.delay1}`}>
+                        <span className="section-label">Portfolio</span>
+                        <h1 className={styles.pageTitle}>
                             Projects
                         </h1>
-                        <p className={`${styles.pageSubtitle} ${styles.animateIn} ${styles.delay2}`}>
+                        <p className={styles.pageSubtitle}>
                             End-to-end builds — from frontend to ML models — solving real problems.
                         </p>
                     </div>
                 </section>
 
                 {/* Projects Grid */}
-                <section className={`section ${styles.projectsGrid}`}>
+                <section className={styles.projectsGrid}>
                     <div className="container">
                         <div className={styles.grid}>
-                            {projects.map((project, index) => (
+                            {projects.map((project) => (
                                 <div
                                     key={project.id}
-                                    className={`${styles.projectCard} ${styles.animateIn}`}
-                                    style={{ animationDelay: `${index * 0.08}s` }}
+                                    className={styles.projectCard}
                                 >
                                     <div className={styles.cardHeader}>
                                         <h3 className={styles.cardTitle}>{project.title}</h3>
@@ -107,7 +106,7 @@ export default function ProjectsPage() {
 
                                     <div className={styles.cardTechStack}>
                                         {project.techStack.map((tech, techIndex) => (
-                                            <span key={techIndex} className="tag">{tech}</span>
+                                            <span key={techIndex} className={styles.techTag}>{tech}</span>
                                         ))}
                                     </div>
 
@@ -115,7 +114,7 @@ export default function ProjectsPage() {
                                         {project.liveUrl ? (
                                             <a
                                                 href={project.liveUrl}
-                                                className="btn btn-primary"
+                                                className={`btn ${styles.primaryAction}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                             >
@@ -127,7 +126,7 @@ export default function ProjectsPage() {
 
                                         <a
                                             href={project.githubUrl}
-                                            className="btn btn-secondary"
+                                            className={`btn ${styles.secondaryAction}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
@@ -137,7 +136,7 @@ export default function ProjectsPage() {
                                         {project.apkUrl && (
                                             <a
                                                 href={project.apkUrl}
-                                                className={`btn btn-secondary ${styles.apkBtn}`}
+                                                className={`btn ${styles.apkBtn}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                             >
@@ -146,8 +145,8 @@ export default function ProjectsPage() {
                                         )}
 
                                         {project.caseStudyUrl && (
-                                            <Link href={project.caseStudyUrl} className={`btn btn-ghost ${styles.caseStudyLink}`}>
-                                                <FaBookOpen /> Deep Dive
+                                            <Link href={project.caseStudyUrl} className={styles.caseStudyLink}>
+                                                Deep Dive →
                                             </Link>
                                         )}
                                     </div>
@@ -161,9 +160,9 @@ export default function ProjectsPage() {
                 <GitHubActivity />
 
                 {/* CTA Section */}
-                <section className={`section ${styles.cta}`}>
+                <section className={styles.cta}>
                     <div className="container">
-                        <div className={`${styles.ctaContent} ${styles.animateIn}`}>
+                        <div className={styles.ctaContent}>
                             <h2 className={styles.ctaTitle}>Want to know more about how I built these?</h2>
                             <p className={styles.ctaSubtitle}>
                                 Ask me anything about my process, challenges, or technical decisions.

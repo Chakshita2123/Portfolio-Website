@@ -1,15 +1,17 @@
 .activitySection {
     padding: var(--spacing-2xl) 0;
+    background: var(--bg-primary);
 }
 
 .card {
-    background: var(--surface);
-    border: 1px solid var(--border-light);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
 }
 
 .header {
@@ -44,6 +46,19 @@
     margin-top: 2px;
 }
 
+.profileLink {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--accent) !important;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-md);
+    transition: background var(--transition-fast);
+}
+
+.profileLink:hover {
+    background: var(--bg-primary);
+}
+
 .chartWrapper {
     width: 100%;
     overflow-x: auto;
@@ -58,7 +73,6 @@
     height: auto;
     display: block;
     margin: 0 auto;
-    filter: brightness(0.95) contrast(1.1);
 }
 
 @media (max-width: 768px) {

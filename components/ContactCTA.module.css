@@ -1,5 +1,7 @@
 .contact {
-    background: transparent;
+    background: var(--bg-dark);
+    padding: var(--spacing-4xl) 0 var(--spacing-2xl);
+    border-top: 1px solid var(--border-dark);
 }
 
 .wrapper {
@@ -10,12 +12,30 @@
 }
 
 .content {
-    max-width: 500px;
+    max-width: 520px;
+}
+
+.sectionLabel {
+    display: inline-block;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+.sectionTitle {
+    font-size: var(--font-size-3xl);
+    font-weight: 800;
+    color: var(--text-on-dark);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -0.02em;
 }
 
 .description {
     font-size: var(--font-size-lg);
-    color: var(--text-secondary);
+    color: var(--text-on-dark-muted);
     line-height: 1.7;
     margin-bottom: var(--spacing-xl);
 }
@@ -26,58 +46,68 @@
     flex-wrap: wrap;
 }
 
-/* AI Helper Card */
-.aiCard {
-    background: var(--surface);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-2xl);
-    padding: var(--spacing-xl);
-    position: relative;
-    overflow: hidden;
+.primaryCta {
+    background: var(--accent);
+    color: var(--text-on-dark) !important;
+    border: 1.5px solid var(--accent);
 }
 
-.aiCard::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--accent-gradient);
+.primaryCta:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
+.secondaryCta {
+    background: var(--bg-dark-elevated);
+    border: 1.5px solid var(--border-dark);
+    color: var(--text-on-dark) !important;
+}
+
+.secondaryCta:hover {
+    border-color: var(--accent-light);
+    color: var(--accent-light) !important;
+}
+
+/* AI Helper Card */
+.aiCard {
+    background: var(--bg-dark-elevated);
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .aiCardIcon {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--accent-gradient-soft);
+    background: rgba(184, 68, 31, 0.2);
+    color: var(--accent-light);
     border-radius: var(--radius-lg);
-    font-size: var(--font-size-xl);
-    margin-bottom: var(--spacing-lg);
-}
-
-.aiCardContent {
-    margin-bottom: var(--spacing-xl);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .aiCardTitle {
     font-size: var(--font-size-lg);
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-sm);
+    font-weight: 700;
+    color: var(--text-on-dark);
+    margin-bottom: var(--spacing-xs);
 }
 
 .aiCardText {
     font-size: var(--font-size-sm);
-    color: var(--text-secondary);
+    color: var(--text-on-dark-muted);
     line-height: 1.6;
+    margin-bottom: var(--spacing-lg);
 }
 
 /* Preview Elements */
 .aiCardPreview {
-    background: var(--bg-secondary);
+    background: var(--bg-dark);
+    border: 1px solid var(--border-dark);
     border-radius: var(--radius-lg);
     padding: var(--spacing-md);
     display: flex;
@@ -93,21 +123,24 @@
 .messageInput {
     width: 100%;
     min-height: 80px;
-    background: var(--surface);
-    border: 1px solid var(--border-light);
+    background: var(--bg-dark-elevated);
+    border: 1px solid var(--border-dark);
     border-radius: var(--radius-md);
     padding: var(--spacing-md);
     font-size: var(--font-size-sm);
-    color: var(--text-primary);
+    color: var(--text-on-dark);
     resize: none;
     font-family: inherit;
-    transition: all 0.2s ease;
+    transition: border-color var(--transition-fast);
+}
+
+.messageInput::placeholder {
+    color: var(--text-on-dark-muted);
 }
 
 .messageInput:focus {
     outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 2px var(--primary-light);
+    border-color: var(--accent-light);
 }
 
 .previewButton {
@@ -115,75 +148,55 @@
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-xs);
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    color: var(--primary);
-    background: var(--primary-light);
-    border: none;
+    padding: 0.5rem 1rem;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--accent-light);
+    background: rgba(184, 68, 31, 0.2);
+    border: 1px solid rgba(232, 149, 111, 0.3);
     border-radius: var(--radius-md);
     cursor: pointer;
-    transition: all 0.2s ease;
-    opacity: 0.7;
+    transition: all var(--transition-fast);
 }
 
-.previewButton:hover:not(.disabled) {
-    transform: translateY(-1px);
-    background: var(--primary-light);
-    box-shadow: var(--shadow-sm);
-    opacity: 1;
+.previewButton:hover:not(:disabled) {
+    background: rgba(184, 68, 31, 0.35);
+    color: var(--text-on-dark);
 }
 
 .previewButton:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    background: var(--primary-light);
-    color: var(--primary);
-    box-shadow: none;
-    transform: none;
-}
-
-/* Enhanced Actions Row */
-.enhancedActions {
-    display: flex;
-    gap: var(--spacing-sm);
-    flex-wrap: wrap;
 }
 
 .sendButton {
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-xs);
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: var(--font-size-sm);
+    padding: 0.5rem 1rem;
+    font-size: var(--font-size-xs);
     font-weight: 600;
-    color: #fff;
-    background: var(--accent-gradient);
+    color: var(--text-on-dark);
+    background: var(--accent);
     border: none;
     border-radius: var(--radius-md);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background var(--transition-fast);
 }
 
 .sendButton:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-    opacity: 0.9;
+    background: var(--accent-hover);
 }
 
-/* Error Text */
 .errorText {
     font-size: var(--font-size-xs);
     color: #ef4444;
-    margin: 0;
 }
 
-/* Enhanced Result Styles */
 .enhancedResult {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
-    animation: fadeIn 0.3s ease;
 }
 
 .resultHeader {
@@ -194,8 +207,8 @@
 
 .resultLabel {
     font-size: var(--font-size-xs);
-    font-weight: 600;
-    color: var(--primary);
+    font-weight: 700;
+    color: var(--accent-light);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -204,45 +217,32 @@
     background: none;
     border: none;
     font-size: var(--font-size-xs);
-    color: var(--text-secondary);
+    color: var(--text-on-dark-muted);
     cursor: pointer;
     text-decoration: underline;
     padding: 0;
 }
 
 .resetBtn:hover {
-    color: var(--primary);
+    color: var(--text-on-dark);
 }
 
 .enhancedTextarea {
     width: 100%;
-    min-height: 100px;
-    background: var(--accent-gradient-soft);
-    border: 1px solid var(--primary-light);
+    min-height: 90px;
+    background: var(--bg-dark);
+    border: 1px solid var(--border-dark);
     border-radius: var(--radius-md);
     padding: var(--spacing-md);
     font-size: var(--font-size-sm);
-    color: var(--text-primary);
+    color: var(--text-on-dark);
     resize: none;
     font-family: inherit;
-    cursor: text;
 }
 
 .enhancedTextarea:focus {
     outline: none;
-    border-color: var(--primary);
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    border-color: var(--accent-light);
 }
 
 /* Responsive */
@@ -262,35 +262,16 @@
 }
 
 @media (max-width: 768px) {
+    .contact {
+        padding: var(--spacing-3xl) 0 var(--spacing-xl);
+    }
+
     .ctas {
         flex-direction: column;
     }
 
     .ctas .btn {
         width: 100%;
-        text-align: center;
         justify-content: center;
-    }
-
-    .aiCard {
-        padding: var(--spacing-lg);
-    }
-
-    .messageInput {
-        min-height: 60px;
-    }
-}
-
-@media (max-width: 480px) {
-    .description {
-        font-size: var(--font-size-base);
-    }
-
-    .aiCardTitle {
-        font-size: var(--font-size-base);
-    }
-
-    .enhancedTextarea {
-        min-height: 80px;
     }
 }

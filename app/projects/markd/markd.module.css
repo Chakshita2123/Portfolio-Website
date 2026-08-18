@@ -1,12 +1,13 @@
 .caseStudyPage {
     padding-top: var(--navbar-height);
+    background: var(--bg-primary);
     min-height: 100vh;
 }
 
 .header {
     padding: var(--spacing-3xl) 0 var(--spacing-2xl);
-    border-bottom: 1px solid var(--border-light);
-    background: transparent;
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-primary);
 }
 
 .backLink {
@@ -14,18 +15,19 @@
     align-items: center;
     gap: var(--spacing-sm);
     font-size: var(--font-size-sm);
-    color: var(--text-secondary);
+    font-weight: 600;
+    color: var(--accent) !important;
     margin-bottom: var(--spacing-lg);
-    transition: color var(--transition-fast);
+    transition: transform var(--transition-fast);
 }
 
 .backLink:hover {
-    color: var(--primary);
+    transform: translateX(-3px);
 }
 
 .title {
     font-size: var(--font-size-4xl);
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text-primary);
     margin-bottom: var(--spacing-md);
     letter-spacing: -0.02em;
@@ -35,7 +37,7 @@
     font-size: var(--font-size-lg);
     color: var(--text-secondary);
     max-width: 780px;
-    line-height: 1.6;
+    line-height: 1.65;
     margin-bottom: var(--spacing-2xl);
 }
 
@@ -47,14 +49,14 @@
 }
 
 .apkBtn {
-    border-color: rgba(16, 185, 129, 0.4);
-    color: #10b981;
+    border-color: var(--border-subtle);
+    background: var(--bg-elevated);
+    color: var(--text-primary) !important;
 }
 
 .apkBtn:hover {
-    background: rgba(16, 185, 129, 0.1);
-    border-color: #10b981;
-    color: #10b981;
+    border-color: var(--accent);
+    color: var(--accent) !important;
 }
 
 /* ==================== CONTENT LAYOUT ==================== */
@@ -76,13 +78,14 @@
 }
 
 .metaCard {
-    background: var(--surface);
-    border: 1px solid var(--border-light);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
 }
 
 .metaTitle {
@@ -90,7 +93,7 @@
     font-weight: 700;
     color: var(--text-primary);
     padding-bottom: var(--spacing-sm);
-    border-bottom: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .metaItem {
@@ -101,16 +104,16 @@
 
 .metaLabel {
     font-size: var(--font-size-xs);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-tertiary);
+    letter-spacing: 0.08em;
+    color: var(--accent);
 }
 
 .metaValue {
     font-size: var(--font-size-sm);
     color: var(--text-primary);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .tags {
@@ -163,18 +166,20 @@
 }
 
 .bottomCta {
-    background: var(--surface);
-    border: 1px solid var(--border-light);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-xl);
     padding: var(--spacing-2xl);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
     margin-top: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
 }
 
 .bottomCta h3 {
     font-size: var(--font-size-xl);
+    font-weight: 700;
     color: var(--text-primary);
 }
 

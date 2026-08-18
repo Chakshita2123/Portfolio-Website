@@ -1,24 +1,28 @@
 .projectsPage {
     padding-top: var(--navbar-height);
+    background: var(--bg-dark);
+    min-height: 100vh;
 }
 
 /* ==================== PAGE HEADER ==================== */
 .pageHeader {
     padding: var(--spacing-4xl) 0 var(--spacing-2xl);
     text-align: center;
-    background: transparent;
+    background: var(--bg-dark);
+    border-bottom: 1px solid var(--border-dark);
 }
 
 .pageTitle {
-    font-size: var(--font-size-4xl);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: var(--spacing-lg) 0 var(--spacing-md);
+    font-size: var(--font-size-5xl);
+    font-weight: 800;
+    color: var(--text-on-dark);
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+    letter-spacing: -0.03em;
 }
 
 .pageSubtitle {
     font-size: var(--font-size-lg);
-    color: var(--text-secondary);
+    color: var(--text-on-dark-muted);
     max-width: 650px;
     margin: 0 auto;
     line-height: 1.6;
@@ -26,7 +30,8 @@
 
 /* ==================== PROJECTS GRID ==================== */
 .projectsGrid {
-    padding-top: var(--spacing-xl);
+    padding: var(--spacing-3xl) 0;
+    background: var(--bg-dark);
 }
 
 .grid {
@@ -36,21 +41,22 @@
 }
 
 .projectCard {
-    background: var(--surface);
-    border: 1px solid var(--border-light);
+    background: var(--bg-dark-elevated);
+    border: 1px solid var(--border-dark);
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
-    transition: all 0.3s ease;
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
     position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .projectCard:hover {
-    box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     transform: translateY(-4px);
-    border-color: rgba(14, 165, 233, 0.2);
+    border-color: rgba(232, 149, 111, 0.4);
 }
 
 .cardHeader {
@@ -62,9 +68,9 @@
 }
 
 .cardTitle {
-    font-size: var(--font-size-xl);
-    font-weight: 600;
-    color: var(--text-primary);
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--text-on-dark);
 }
 
 .badges {
@@ -79,10 +85,10 @@
     display: inline-block;
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--text-tertiary);
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-light);
-    padding: 2px var(--spacing-sm);
+    color: var(--text-on-dark-muted);
+    background: var(--bg-dark);
+    border: 1px solid var(--border-dark);
+    padding: 3px var(--spacing-sm);
     border-radius: var(--radius-full);
 }
 
@@ -90,16 +96,17 @@
     display: inline-block;
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--primary);
-    background: var(--primary-light);
-    border: 1px solid rgba(14, 165, 233, 0.2);
-    padding: 2px var(--spacing-sm);
+    color: var(--accent-light) !important;
+    background: rgba(184, 68, 31, 0.2);
+    border: 1px solid rgba(232, 149, 111, 0.3);
+    padding: 3px var(--spacing-sm);
     border-radius: var(--radius-full);
-    transition: background var(--transition-fast);
+    transition: all var(--transition-fast);
 }
 
 .caseStudyBadge:hover {
-    background: rgba(14, 165, 233, 0.25);
+    background: rgba(184, 68, 31, 0.35);
+    color: var(--text-on-dark) !important;
 }
 
 .cardMeta {
@@ -116,15 +123,15 @@
 
 .cardMetaLabel {
     font-size: var(--font-size-xs);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-tertiary);
+    letter-spacing: 0.08em;
+    color: var(--accent-light);
 }
 
 .cardMetaText {
     font-size: var(--font-size-sm);
-    color: var(--text-secondary);
+    color: var(--text-on-dark-muted);
     line-height: 1.6;
 }
 
@@ -135,52 +142,84 @@
     margin-top: auto;
 }
 
+.techTag {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    color: var(--text-on-dark);
+    background: var(--bg-dark);
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius-md);
+}
+
 .cardActions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-sm);
     align-items: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-dark);
 }
 
-.cardActions .btn {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: var(--font-size-sm);
+.primaryAction {
+    background: var(--accent);
+    color: var(--text-on-dark) !important;
+    border-color: var(--accent);
+}
+
+.primaryAction:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
+.secondaryAction {
+    background: var(--bg-dark);
+    color: var(--text-on-dark) !important;
+    border: 1px solid var(--border-dark);
+}
+
+.secondaryAction:hover {
+    border-color: var(--accent-light);
+    color: var(--accent-light) !important;
 }
 
 .apkBtn {
-    color: #10b981;
-    border-color: rgba(16, 185, 129, 0.3);
+    color: var(--accent-light) !important;
+    border-color: rgba(232, 149, 111, 0.3);
+    background: var(--bg-dark);
 }
 
 .apkBtn:hover {
-    border-color: #10b981;
-    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--accent-light);
+    background: rgba(184, 68, 31, 0.15);
 }
 
 .caseStudyLink {
-    color: var(--primary);
+    color: var(--accent-light) !important;
     font-weight: 600;
 }
 
-.wip {
-    font-size: var(--font-size-sm);
-    color: var(--text-tertiary);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-lg);
+.caseStudyLink:hover {
+    color: var(--text-on-dark) !important;
+    text-decoration: underline;
 }
 
-/* ==================== SECTION TITLE ==================== */
-.sectionTitle {
-    font-size: var(--font-size-2xl);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-2xl);
+.wip {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--text-on-dark-muted);
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius-lg);
+    background: var(--bg-dark);
 }
 
 /* ==================== CTA ==================== */
 .cta {
-    background: transparent;
+    background: var(--bg-dark);
+    border-top: 1px solid var(--border-dark);
+    padding: var(--spacing-4xl) 0;
 }
 
 .ctaContent {
@@ -190,39 +229,19 @@
 }
 
 .ctaTitle {
-    font-size: var(--font-size-2xl);
-    font-weight: 700;
-    color: var(--text-primary);
+    font-size: var(--font-size-3xl);
+    font-weight: 800;
+    color: var(--text-on-dark);
     margin-bottom: var(--spacing-md);
+    letter-spacing: -0.02em;
 }
 
 .ctaSubtitle {
     font-size: var(--font-size-lg);
-    color: var(--text-secondary);
+    color: var(--text-on-dark-muted);
     margin-bottom: var(--spacing-2xl);
     line-height: 1.6;
 }
-
-/* ==================== ANIMATIONS ==================== */
-@keyframes animIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animateIn {
-    opacity: 0;
-    animation: animIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.delay1 { animation-delay: 0.1s; }
-.delay2 { animation-delay: 0.2s; }
-.delay3 { animation-delay: 0.3s; }
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 992px) {
@@ -237,12 +256,12 @@
     }
 
     .cardActions {
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: stretch;
     }
-}
 
-@media (max-width: 480px) {
-    .pageTitle {
-        font-size: var(--font-size-2xl);
+    .cardActions .btn {
+        width: 100%;
+        justify-content: center;
     }
 }

@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { FaGithub, FaExternalLinkAlt, FaAndroid, FaBookOpen } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaAndroid, FaArrowRight } from 'react-icons/fa';
 import styles from './FeaturedProjects.module.css';
 
 const projects = [
@@ -51,28 +51,28 @@ const projects = [
 
 export default function FeaturedProjects() {
     return (
-        <section id="projects" className={`section ${styles.projects}`}>
+        <section id="projects" className={styles.projects}>
             <div className="container">
                 <div className={styles.header}>
-                    <span className="section-label">Projects</span>
-                    <h2 className="section-title">
-                        Featured <span className="gradient-text">Work</span>
+                    <span className={styles.sectionLabel}>Featured Work</span>
+                    <h2 className={styles.sectionTitle}>
+                        Selected Projects
                     </h2>
-                    <p className="section-subtitle">
-                        Real problems solved with real technology — end-to-end.
+                    <p className={styles.sectionSubtitle}>
+                        Real problems solved with real technology — from native Android apps to ML models trained from scratch.
                     </p>
                 </div>
 
-                {/* Project Cards */}
+                {/* Project Cards Grid */}
                 <div className={styles.grid}>
                     {projects.map((project) => (
-                        <div key={project.id} className={`${styles.card} card-3d`}>
+                        <div key={project.id} className={styles.card}>
                             <div className={styles.cardTop}>
                                 {project.status === 'in-progress' && (
                                     <span className={styles.statusBadge}>In Progress</span>
                                 )}
                                 {project.hasCaseStudy && (
-                                    <span className={styles.caseStudyBadge}>Case Study Available</span>
+                                    <span className={styles.caseStudyBadge}>Case Study</span>
                                 )}
                             </div>
 
@@ -85,7 +85,7 @@ export default function FeaturedProjects() {
                                 <p className={styles.cardDesc}>{project.description}</p>
                                 <div className={styles.techStack}>
                                     {project.techStack.map((tech, idx) => (
-                                        <span key={idx} className="tag">{tech}</span>
+                                        <span key={idx} className={styles.techTag}>{tech}</span>
                                     ))}
                                 </div>
                             </div>
@@ -94,7 +94,7 @@ export default function FeaturedProjects() {
                                 {project.liveUrl ? (
                                     <a
                                         href={project.liveUrl}
-                                        className="btn btn-primary"
+                                        className={`btn ${styles.primaryAction}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
@@ -106,7 +106,7 @@ export default function FeaturedProjects() {
 
                                 <a
                                     href={project.githubUrl}
-                                    className="btn btn-secondary"
+                                    className={`btn ${styles.secondaryAction}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -116,7 +116,7 @@ export default function FeaturedProjects() {
                                 {project.apkUrl && (
                                     <a
                                         href={project.apkUrl}
-                                        className={`btn btn-secondary ${styles.apkBtn}`}
+                                        className={`btn ${styles.apkBtn}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
@@ -125,8 +125,8 @@ export default function FeaturedProjects() {
                                 )}
 
                                 {project.caseStudyUrl && (
-                                    <Link href={project.caseStudyUrl} className={`btn btn-ghost ${styles.caseStudyBtn}`}>
-                                        <FaBookOpen /> Deep Dive →
+                                    <Link href={project.caseStudyUrl} className={styles.caseStudyBtn}>
+                                        Read full case study →
                                     </Link>
                                 )}
                             </div>
@@ -136,8 +136,8 @@ export default function FeaturedProjects() {
 
                 {/* View All Link */}
                 <div className={styles.viewAll}>
-                    <Link href="/projects" className="btn btn-ghost">
-                        View All Projects &amp; Case Studies →
+                    <Link href="/projects" className={styles.viewAllLink}>
+                        View all projects and case studies <FaArrowRight />
                     </Link>
                 </div>
             </div>

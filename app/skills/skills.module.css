@@ -44,7 +44,7 @@
     transition: all 0.35s var(--ease-smooth);
     position: relative;
     overflow: hidden;
-    --spotlight-color: rgba(14, 165, 233, 0.15);
+    --spotlight-color: rgba(184, 68, 31, 0.1);
 }
 
 .categoryCard:hover {
@@ -111,9 +111,9 @@
 }
 
 .levelCore {
-    background: rgba(14, 165, 233, 0.12);
-    color: var(--primary);
-    border: 1px solid rgba(14, 165, 233, 0.2);
+    background: rgba(184, 68, 31, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(184, 68, 31, 0.2);
 }
 
 .levelWorking {

@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { FaFileDownload } from 'react-icons/fa';
 import styles from './Navbar.module.css';
 
 const navItems = [
@@ -15,11 +16,20 @@ const navItems = [
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const isActive = (path) => {
     if (path === '/') return pathname === '/';
     return pathname.startsWith(path);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -37,12 +47,12 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} ${scrolled ? styles.navbarScrolled : ''}`}>
       <div className={`container ${styles.navContainer}`}>
         {/* Logo */}
         <Link href="/" className={styles.logo}>
           <span className={styles.logoText}>Chakshita</span>
-          <span className={styles.logoAi}>.ai</span>
+          <span className={styles.logoAccent}>.</span>
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -59,10 +69,18 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Right side: CTA + Hamburger */}
+        {/* Right side: CTAs + Hamburger */}
         <div className={styles.navActions}>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`btn btn-secondary ${styles.resumeNavBtn}`}
+          >
+            <FaFileDownload /> Resume
+          </a>
           <Link href="/ask-ai" className={`btn btn-primary ${styles.navCta}`}>
-            Ask AI <span className={styles.ctaEmoji}>🤖</span>
+            Ask AI
           </Link>
           {/* Hamburger Button - Mobile Only */}
           <button
@@ -99,12 +117,20 @@ export default function Navbar() {
           ))}
         </ul>
         <div className={styles.mobileMenuFooter}>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`btn btn-secondary ${styles.mobileResumeBtn}`}
+          >
+            <FaFileDownload /> Download Resume
+          </a>
           <Link
             href="/ask-ai"
             className={`btn btn-primary ${styles.mobileCta}`}
             onClick={() => setMobileMenuOpen(false)}
           >
-            Ask AI 🤖
+            Ask AI ✨
           </Link>
         </div>
       </div>

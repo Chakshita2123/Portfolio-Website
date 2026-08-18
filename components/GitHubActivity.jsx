@@ -3,7 +3,7 @@ import styles from './GitHubActivity.module.css';
 
 export default function GitHubActivity() {
     return (
-        <section className={`section ${styles.activitySection}`}>
+        <section className={styles.activitySection}>
             <div className="container">
                 <div className={styles.card}>
                     <div className={styles.header}>
@@ -18,14 +18,14 @@ export default function GitHubActivity() {
                             href="https://github.com/Chakshita2123"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn btn-ghost"
+                            className={styles.profileLink}
                         >
                             @Chakshita2123 →
                         </a>
                     </div>
                     <div className={styles.chartWrapper}>
                         <img
-                            src="https://ghchart.rshah.org/0ea5e9/Chakshita2123"
+                            src="https://ghchart.rshah.org/b8441f/Chakshita2123"
                             alt="Chakshita's GitHub contribution graph"
                             className={styles.chartImg}
                             loading="lazy"

@@ -1,66 +1,43 @@
 /* ==================== SKILLS SNAPSHOT ==================== */
 .skills {
-    background: transparent;
+    background: var(--bg-primary);
+    padding: var(--spacing-3xl) 0;
     position: relative;
-    overflow: hidden;
 }
 
 .header {
     text-align: center;
-    margin-bottom: var(--spacing-2xl);
-    position: relative;
-    z-index: 2;
+    margin-bottom: var(--spacing-3xl);
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-xl);
-    position: relative;
-    z-index: 2;
 }
 
-/* Base Card Styles */
+/* Category Cards in --bg-elevated */
 .category {
-    background: var(--surface);
-    border: 1px solid var(--border-light);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
     position: relative;
     overflow: hidden;
-    --glow-color: var(--primary);
 }
 
-/* Category Specific Themes */
-.category[data-type="frontend"] {
-    --glow-color: #06b6d4;
-}
-
-.category[data-type="backend"] {
-    --glow-color: #10b981;
-}
-
-.category[data-type="ai"] {
-    --glow-color: #3b82f6;
-}
-
-.category[data-type="tools"] {
-    --glow-color: #f59e0b;
-}
-
-/* Hover Interaction */
 .category:hover {
     transform: translateY(-4px);
-    border-color: var(--glow-color);
-    box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg);
 }
 
-.categoryActive {
-    border-color: var(--glow-color);
-}
-
-/* Header Layout */
+/* Category Header Layout */
 .categoryHeader {
     display: flex;
     align-items: center;
@@ -75,28 +52,23 @@
     justify-content: center;
     width: 48px;
     height: 48px;
-    background: var(--bg-secondary);
-    border-radius: 12px;
-    border: 1px solid var(--border-light);
-    transition: all 0.3s ease;
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    transition: border-color var(--transition-fast);
 }
 
 .category:hover .categoryIcon {
-    border-color: var(--glow-color);
+    border-color: var(--accent);
 }
 
 .categoryTitle {
     font-size: var(--font-size-xl);
     font-weight: 700;
     color: var(--text-primary);
-    transition: color 0.3s ease;
 }
 
-.category:hover .categoryTitle {
-    color: var(--glow-color);
-}
-
-/* Interactive Tags */
+/* Skill Tags */
 .skillTags {
     display: flex;
     flex-wrap: wrap;
@@ -107,20 +79,20 @@
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
-    padding: var(--spacing-xs) var(--spacing-sm) !important;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-light);
-    transition: all 0.2s ease;
-}
-
-.category:hover .skillTag {
-    border-color: var(--border-medium);
+    padding: 0.35rem 0.75rem !important;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
 }
 
 .skillTag:hover {
-    background: var(--glow-color) !important;
-    color: white !important;
-    border-color: var(--glow-color) !important;
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    background: var(--surface-elevated) !important;
     transform: translateY(-2px);
 }
 
@@ -130,57 +102,51 @@
     object-fit: contain;
 }
 
-/* Subtle insight on hover */
+/* Subtle Insight on Card */
 .categoryInsight {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
     margin-top: var(--spacing-lg);
     padding-top: var(--spacing-md);
-    border-top: 1px solid var(--border-light);
-    opacity: 0.7;
-    transition: all 0.3s ease;
-}
-
-.category:hover .categoryInsight {
-    opacity: 1;
-    border-top-color: var(--glow-color);
+    border-top: 1px solid var(--border-subtle);
 }
 
 .insightText {
-    font-size: var(--font-size-sm);
-    color: var(--text-secondary);
-    line-height: 1.4;
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    line-height: 1.5;
 }
 
 .category:hover .insightText {
-    color: var(--text-primary);
+    color: var(--text-secondary);
 }
 
 /* ==================== CERTIFICATIONS STRIP ==================== */
 .certificationsSection {
     margin-top: var(--spacing-3xl);
-    padding: var(--spacing-xl);
-    background: var(--surface);
-    border: 1px solid var(--border-light);
+    padding: var(--spacing-2xl);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
 }
 
 .certHeader {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
 }
 
 .certIcon {
-    color: var(--primary);
-    font-size: 1.25rem;
+    color: var(--accent);
+    font-size: 1.35rem;
 }
 
 .certTitle {
-    font-size: var(--font-size-lg);
-    font-weight: 600;
+    font-size: var(--font-size-xl);
+    font-weight: 700;
     color: var(--text-primary);
 }
 
@@ -196,14 +162,15 @@
     justify-content: center;
     gap: 4px;
     padding: var(--spacing-md);
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-light);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    transition: border-color var(--transition-fast), transform var(--transition-fast);
+    transition: all var(--transition-fast);
 }
 
 .certChip:hover {
-    border-color: var(--border-medium);
+    border-color: var(--accent);
+    background: var(--surface-elevated);
     transform: translateY(-2px);
 }
 
@@ -221,26 +188,18 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .certChips {
         grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 480px) {
-    .category {
+@media (max-width: 768px) {
+    .certificationsSection {
         padding: var(--spacing-lg);
     }
 
-    .categoryTitle {
-        font-size: var(--font-size-lg);
-    }
-
-    .certificationsSection {
-        padding: var(--spacing-md);
+    .certChips {
+        grid-template-columns: 1fr;
     }
 }
