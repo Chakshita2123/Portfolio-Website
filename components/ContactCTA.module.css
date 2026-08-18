@@ -1,7 +1,7 @@
 .contact {
-    background: var(--bg-dark);
+    background: var(--bg-primary);
     padding: var(--spacing-4xl) 0 var(--spacing-2xl);
-    border-top: 1px solid var(--border-dark);
+    border-top: 1px solid var(--border-subtle);
 }
 
 .wrapper {
@@ -21,21 +21,21 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--accent-light);
+    color: var(--accent);
     margin-bottom: var(--spacing-sm);
 }
 
 .sectionTitle {
     font-size: var(--font-size-3xl);
     font-weight: 800;
-    color: var(--text-on-dark);
+    color: var(--text-primary);
     margin-bottom: var(--spacing-md);
     letter-spacing: -0.02em;
 }
 
 .description {
     font-size: var(--font-size-lg);
-    color: var(--text-on-dark-muted);
+    color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: var(--spacing-xl);
 }
@@ -48,7 +48,7 @@
 
 .primaryCta {
     background: var(--accent);
-    color: var(--text-on-dark) !important;
+    color: var(--text-inverse) !important;
     border: 1.5px solid var(--accent);
 }
 
@@ -58,23 +58,24 @@
 }
 
 .secondaryCta {
-    background: var(--bg-dark-elevated);
-    border: 1.5px solid var(--border-dark);
-    color: var(--text-on-dark) !important;
+    background: var(--bg-elevated);
+    border: 1.5px solid var(--border-subtle);
+    color: var(--text-primary) !important;
 }
 
 .secondaryCta:hover {
-    border-color: var(--accent-light);
-    color: var(--accent-light) !important;
+    border-color: var(--accent);
+    color: var(--accent) !important;
+    background: var(--surface-elevated);
 }
 
 /* AI Helper Card */
 .aiCard {
-    background: var(--bg-dark-elevated);
-    border: 1px solid var(--border-dark);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-md);
 }
 
 .aiCardIcon {
@@ -83,8 +84,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(194, 59, 90, 0.2);
-    color: var(--accent-light);
+    background: rgba(107, 127, 94, 0.12);
+    color: var(--accent);
     border-radius: var(--radius-lg);
     font-size: var(--font-size-lg);
     margin-bottom: var(--spacing-md);
@@ -93,21 +94,21 @@
 .aiCardTitle {
     font-size: var(--font-size-lg);
     font-weight: 700;
-    color: var(--text-on-dark);
+    color: var(--text-primary);
     margin-bottom: var(--spacing-xs);
 }
 
 .aiCardText {
     font-size: var(--font-size-sm);
-    color: var(--text-on-dark-muted);
+    color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: var(--spacing-lg);
 }
 
 /* Preview Elements */
 .aiCardPreview {
-    background: var(--bg-dark);
-    border: 1px solid var(--border-dark);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
     padding: var(--spacing-md);
     display: flex;
@@ -123,24 +124,24 @@
 .messageInput {
     width: 100%;
     min-height: 80px;
-    background: var(--bg-dark-elevated);
-    border: 1px solid var(--border-dark);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
     padding: var(--spacing-md);
     font-size: var(--font-size-sm);
-    color: var(--text-on-dark);
+    color: var(--text-primary);
     resize: none;
     font-family: inherit;
     transition: border-color var(--transition-fast);
 }
 
 .messageInput::placeholder {
-    color: var(--text-on-dark-muted);
+    color: var(--text-tertiary);
 }
 
 .messageInput:focus {
     outline: none;
-    border-color: var(--accent-light);
+    border-color: var(--accent);
 }
 
 .previewButton {
@@ -151,17 +152,18 @@
     padding: 0.5rem 1rem;
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--accent-light);
-    background: rgba(194, 59, 90, 0.2);
-    border: 1px solid rgba(240, 135, 158, 0.3);
+    color: var(--accent);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
     cursor: pointer;
     transition: all var(--transition-fast);
 }
 
 .previewButton:hover:not(:disabled) {
-    background: rgba(194, 59, 90, 0.35);
-    color: var(--text-on-dark);
+    border-color: var(--accent);
+    color: var(--accent-hover);
+    background: var(--surface-elevated);
 }
 
 .previewButton:disabled {
@@ -176,7 +178,7 @@
     padding: 0.5rem 1rem;
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--text-on-dark);
+    color: var(--text-inverse);
     background: var(--accent);
     border: none;
     border-radius: var(--radius-md);
@@ -190,7 +192,7 @@
 
 .errorText {
     font-size: var(--font-size-xs);
-    color: #ef4444;
+    color: #b91c1c;
 }
 
 .enhancedResult {
@@ -208,7 +210,7 @@
 .resultLabel {
     font-size: var(--font-size-xs);
     font-weight: 700;
-    color: var(--accent-light);
+    color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -217,32 +219,32 @@
     background: none;
     border: none;
     font-size: var(--font-size-xs);
-    color: var(--text-on-dark-muted);
+    color: var(--text-tertiary);
     cursor: pointer;
     text-decoration: underline;
     padding: 0;
 }
 
 .resetBtn:hover {
-    color: var(--text-on-dark);
+    color: var(--text-primary);
 }
 
 .enhancedTextarea {
     width: 100%;
     min-height: 90px;
-    background: var(--bg-dark);
-    border: 1px solid var(--border-dark);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
     padding: var(--spacing-md);
     font-size: var(--font-size-sm);
-    color: var(--text-on-dark);
+    color: var(--text-primary);
     resize: none;
     font-family: inherit;
 }
 
 .enhancedTextarea:focus {
     outline: none;
-    border-color: var(--accent-light);
+    border-color: var(--accent);
 }
 
 /* Responsive */

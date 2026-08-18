@@ -29,6 +29,9 @@
     transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
     position: relative;
     overflow: hidden;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
 }
 
 .category:hover {
@@ -73,6 +76,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-sm);
+    flex: 1;
+    align-content: flex-start;
 }
 
 .skillTag {
@@ -135,8 +140,10 @@
 .certHeader {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--spacing-sm);
     margin-bottom: var(--spacing-xl);
+    text-align: center;
 }
 
 .certIcon {
@@ -152,7 +159,7 @@
 
 .certChips {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-md);
 }
 
@@ -161,7 +168,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 4px;
-    padding: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
     background: var(--bg-primary);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
@@ -192,9 +199,13 @@
     .grid {
         grid-template-columns: 1fr;
     }
+
+    .certChips {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .certificationsSection {
         padding: var(--spacing-lg);
     }

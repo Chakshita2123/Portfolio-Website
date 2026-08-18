@@ -3,6 +3,10 @@
     background: var(--bg-primary);
     position: relative;
     overflow: hidden;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .heroContainer {
@@ -102,60 +106,105 @@
     background: var(--border-subtle);
 }
 
-/* Visual Column — Clean Minimal Architectural Accent */
+/* Visual Column — 3D Blob Container */
 .heroVisual {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
-.visualDecor {
-    position: relative;
-    width: 280px;
-    height: 280px;
+.blobSkeleton {
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168, 181, 160, 0.2) 0%, transparent 70%);
+}
+
+/* Scroll Down Indicator */
+.scrollIndicator {
     display: flex;
     justify-content: center;
+    margin-top: var(--spacing-2xl);
+    position: relative;
+    z-index: 1;
+}
+
+.scrollLink {
+    display: flex;
     align-items: center;
-}
-
-.decorRing {
-    position: absolute;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    border: 1.5px dashed var(--border-subtle);
-}
-
-.decorRingInner {
-    position: absolute;
-    width: 170px;
-    height: 170px;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     border: 1px solid var(--border-subtle);
     background: var(--bg-elevated);
+    color: var(--text-secondary) !important;
+    transition: all var(--transition-fast);
+    animation: bounce 2.2s infinite ease-in-out;
 }
 
-.decorDot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--accent);
+.scrollLink:hover {
+    border-color: var(--accent);
+    color: var(--accent) !important;
+    transform: translateY(2px);
 }
+
+.scrollIcon {
+    font-size: 0.75rem;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(6px);
+    }
+    60% {
+        transform: translateY(3px);
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animateIn {
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay1 { animation-delay: 0.1s; }
+.delay2 { animation-delay: 0.2s; }
+.delay3 { animation-delay: 0.3s; }
+.delay4 { animation-delay: 0.4s; }
 
 /* Responsive */
 @media (max-width: 992px) {
     .heroContainer {
         grid-template-columns: 1fr;
+        gap: var(--spacing-2xl);
     }
 
     .heroVisual {
-        display: none;
+        order: -1;
+        margin-bottom: var(--spacing-md);
     }
 }
 
 @media (max-width: 768px) {
     .hero {
         padding: calc(var(--navbar-height) + var(--spacing-xl)) 0 var(--spacing-2xl);
+        min-height: auto;
     }
 
     .headline {
@@ -173,5 +222,9 @@
 
     .stats {
         gap: var(--spacing-md);
+    }
+
+    .scrollIndicator {
+        display: none;
     }
 }

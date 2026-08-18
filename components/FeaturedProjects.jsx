@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { FaGithub, FaExternalLinkAlt, FaAndroid, FaArrowRight } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaAndroid, FaArrowRight, FaClock } from 'react-icons/fa';
 import styles from './FeaturedProjects.module.css';
 
 const projects = [
@@ -32,6 +32,7 @@ const projects = [
         title: 'Journey Curator',
         problem: 'Most "AI travel planners" are just LLM wrappers with no real predictive intelligence.',
         description: 'Travel planning platform built around a real ML core — a trip cost predictor trained with scikit-learn/XGBoost — combined with Gemini/Groq for planning assistance.',
+        note: 'Actively training the cost prediction model — check back soon.',
         techStack: ['Next.js 15', 'TypeScript', 'MongoDB', 'Python', 'scikit-learn/XGBoost'],
         liveUrl: null,
         githubUrl: 'https://github.com/Chakshita2123/Journey-Curator-AI',
@@ -69,7 +70,9 @@ export default function FeaturedProjects() {
                         <div key={project.id} className={styles.card}>
                             <div className={styles.cardTop}>
                                 {project.status === 'in-progress' && (
-                                    <span className={styles.statusBadge}>In Progress</span>
+                                    <span className={styles.statusBadge}>
+                                        <FaClock style={{ marginRight: '4px', fontSize: '0.7rem' }} /> In Progress
+                                    </span>
                                 )}
                                 {project.hasCaseStudy && (
                                     <span className={styles.caseStudyBadge}>Case Study</span>
@@ -83,6 +86,13 @@ export default function FeaturedProjects() {
                                     {project.problem}
                                 </p>
                                 <p className={styles.cardDesc}>{project.description}</p>
+                                
+                                {project.note && (
+                                    <p className={styles.inProgressNote}>
+                                        💡 {project.note}
+                                    </p>
+                                )}
+
                                 <div className={styles.techStack}>
                                     {project.techStack.map((tech, idx) => (
                                         <span key={idx} className={styles.techTag}>{tech}</span>
@@ -101,7 +111,9 @@ export default function FeaturedProjects() {
                                         <FaExternalLinkAlt /> Live Demo
                                     </a>
                                 ) : (
-                                    <span className={styles.wip}>In Progress</span>
+                                    <span className={styles.wip}>
+                                        <FaClock style={{ marginRight: '4px' }} /> In Progress
+                                    </span>
                                 )}
 
                                 <a

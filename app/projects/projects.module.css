@@ -1,6 +1,6 @@
 .projectsPage {
     padding-top: var(--navbar-height);
-    background: var(--bg-dark);
+    background: var(--bg-contrast);
     min-height: 100vh;
 }
 
@@ -8,21 +8,21 @@
 .pageHeader {
     padding: var(--spacing-4xl) 0 var(--spacing-2xl);
     text-align: center;
-    background: var(--bg-dark);
-    border-bottom: 1px solid var(--border-dark);
+    background: var(--bg-contrast);
+    border-bottom: 1px solid var(--border-contrast);
 }
 
 .pageTitle {
     font-size: var(--font-size-5xl);
     font-weight: 800;
-    color: var(--text-on-dark);
+    color: var(--text-on-contrast);
     margin: var(--spacing-sm) 0 var(--spacing-md);
     letter-spacing: -0.03em;
 }
 
 .pageSubtitle {
     font-size: var(--font-size-lg);
-    color: var(--text-on-dark-muted);
+    color: var(--text-on-contrast-muted);
     max-width: 650px;
     margin: 0 auto;
     line-height: 1.6;
@@ -31,7 +31,7 @@
 /* ==================== PROJECTS GRID ==================== */
 .projectsGrid {
     padding: var(--spacing-3xl) 0;
-    background: var(--bg-dark);
+    background: var(--bg-contrast);
 }
 
 .grid {
@@ -41,8 +41,8 @@
 }
 
 .projectCard {
-    background: var(--bg-dark-elevated);
-    border: 1px solid var(--border-dark);
+    background: var(--bg-contrast-elevated);
+    border: 1px solid var(--border-contrast);
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
     display: flex;
@@ -50,13 +50,13 @@
     gap: var(--spacing-lg);
     transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
     position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--shadow-contrast);
 }
 
 .projectCard:hover {
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 28px rgba(31, 36, 32, 0.18);
     transform: translateY(-4px);
-    border-color: rgba(240, 135, 158, 0.4);
+    border-color: var(--accent-hover);
 }
 
 .cardHeader {
@@ -70,7 +70,7 @@
 .cardTitle {
     font-size: var(--font-size-2xl);
     font-weight: 700;
-    color: var(--text-on-dark);
+    color: var(--text-on-contrast);
 }
 
 .badges {
@@ -85,9 +85,9 @@
     display: inline-block;
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--text-on-dark-muted);
-    background: var(--bg-dark);
-    border: 1px solid var(--border-dark);
+    color: var(--text-on-contrast-muted);
+    background: var(--bg-contrast);
+    border: 1px solid var(--border-contrast);
     padding: 3px var(--spacing-sm);
     border-radius: var(--radius-full);
 }
@@ -96,17 +96,17 @@
     display: inline-block;
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--accent-light) !important;
-    background: rgba(194, 59, 90, 0.2);
-    border: 1px solid rgba(240, 135, 158, 0.3);
+    color: var(--text-on-contrast) !important;
+    background: rgba(107, 127, 94, 0.2);
+    border: 1px solid var(--border-contrast);
     padding: 3px var(--spacing-sm);
     border-radius: var(--radius-full);
     transition: all var(--transition-fast);
 }
 
 .caseStudyBadge:hover {
-    background: rgba(194, 59, 90, 0.35);
-    color: var(--text-on-dark) !important;
+    background: rgba(107, 127, 94, 0.35);
+    color: var(--accent-hover) !important;
 }
 
 .cardMeta {
@@ -126,12 +126,12 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--accent-light);
+    color: var(--accent-hover);
 }
 
 .cardMetaText {
     font-size: var(--font-size-sm);
-    color: var(--text-on-dark-muted);
+    color: var(--text-on-contrast-muted);
     line-height: 1.6;
 }
 
@@ -147,9 +147,9 @@
     padding: 0.25rem 0.65rem;
     font-size: var(--font-size-xs);
     font-weight: 500;
-    color: var(--text-on-dark);
-    background: var(--bg-dark);
-    border: 1px solid var(--border-dark);
+    color: var(--text-on-contrast);
+    background: var(--bg-contrast);
+    border: 1px solid var(--border-contrast);
     border-radius: var(--radius-md);
 }
 
@@ -159,12 +159,12 @@
     gap: var(--spacing-sm);
     align-items: center;
     padding-top: var(--spacing-md);
-    border-top: 1px solid var(--border-dark);
+    border-top: 1px solid var(--border-contrast);
 }
 
 .primaryAction {
     background: var(--accent);
-    color: var(--text-on-dark) !important;
+    color: var(--text-inverse) !important;
     border-color: var(--accent);
 }
 
@@ -174,51 +174,51 @@
 }
 
 .secondaryAction {
-    background: var(--bg-dark);
-    color: var(--text-on-dark) !important;
-    border: 1px solid var(--border-dark);
+    background: var(--bg-contrast);
+    color: var(--text-on-contrast) !important;
+    border: 1px solid var(--border-contrast);
 }
 
 .secondaryAction:hover {
-    border-color: var(--accent-light);
-    color: var(--accent-light) !important;
+    border-color: var(--accent-hover);
+    color: var(--accent-hover) !important;
 }
 
 .apkBtn {
-    color: var(--accent-light) !important;
-    border-color: rgba(240, 135, 158, 0.3);
-    background: var(--bg-dark);
+    color: var(--text-on-contrast) !important;
+    border-color: var(--border-contrast);
+    background: var(--bg-contrast);
 }
 
 .apkBtn:hover {
-    border-color: var(--accent-light);
-    background: rgba(194, 59, 90, 0.15);
+    border-color: var(--accent-hover);
+    background: var(--bg-contrast-elevated);
 }
 
 .caseStudyLink {
-    color: var(--accent-light) !important;
+    color: var(--text-on-contrast) !important;
     font-weight: 600;
 }
 
 .caseStudyLink:hover {
-    color: var(--text-on-dark) !important;
+    color: var(--accent-hover) !important;
     text-decoration: underline;
 }
 
 .wip {
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--text-on-dark-muted);
+    color: var(--text-on-contrast-muted);
     padding: 0.55rem 1rem;
-    border: 1px solid var(--border-dark);
+    border: 1px solid var(--border-contrast);
     border-radius: var(--radius-lg);
-    background: var(--bg-dark);
+    background: var(--bg-contrast);
 }
 
 /* ==================== CTA ==================== */
 .cta {
-    background: var(--bg-dark);
-    border-top: 1px solid var(--border-dark);
+    background: var(--bg-contrast);
+    border-top: 1px solid var(--border-contrast);
     padding: var(--spacing-4xl) 0;
 }
 
@@ -231,14 +231,14 @@
 .ctaTitle {
     font-size: var(--font-size-3xl);
     font-weight: 800;
-    color: var(--text-on-dark);
+    color: var(--text-on-contrast);
     margin-bottom: var(--spacing-md);
     letter-spacing: -0.02em;
 }
 
 .ctaSubtitle {
     font-size: var(--font-size-lg);
-    color: var(--text-on-dark-muted);
+    color: var(--text-on-contrast-muted);
     margin-bottom: var(--spacing-2xl);
     line-height: 1.6;
 }

@@ -60,7 +60,7 @@
 .hovered .cursorRing {
     width: 32px;
     height: 32px;
-    background: rgba(194, 59, 90, 0.1);
+    background: rgba(107, 127, 94, 0.12);
     border-color: var(--accent);
     opacity: 1;
 }

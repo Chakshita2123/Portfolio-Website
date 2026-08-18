@@ -1,6 +1,6 @@
 /* =====================================================
    CHAKSHITA - DESIGN SYSTEM
-   Warm Contrast Palette (Dusty Pink & Deep Mauve-Brown)
+   Soft Sage-Neutral Palette (Understated, Calm, Professional)
    ===================================================== */
 
 /* Google Fonts - Inter */
@@ -8,49 +8,49 @@
 
 /* ==================== CSS VARIABLES ==================== */
 :root {
-  /* Base (Light Sections) */
-  --bg-primary: #F2E1DE;       /* Warm dusty pink - main background */
-  --bg-elevated: #FBF0EE;      /* Lighter blush - cards on light sections */
-  --border-subtle: #E3C4C0;    /* Soft pink border tone */
+  /* Base (Light sections — used for most of the page) */
+  --bg-primary: #EDEDE4;       /* Soft warm off-white/sage-tinted neutral - main background */
+  --bg-elevated: #F7F7F0;      /* Lighter neutral - cards on light sections */
+  --border-subtle: #D8D8C8;    /* Soft muted border tone */
 
-  /* Dark Contrast Sections */
-  --bg-dark: #2E1F1E;          /* Deep mauve-brown - contrast section backgrounds */
-  --bg-dark-elevated: #3F2B29; /* Slightly lighter mauve-brown - cards on dark sections */
-  --border-dark: #4F3735;      /* Subtle border on dark sections */
-  --border-dark-subtle: rgba(245, 231, 228, 0.12);
+  /* Contrast section (Used deliberately in Projects section) */
+  --bg-contrast: #A8B5A0;      /* Muted sage green - contrast section background */
+  --bg-contrast-elevated: #BFC9B8; /* Lighter sage - cards on the contrast section */
+  --border-contrast: #98A690;  /* Subtle border on contrast section */
+  --border-contrast-subtle: rgba(31, 36, 32, 0.12);
 
   /* Text Colors */
-  --text-primary: #241715;     /* Near-black warm mauve - headings on light bg */
-  --text-secondary: #6B4F4C;   /* Muted rosy-brown - body/secondary text on light bg */
-  --text-tertiary: #8A6B68;    /* Lighter muted rosy-brown - small labels */
-  --text-on-dark: #F5E7E4;     /* Warm blush-white - text on dark sections */
-  --text-on-dark-muted: #C9A8A3; /* Muted dusty rose - secondary text on dark sections */
-  --text-inverse: #F5E7E4;
+  --text-primary: #2B2E27;     /* Deep neutral charcoal-green - headings on light bg */
+  --text-secondary: #5F6459;   /* Muted grey-green - body/secondary text on light bg */
+  --text-tertiary: #7D8376;    /* Lighter muted grey-green - small labels */
+  --text-on-contrast: #1F2420; /* Deep charcoal-green text - readable on sage contrast bg */
+  --text-on-contrast-muted: #3D453A; /* Muted deep green - secondary text on contrast section */
+  --text-inverse: #F7F7F0;
 
-  /* Accent (Bold Rose/Berry Pink) */
-  --accent: #C23B5A;           /* Bold rose/berry pink - CTAs, links, highlights */
-  --accent-hover: #9E2E48;     /* Darker berry pink - hover state */
-  --accent-light: #F0879E;     /* Lighter rose pink - accent on dark backgrounds */
-  --accent-subtle: rgba(194, 59, 90, 0.12);
+  /* Accent (Muted Olive-Green) */
+  --accent: #6B7F5E;           /* Muted olive-green - CTAs, links, highlights */
+  --accent-hover: #566B4A;     /* Darker olive - hover state */
+  --accent-light: #93A886;     /* Lighter sage - accent variant, used on contrast bg */
+  --accent-subtle: rgba(107, 127, 94, 0.12);
 
   /* Surface Aliases */
   --surface: var(--bg-elevated);
-  --surface-elevated: #FDF7F6;
+  --surface-elevated: #FAFBF6;
   --primary: var(--accent);
   --primary-hover: var(--accent-hover);
   --primary-light: var(--accent-subtle);
   --border-light: var(--border-subtle);
-  --border-medium: #D6AEA9;
+  --border-medium: #C4C4B2;
 
-  /* Shadow System - Soft and Warm */
-  --shadow-sm: 0 1px 3px rgba(36, 23, 21, 0.05);
-  --shadow-md: 0 4px 12px rgba(36, 23, 21, 0.08);
-  --shadow-lg: 0 10px 24px -4px rgba(36, 23, 21, 0.1);
-  --shadow-xl: 0 20px 32px -8px rgba(36, 23, 21, 0.14);
-  --shadow-dark: 0 8px 24px rgba(0, 0, 0, 0.35);
+  /* Shadow System - Soft and Calm */
+  --shadow-sm: 0 1px 3px rgba(43, 46, 39, 0.05);
+  --shadow-md: 0 4px 12px rgba(43, 46, 39, 0.08);
+  --shadow-lg: 0 10px 24px -4px rgba(43, 46, 39, 0.1);
+  --shadow-xl: 0 20px 32px -8px rgba(43, 46, 39, 0.12);
+  --shadow-contrast: 0 8px 24px rgba(31, 36, 32, 0.12);
 
   /* Navbar */
-  --navbar-bg: rgba(242, 225, 222, 0.94);
+  --navbar-bg: rgba(237, 237, 228, 0.94);
   --navbar-border: var(--border-subtle);
 
   /* Typography */
@@ -122,7 +122,7 @@ body {
 /* Selection Highlight */
 ::selection {
   background: var(--accent);
-  color: var(--text-on-dark);
+  color: var(--text-inverse);
 }
 
 a {
@@ -217,10 +217,10 @@ img {
   cursor: pointer;
 }
 
-/* Primary Button: Solid Berry Pink fill */
+/* Primary Button: Solid Olive Green fill */
 .btn-primary {
   background: var(--accent);
-  color: var(--text-on-dark) !important;
+  color: var(--text-inverse) !important;
   border: 1.5px solid var(--accent);
   box-shadow: var(--shadow-sm);
 }
@@ -228,7 +228,7 @@ img {
 .btn-primary:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
-  color: var(--text-on-dark) !important;
+  color: var(--text-inverse) !important;
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -258,7 +258,7 @@ img {
 
 .btn-ghost:hover {
   color: var(--accent) !important;
-  background: rgba(194, 59, 90, 0.08);
+  background: rgba(107, 127, 94, 0.08);
 }
 
 /* Cards */

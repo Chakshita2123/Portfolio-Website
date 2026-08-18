@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { FaGithub, FaExternalLinkAlt, FaAndroid, FaArrowRight } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaAndroid, FaArrowRight, FaClock } from 'react-icons/fa';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import GitHubActivity from '@/components/GitHubActivity';
@@ -35,6 +35,7 @@ const projects = [
         title: 'Journey Curator',
         problem: 'Most "AI travel planners" are just LLM wrappers with no real predictive intelligence.',
         description: 'Travel planning platform built around a real ML core — a trip cost predictor trained with scikit-learn/XGBoost — combined with Gemini/Groq for planning assistance.',
+        note: 'Actively training the cost prediction model — check back soon.',
         techStack: ['Next.js 15', 'TypeScript', 'MongoDB', 'Python', 'scikit-learn/XGBoost'],
         liveUrl: null,
         githubUrl: 'https://github.com/Chakshita2123/Journey-Curator-AI',
@@ -83,7 +84,9 @@ export default function ProjectsPage() {
                                         <h3 className={styles.cardTitle}>{project.title}</h3>
                                         <div className={styles.badges}>
                                             {project.status === 'in-progress' && (
-                                                <span className={styles.statusBadge}>In Progress</span>
+                                                <span className={styles.statusBadge}>
+                                                    <FaClock style={{ marginRight: '4px', fontSize: '0.7rem' }} /> In Progress
+                                                </span>
                                             )}
                                             {project.hasCaseStudy && (
                                                 <Link href={project.caseStudyUrl} className={styles.caseStudyBadge}>
@@ -102,6 +105,14 @@ export default function ProjectsPage() {
                                             <span className={styles.cardMetaLabel}>What it does</span>
                                             <p className={styles.cardMetaText}>{project.description}</p>
                                         </div>
+                                        {project.note && (
+                                            <div className={styles.cardMetaItem}>
+                                                <span className={styles.cardMetaLabel}>Status Note</span>
+                                                <p className={styles.inProgressNote}>
+                                                    💡 {project.note}
+                                                </p>
+                                            </div>
+                                        )}
                                     </div>
 
                                     <div className={styles.cardTechStack}>
@@ -121,7 +132,9 @@ export default function ProjectsPage() {
                                                 <FaExternalLinkAlt /> Live Demo
                                             </a>
                                         ) : (
-                                            <span className={styles.wip}>In Progress</span>
+                                            <span className={styles.wip}>
+                                                <FaClock style={{ marginRight: '4px' }} /> In Progress
+                                            </span>
                                         )}
 
                                         <a

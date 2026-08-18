@@ -23,6 +23,7 @@
 
 .backLink:hover {
     transform: translateX(-3px);
+    color: var(--accent-hover) !important;
 }
 
 .title {

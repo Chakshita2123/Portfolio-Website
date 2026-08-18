@@ -13,18 +13,19 @@
     flex-direction: column;
     gap: var(--spacing-sm);
     padding: var(--spacing-lg) var(--spacing-xl);
-    background: var(--bg-dark);
-    border: 1px solid var(--border-dark);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-xl);
     width: 100%;
     max-width: 720px;
-    box-shadow: 0 4px 20px rgba(46, 31, 30, 0.25);
-    transition: transform var(--transition-fast), border-color var(--transition-fast);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .card:hover {
-    border-color: rgba(240, 135, 158, 0.4);
+    border-color: var(--accent);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
 .header {
@@ -34,7 +35,7 @@
 }
 
 .indicator {
-    color: var(--accent-light);
+    color: var(--accent);
     font-size: 0.85rem;
     line-height: 1;
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -55,8 +56,8 @@
     font-size: var(--font-size-xs);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-on-dark-muted);
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
 }
 
 .list {
@@ -73,12 +74,12 @@
     align-items: baseline;
     gap: var(--spacing-sm);
     font-size: var(--font-size-sm);
-    color: var(--text-on-dark);
+    color: var(--text-primary);
     line-height: 1.55;
 }
 
 .arrow {
-    color: var(--accent-light);
+    color: var(--accent);
     font-weight: 700;
 }
 

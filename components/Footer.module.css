@@ -1,181 +1,58 @@
 .footer {
-    background: var(--bg-dark);
-    border-top: 1px solid var(--border-dark);
-    padding: var(--spacing-3xl) 0 var(--spacing-xl);
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-subtle);
+    padding: var(--spacing-2xl) 0 var(--spacing-xl);
 }
 
-.footerContainer {
+.footerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-xl);
+    flex-wrap: wrap;
+}
+
+.footerBrand {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-xs);
 }
 
-/* ==================== MAIN CONTENT ==================== */
-.mainContent {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: var(--spacing-3xl);
-    margin-bottom: var(--spacing-2xl);
-}
-
-/* Branding */
-.branding {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-}
-
-.logo {
-    display: inline-flex;
-    align-items: baseline;
-    font-size: var(--font-size-xl);
+.brandName {
+    font-size: var(--font-size-lg);
     font-weight: 700;
-    letter-spacing: -0.02em;
-    text-decoration: none;
-}
-
-.logoText {
-    color: var(--text-on-dark);
-}
-
-.logoAi {
-    color: var(--accent-light);
-    font-size: 1.3em;
-    line-height: 0;
+    color: var(--text-primary);
 }
 
 .brandTagline {
-    font-size: var(--font-size-sm);
-    color: var(--text-on-dark-muted);
-    margin: 0;
-}
-
-/* Navigation Section */
-.navSection {
-    display: flex;
-    flex-direction: column;
-}
-
-.sectionTitle {
     font-size: var(--font-size-xs);
-    font-weight: 700;
-    color: var(--text-on-dark);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: var(--spacing-md);
+    color: var(--text-secondary);
 }
 
-.navLinks {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.footerLinks {
     display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-lg);
 }
 
-.navLink {
-    font-size: var(--font-size-sm);
-    color: var(--text-on-dark-muted);
-    text-decoration: none;
+.footerLink {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
     transition: color var(--transition-fast);
 }
 
-.navLink:hover {
-    color: var(--accent-light);
-}
-
-/* Social Section */
-.socialSection {
-    display: flex;
-    flex-direction: column;
-}
-
-.socialLinks {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-}
-
-.socialLink {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    font-size: var(--font-size-sm);
-    color: var(--text-on-dark-muted);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-}
-
-.socialLink:hover {
-    color: var(--accent-light);
-}
-
-.socialIcon {
-    font-size: var(--font-size-base);
-}
-
-.socialName {
-    font-weight: 500;
-}
-
-/* ==================== DIVIDER ==================== */
-.divider {
-    height: 1px;
-    background: var(--border-dark);
-    margin-bottom: var(--spacing-lg);
-}
-
-/* ==================== BOTTOM ==================== */
-.bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.footerLink:hover {
+    color: var(--accent);
 }
 
 .copyright {
     font-size: var(--font-size-xs);
-    color: var(--text-on-dark-muted);
-    margin: 0;
+    color: var(--text-tertiary);
 }
 
-.madeWith {
-    font-size: var(--font-size-xs);
-    color: var(--text-on-dark-muted);
-    margin: 0;
-}
-
-/* ==================== RESPONSIVE ==================== */
 @media (max-width: 768px) {
-    .mainContent {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-        text-align: center;
-    }
-
-    .branding {
-        align-items: center;
-    }
-
-    .logo {
-        justify-content: center;
-    }
-
-    .navLinks {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: var(--spacing-md);
-    }
-
-    .socialLinks {
-        flex-direction: row;
-        justify-content: center;
-        gap: var(--spacing-lg);
-    }
-
-    .bottom {
+    .footerContent {
         flex-direction: column;
-        gap: var(--spacing-sm);
         text-align: center;
+        gap: var(--spacing-lg);
     }
 }

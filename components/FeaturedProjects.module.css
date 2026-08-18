@@ -1,8 +1,10 @@
-/* ==================== FEATURED PROJECTS (DARK SHOWCASE SECTION) ==================== */
+/* ==================== FEATURED PROJECTS (THE ONE SAGE CONTRAST SECTION) ==================== */
 .projects {
-    background: var(--bg-dark);
+    background: var(--bg-contrast);
     padding: var(--spacing-4xl) 0;
     position: relative;
+    border-top: 1px solid var(--border-contrast);
+    border-bottom: 1px solid var(--border-contrast);
 }
 
 .header {
@@ -16,21 +18,21 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--accent-light);
+    color: var(--accent-hover);
     margin-bottom: var(--spacing-sm);
 }
 
 .sectionTitle {
     font-size: var(--font-size-4xl);
     font-weight: 800;
-    color: var(--text-on-dark);
+    color: var(--text-on-contrast);
     margin-bottom: var(--spacing-sm);
     letter-spacing: -0.02em;
 }
 
 .sectionSubtitle {
     font-size: var(--font-size-lg);
-    color: var(--text-on-dark-muted);
+    color: var(--text-on-contrast-muted);
     line-height: 1.6;
 }
 
@@ -42,23 +44,24 @@
     margin-bottom: var(--spacing-3xl);
 }
 
-/* Dark Section Cards in --bg-dark-elevated */
+/* Cards on Contrast Section in --bg-contrast-elevated */
 .card {
-    background: var(--bg-dark-elevated);
-    border: 1px solid var(--border-dark);
+    background: var(--bg-contrast-elevated);
+    border: 1px solid var(--border-contrast);
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
     display: flex;
     flex-direction: column;
     position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--shadow-contrast);
+    min-height: 380px;
     transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
 }
 
 .card:hover {
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 28px rgba(31, 36, 32, 0.18);
     transform: translateY(-4px);
-    border-color: rgba(240, 135, 158, 0.4);
+    border-color: var(--accent-hover);
 }
 
 .cardTop {
@@ -66,16 +69,18 @@
     align-items: center;
     gap: var(--spacing-sm);
     margin-bottom: var(--spacing-md);
+    min-height: 28px;
 }
 
 /* Badges */
 .statusBadge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--text-on-dark-muted);
-    background: var(--bg-dark);
-    border: 1px solid var(--border-dark);
+    color: var(--text-on-contrast-muted);
+    background: var(--bg-contrast);
+    border: 1px solid var(--border-contrast);
     padding: 3px var(--spacing-sm);
     border-radius: var(--radius-full);
     width: fit-content;
@@ -85,9 +90,9 @@
     display: inline-block;
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--accent-light);
-    background: rgba(194, 59, 90, 0.2);
-    border: 1px solid rgba(240, 135, 158, 0.3);
+    color: var(--text-on-contrast);
+    background: rgba(107, 127, 94, 0.2);
+    border: 1px solid var(--border-contrast);
     padding: 3px var(--spacing-sm);
     border-radius: var(--radius-full);
     width: fit-content;
@@ -95,40 +100,54 @@
 
 .cardContent {
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .cardTitle {
     font-size: var(--font-size-2xl);
     font-weight: 700;
-    color: var(--text-on-dark);
+    color: var(--text-on-contrast);
     margin-bottom: var(--spacing-md);
     letter-spacing: -0.01em;
 }
 
 .cardProblem {
     font-size: var(--font-size-sm);
-    color: var(--text-on-dark-muted);
+    color: var(--text-on-contrast-muted);
     line-height: 1.6;
     margin-bottom: var(--spacing-sm);
 }
 
 .problemLabel {
     font-weight: 700;
-    color: var(--text-on-dark);
+    color: var(--text-on-contrast);
 }
 
 .cardDesc {
     font-size: var(--font-size-sm);
-    color: var(--text-on-dark-muted);
+    color: var(--text-on-contrast-muted);
     line-height: 1.6;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.inProgressNote {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--text-on-contrast);
+    background: rgba(107, 127, 94, 0.15);
+    border: 1px dashed var(--border-contrast);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
 }
 
 .techStack {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-xs);
-    margin-bottom: var(--spacing-xl);
+    margin-top: auto;
+    margin-bottom: var(--spacing-lg);
 }
 
 .techTag {
@@ -136,9 +155,9 @@
     padding: 0.25rem 0.65rem;
     font-size: var(--font-size-xs);
     font-weight: 500;
-    color: var(--text-on-dark);
-    background: var(--bg-dark);
-    border: 1px solid var(--border-dark);
+    color: var(--text-on-contrast);
+    background: var(--bg-contrast);
+    border: 1px solid var(--border-contrast);
     border-radius: var(--radius-md);
 }
 
@@ -147,9 +166,8 @@
     flex-wrap: wrap;
     gap: var(--spacing-sm);
     align-items: center;
-    margin-top: auto;
     padding-top: var(--spacing-md);
-    border-top: 1px solid var(--border-dark);
+    border-top: 1px solid var(--border-contrast);
 }
 
 .cardActions .btn {
@@ -159,7 +177,7 @@
 
 .primaryAction {
     background: var(--accent);
-    color: var(--text-on-dark) !important;
+    color: var(--text-inverse) !important;
     border-color: var(--accent);
 }
 
@@ -169,48 +187,51 @@
 }
 
 .secondaryAction {
-    background: var(--bg-dark);
-    color: var(--text-on-dark) !important;
-    border: 1px solid var(--border-dark);
+    background: var(--bg-contrast);
+    color: var(--text-on-contrast) !important;
+    border: 1px solid var(--border-contrast);
 }
 
 .secondaryAction:hover {
-    border-color: var(--accent-light);
-    color: var(--accent-light) !important;
-    background: var(--bg-dark-elevated);
+    border-color: var(--accent-hover);
+    color: var(--accent-hover) !important;
+    background: var(--bg-contrast-elevated);
 }
 
 .apkBtn {
-    color: var(--accent-light) !important;
-    border-color: rgba(240, 135, 158, 0.3);
-    background: var(--bg-dark);
+    color: var(--text-on-contrast) !important;
+    border-color: var(--border-contrast);
+    background: var(--bg-contrast);
 }
 
 .apkBtn:hover {
-    border-color: var(--accent-light);
-    background: rgba(194, 59, 90, 0.15);
+    border-color: var(--accent-hover);
+    color: var(--accent-hover) !important;
+    background: var(--bg-contrast-elevated);
 }
 
 .caseStudyBtn {
-    color: var(--accent-light) !important;
+    color: var(--text-on-contrast) !important;
     font-weight: 600;
     padding-left: 0;
 }
 
 .caseStudyBtn:hover {
-    color: var(--text-on-dark) !important;
+    color: var(--accent-hover) !important;
     text-decoration: underline;
     background: transparent !important;
 }
 
 .wip {
+    display: inline-flex;
+    align-items: center;
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--text-on-dark-muted);
+    color: var(--text-on-contrast-muted);
     padding: 0.55rem 1rem;
-    border: 1px solid var(--border-dark);
+    border: 1px solid var(--border-contrast);
     border-radius: var(--radius-lg);
-    background: var(--bg-dark);
+    background: var(--bg-contrast);
 }
 
 /* View All */
@@ -219,7 +240,7 @@
 }
 
 .viewAllLink {
-    color: var(--accent-light) !important;
+    color: var(--text-on-contrast) !important;
     font-size: var(--font-size-base);
     font-weight: 600;
     display: inline-flex;
@@ -231,8 +252,8 @@
 }
 
 .viewAllLink:hover {
-    color: var(--text-on-dark) !important;
-    background: rgba(245, 231, 228, 0.08);
+    color: var(--accent-hover) !important;
+    background: rgba(31, 36, 32, 0.06);
     transform: translateX(4px);
 }
 

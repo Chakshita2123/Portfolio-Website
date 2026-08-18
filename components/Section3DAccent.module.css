@@ -1,0 +1,36 @@
+.accentWrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    pointer-events: none;
+    margin: -40px 0;
+    z-index: 2;
+}
+
+.right {
+    margin-left: auto;
+    margin-right: var(--spacing-3xl);
+}
+
+.left {
+    margin-right: auto;
+    margin-left: var(--spacing-3xl);
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .accentWrapper {
+        display: none;
+    }
+}

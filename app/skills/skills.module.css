@@ -44,7 +44,7 @@
     transition: all 0.35s var(--ease-smooth);
     position: relative;
     overflow: hidden;
-    --spotlight-color: rgba(194, 59, 90, 0.1);
+    --spotlight-color: rgba(107, 127, 94, 0.1);
 }
 
 .categoryCard:hover {
@@ -111,15 +111,15 @@
 }
 
 .levelCore {
-    background: rgba(194, 59, 90, 0.1);
+    background: rgba(107, 127, 94, 0.12);
     color: var(--accent);
-    border: 1px solid rgba(194, 59, 90, 0.2);
+    border: 1px solid rgba(107, 127, 94, 0.25);
 }
 
 .levelWorking {
-    background: rgba(16, 185, 129, 0.1);
-    color: #10b981;
-    border: 1px solid rgba(16, 185, 129, 0.2);
+    background: rgba(86, 107, 74, 0.08);
+    color: var(--accent-hover);
+    border: 1px solid rgba(86, 107, 74, 0.2);
 }
 
 /* Skill List */
@@ -293,33 +293,7 @@
     margin-bottom: var(--spacing-xl);
 }
 
-/* ==================== ANIMATIONS ==================== */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animateIn {
-    opacity: 0;
-    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.delay1 {
-    animation-delay: 0.15s;
-}
-
-.delay2 {
-    animation-delay: 0.3s;
-}
-
-/* ==================== RESPONSIVE ==================== */
+/* Responsive */
 @media (max-width: 992px) {
     .categoriesGrid {
         grid-template-columns: 1fr;
@@ -333,27 +307,5 @@
 
     .certChips {
         grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .pageHeader {
-        padding: var(--spacing-2xl) 0 var(--spacing-lg);
-    }
-
-    .pageTitle {
-        font-size: var(--font-size-2xl);
-    }
-
-    .categoryCard {
-        padding: var(--spacing-lg);
-    }
-
-    .sectionTitle {
-        font-size: var(--font-size-2xl);
-    }
-
-    .ctaTitle {
-        font-size: var(--font-size-2xl);
     }
 }

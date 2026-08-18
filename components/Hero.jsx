@@ -1,8 +1,15 @@
 import { useRef } from 'react';
 import Link from 'next/link';
-import { FaFileDownload } from 'react-icons/fa';
+import dynamic from 'next/dynamic';
+import { FaFileDownload, FaArrowDown } from 'react-icons/fa';
 import useMouse3D from '../hooks/useMouse3D';
 import styles from './Hero.module.css';
+
+// Lazy-load the WebGL 3D blob to ensure zero SSR blockage
+const Hero3DOrganicBlob = dynamic(() => import('./Hero3DOrganicBlob'), {
+    ssr: false,
+    loading: () => <div className={styles.blobSkeleton} />
+});
 
 export default function Hero() {
     const heroRef = useRef(null);
@@ -72,14 +79,17 @@ export default function Hero() {
                     </div>
                 </div>
 
-                {/* Right column — subtle decorative element */}
+                {/* Right column — 3D Organic Blob with Interactive Mouse Parallax */}
                 <div className={`${styles.heroVisual} ${styles.animateIn} ${styles.delay2}`}>
-                    <div className={styles.visualDecor}>
-                        <div className={styles.decorRing}></div>
-                        <div className={styles.decorRingInner}></div>
-                        <div className={styles.decorDot}></div>
-                    </div>
+                    <Hero3DOrganicBlob />
                 </div>
+            </div>
+
+            {/* Subtle Scroll Down Indicator */}
+            <div className={styles.scrollIndicator}>
+                <a href="#about" aria-label="Scroll down to About section" className={styles.scrollLink}>
+                    <FaArrowDown className={styles.scrollIcon} />
+                </a>
             </div>
         </section>
     );
