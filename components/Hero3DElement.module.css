@@ -1,0 +1,110 @@
+.elementContainer {
+    position: relative;
+    width: 390px;
+    height: 390px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    transition: transform var(--transition-base);
+}
+
+.elementContainer:active,
+.elementContainer.interacting {
+    cursor: grabbing !important;
+}
+
+.canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    cursor: inherit;
+    filter: drop-shadow(0 20px 32px rgba(43, 46, 39, 0.09));
+    outline: none;
+}
+
+.ambientGlow {
+    position: absolute;
+    inset: 8%;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(168, 181, 160, 0.4) 0%,
+        rgba(107, 127, 94, 0.16) 45%,
+        transparent 70%
+    );
+    filter: blur(28px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Subtle Interactive Hint */
+.interactionHint {
+    position: absolute;
+    bottom: -8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.75rem;
+    background: rgba(247, 247, 240, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.hintVisible {
+    opacity: 0.8;
+    transform: translateY(0);
+}
+
+.elementContainer:hover .interactionHint {
+    opacity: 1;
+    color: var(--accent);
+    border-color: var(--border-contrast);
+}
+
+.elementContainer.interacting .interactionHint {
+    opacity: 0;
+    transform: translateY(4px);
+}
+
+/* Responsive Scaling */
+@media (max-width: 1200px) {
+    .elementContainer {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+@media (max-width: 992px) {
+    .elementContainer {
+        width: 310px;
+        height: 310px;
+    }
+}
+
+@media (max-width: 768px) {
+    .elementContainer {
+        width: 260px;
+        height: 260px;
+        margin: 0 auto;
+    }
+
+    .interactionHint {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.6rem;
+        bottom: -4px;
+    }
+}

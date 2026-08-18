@@ -5,8 +5,8 @@ import { FaFileDownload, FaArrowDown } from 'react-icons/fa';
 import useMouse3D from '../hooks/useMouse3D';
 import styles from './Hero.module.css';
 
-// Lazy-load the WebGL 3D blob to ensure zero SSR blockage
-const Hero3DOrganicBlob = dynamic(() => import('./Hero3DOrganicBlob'), {
+// Lazy-load the interactive 3D Neural Engineering element to ensure zero SSR blockage
+const Hero3DElement = dynamic(() => import('./Hero3DElement'), {
     ssr: false,
     loading: () => <div className={styles.blobSkeleton} />
 });
@@ -79,9 +79,9 @@ export default function Hero() {
                     </div>
                 </div>
 
-                {/* Right column — 3D Organic Blob with Interactive Mouse Parallax */}
+                {/* Right column — 3D Central Geometric Shape + Neural Network Nodes */}
                 <div className={`${styles.heroVisual} ${styles.animateIn} ${styles.delay2}`}>
-                    <Hero3DOrganicBlob />
+                    <Hero3DElement />
                 </div>
             </div>
 
