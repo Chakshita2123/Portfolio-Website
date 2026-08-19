@@ -40,7 +40,7 @@ function MindsetCard({ card, index }) {
         // Move glow overlay
         const glowEl = el.querySelector('[data-glow]');
         if (glowEl) {
-            glowEl.style.background = `radial-gradient(circle 180px at ${x}px ${y}px, rgba(14,165,233,0.12), transparent 70%)`;
+            glowEl.style.background = `radial-gradient(circle 180px at ${x}px ${y}px, rgba(147, 168, 134, 0.18), transparent 70%)`;
         }
     }, []);
 

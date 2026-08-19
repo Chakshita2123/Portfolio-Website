@@ -1,0 +1,174 @@
+/* =====================================================
+   FLOATING AI ORB — 3D Luminous Assistant Sphere
+   Sage-Neutral Palette Identity
+   ===================================================== */
+
+.orbContainer {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+}
+
+.orbLink {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform var(--transition-base);
+}
+
+.orbLink:hover {
+    transform: scale(1.08);
+}
+
+/* Ambient Pulsing Aura */
+.orbAura {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(147, 168, 134, 0.4) 0%, rgba(107, 127, 94, 0.15) 50%, transparent 70%);
+    animation: orbBreathe 3.2s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes orbBreathe {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.22);
+        opacity: 0.85;
+    }
+}
+
+/* 3D Luminous Sphere with Specular Highlight */
+.orbSphere {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #A8B5A0 0%, #6B7F5E 55%, #46563E 100%);
+    box-shadow: 
+        0 6px 20px rgba(43, 46, 39, 0.28),
+        0 0 16px rgba(147, 168, 134, 0.45),
+        inset -2px -3px 6px rgba(31, 36, 32, 0.4),
+        inset 2px 2px 5px rgba(255, 255, 255, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: box-shadow var(--transition-base), filter var(--transition-base);
+}
+
+.orbLink:hover .orbSphere {
+    box-shadow: 
+        0 10px 28px rgba(43, 46, 39, 0.35),
+        0 0 24px rgba(147, 168, 134, 0.65),
+        inset -2px -3px 6px rgba(31, 36, 32, 0.3),
+        inset 2px 2px 6px rgba(255, 255, 255, 0.6);
+    filter: brightness(1.06);
+}
+
+/* Top-Left Gloss Highlight */
+.orbHighlight {
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    width: 14px;
+    height: 9px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.75) 0%, transparent 80%);
+    transform: rotate(-30deg);
+    pointer-events: none;
+}
+
+.orbInnerIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-inverse);
+    z-index: 2;
+    transition: transform var(--transition-fast);
+}
+
+.sparkleIcon {
+    font-size: 1.25rem;
+    filter: drop-shadow(0 1px 3px rgba(31, 36, 32, 0.4));
+}
+
+.orbLink:hover .sparkleIcon {
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* Hover Tooltip Label */
+.orbTooltip {
+    position: absolute;
+    right: calc(100% + 12px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    box-shadow: 0 4px 16px rgba(43, 46, 39, 0.14);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    white-space: nowrap;
+}
+
+.orbTooltipVisible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.tooltipPulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+}
+
+.tooltipText {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .orbContainer {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .orbLink {
+        width: 48px;
+        height: 48px;
+    }
+
+    .orbSphere {
+        width: 46px;
+        height: 46px;
+    }
+
+    .sparkleIcon {
+        font-size: 1.1rem;
+    }
+
+    .orbTooltip {
+        display: none;
+    }
+}

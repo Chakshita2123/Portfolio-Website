@@ -1,6 +1,7 @@
 import "./globals.css";
 import CustomCursor from "../components/CustomCursor";
 import ParticleBackground from "../components/ParticleBackground";
+import FloatingAIOrb from "../components/FloatingAIOrb";
 import PortfolioExperienceProvider from "../components/PortfolioExperienceProvider";
 
 export const viewport = {
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
           <ParticleBackground />
           <CustomCursor />
           {children}
+          <FloatingAIOrb />
         </PortfolioExperienceProvider>
       </body>
     </html>

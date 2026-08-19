@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { FaGithub, FaExternalLinkAlt, FaAndroid, FaArrowRight, FaClock } from 'react-icons/fa';
+import GlassTiltCard from '@/components/GlassTiltCard';
 import styles from './FeaturedProjects.module.css';
 
 const projects = [
@@ -67,7 +68,7 @@ export default function FeaturedProjects() {
                 {/* Project Cards Grid */}
                 <div className={styles.grid}>
                     {projects.map((project) => (
-                        <div key={project.id} className={styles.card}>
+                        <GlassTiltCard key={project.id} className={styles.card} maxTilt={6}>
                             <div className={styles.cardTop}>
                                 {project.status === 'in-progress' && (
                                     <span className={styles.statusBadge}>
@@ -142,7 +143,7 @@ export default function FeaturedProjects() {
                                     </Link>
                                 )}
                             </div>
-                        </div>
+                        </GlassTiltCard>
                     ))}
                 </div>
 

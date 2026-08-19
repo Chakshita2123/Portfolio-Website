@@ -4,6 +4,7 @@ import { FaGithub, FaExternalLinkAlt, FaAndroid, FaClock } from 'react-icons/fa'
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import GitHubActivity from '@/components/GitHubActivity';
+import GlassTiltCard from '@/components/GlassTiltCard';
 import styles from './projects.module.css';
 
 const projects = [
@@ -76,9 +77,10 @@ export default function ProjectsPage() {
                     <div className="container">
                         <div className={styles.grid}>
                             {projects.map((project) => (
-                                <div
+                                <GlassTiltCard
                                     key={project.id}
                                     className={styles.projectCard}
+                                    maxTilt={6}
                                 >
                                     <div className={styles.cardHeader}>
                                         <h3 className={styles.cardTitle}>{project.title}</h3>
@@ -163,7 +165,7 @@ export default function ProjectsPage() {
                                             </Link>
                                         )}
                                     </div>
-                                </div>
+                                </GlassTiltCard>
                             ))}
                         </div>
                     </div>

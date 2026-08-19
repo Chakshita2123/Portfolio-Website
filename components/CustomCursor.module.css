@@ -1,72 +1,66 @@
-.cursorAmbient {
-    display: none;
-}
-
-.cursor {
+.cursorWrapper {
     position: fixed;
     top: 0;
     left: 0;
-    width: 24px;
-    height: 24px;
-    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.25s ease;
+    z-index: 99999;
+    overflow: hidden;
 }
 
-.cursorDot {
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
+/* Ambient Trailing Soft Halo */
+.cursorAmbient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.2s ease;
-}
-
-.cursorRing {
-    display: block;
-    width: 20px;
-    height: 20px;
-    border: 1.5px solid var(--accent);
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
-    opacity: 0.5;
-}
-
-.hidden {
+    background: radial-gradient(circle, rgba(147, 168, 134, 0.16) 0%, rgba(107, 127, 94, 0.06) 45%, transparent 70%);
+    pointer-events: none;
     opacity: 0;
+    transition: opacity 0.3s ease;
+    will-change: transform;
 }
 
-.clicked .cursorDot {
-    transform: translate(-50%, -50%) scale(0.8);
+/* Outer Interactive Ring */
+.cursorRing {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent);
+    pointer-events: none;
+    opacity: 0;
+    transition: width 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                height 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.2s ease,
+                background 0.2s ease,
+                opacity 0.2s ease;
+    will-change: transform;
 }
 
-.clicked .cursorRing {
-    width: 16px;
-    height: 16px;
-    opacity: 0.9;
+/* Central Glowing Precision Dot */
+.cursorDot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(107, 127, 94, 0.7);
+    pointer-events: none;
+    opacity: 0;
+    transition: transform 0.15s ease, opacity 0.2s ease;
+    will-change: transform;
 }
 
-.hovered .cursorRing {
-    width: 32px;
-    height: 32px;
-    background: rgba(107, 127, 94, 0.12);
-    border-color: var(--accent);
-    opacity: 1;
-}
-
-@media (max-width: 768px) {
-    .cursor {
-        display: none;
+@media (hover: none) or (pointer: coarse) {
+    .cursorWrapper {
+        display: none !important;
     }
 }

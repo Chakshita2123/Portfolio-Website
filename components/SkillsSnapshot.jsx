@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { FaAward } from 'react-icons/fa';
+import GlassTiltCard from '@/components/GlassTiltCard';
 import styles from './SkillsSnapshot.module.css';
 
 const skillCategories = [
@@ -141,10 +142,10 @@ export default function SkillsSnapshot() {
                     </div>
                     <div className={styles.certChips}>
                         {certifications.map((cert, index) => (
-                            <div key={index} className={styles.certChip}>
+                            <GlassTiltCard key={index} className={styles.certChip} maxTilt={6}>
                                 <span className={styles.certName}>{cert.name}</span>
                                 <span className={styles.certIssuer}>{cert.issuer}</span>
-                            </div>
+                            </GlassTiltCard>
                         ))}
                     </div>
                 </div>

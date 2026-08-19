@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { FaGraduationCap, FaMapMarkerAlt, FaBriefcase, FaCode, FaRobot, FaMobileAlt, FaLayerGroup } from 'react-icons/fa';
+import GlassTiltCard from '@/components/GlassTiltCard';
 import styles from './AboutPreview.module.css';
 
 export default function AboutPreview() {
@@ -56,41 +57,41 @@ export default function AboutPreview() {
 
                 {/* Right Column: Key Focus Areas & Defensible Stats Cards */}
                 <div className={styles.statsCardGrid}>
-                    <div className={styles.statCard}>
+                    <GlassTiltCard className={styles.statCard} maxTilt={7}>
                         <div className={styles.cardHeader}>
                             <FaCode className={styles.cardIcon} />
                             <span className={styles.statNumber}>4+</span>
                         </div>
                         <h4 className={styles.cardTitle}>Real Projects Shipped</h4>
                         <p className={styles.cardDesc}>Production Next.js platforms, ML models, &amp; Android APK release.</p>
-                    </div>
+                    </GlassTiltCard>
 
-                    <div className={styles.statCard}>
+                    <GlassTiltCard className={styles.statCard} maxTilt={7}>
                         <div className={styles.cardHeader}>
                             <FaRobot className={styles.cardIcon} />
                             <span className={styles.statNumber}>AI + ML</span>
                         </div>
                         <h4 className={styles.cardTitle}>Applied Intelligence</h4>
                         <p className={styles.cardDesc}>Gemini Vision OCR, Groq LLM pipelines, &amp; scikit-learn/XGBoost.</p>
-                    </div>
+                    </GlassTiltCard>
 
-                    <div className={styles.statCard}>
+                    <GlassTiltCard className={styles.statCard} maxTilt={7}>
                         <div className={styles.cardHeader}>
                             <FaMobileAlt className={styles.cardIcon} />
                             <span className={styles.statNumber}>Native</span>
                         </div>
                         <h4 className={styles.cardTitle}>Cross-Platform Android</h4>
                         <p className={styles.cardDesc}>Capacitor integration, Google OAuth native sign-in, &amp; APK distribution.</p>
-                    </div>
+                    </GlassTiltCard>
 
-                    <div className={styles.statCard}>
+                    <GlassTiltCard className={styles.statCard} maxTilt={7}>
                         <div className={styles.cardHeader}>
                             <FaLayerGroup className={styles.cardIcon} />
                             <span className={styles.statNumber}>Full Stack</span>
                         </div>
                         <h4 className={styles.cardTitle}>End-to-End Delivery</h4>
                         <p className={styles.cardDesc}>Database schema design, REST APIs, state management, &amp; responsive UI.</p>
-                    </div>
+                    </GlassTiltCard>
                 </div>
             </div>
         </section>
