@@ -86,3 +86,5 @@ export function useGlassTilt(maxTilt = 6) {
 
     return cardRef;
 }
+
+export default useGlassTilt;
