@@ -1,4 +1,5 @@
 'use client';
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import CurrentlyBuilding from '@/components/CurrentlyBuilding';
@@ -12,6 +13,12 @@ import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import styles from './page.module.css';
 
+// Lazy-load subtle 3D section accents
+const Section3DAccent = dynamic(() => import('@/components/Section3DAccent'), {
+  ssr: false,
+  loading: () => null
+});
+
 export default function Home() {
   return (
     <>
@@ -22,9 +29,13 @@ export default function Home() {
 
           <CurrentlyBuilding />
 
+          <Section3DAccent variant="light" align="right" />
+
           <ScrollReveal stagger>
             <AboutPreview />
           </ScrollReveal>
+
+          <Section3DAccent variant="light" align="left" />
 
           <ScrollReveal stagger>
             <SkillsSnapshot />

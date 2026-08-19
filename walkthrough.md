@@ -1,30 +1,22 @@
-# 3D Project Constellation Background Walkthrough
+# Interactive Particle Constellation Background Walkthrough
 
-Detailed summary of the unified full-page 3D Project Constellation Background built with `@react-three/fiber` and `@react-three/drei`.
+Detailed summary of the interactive particle constellation background system implemented across the portfolio.
 
 ## Key Changes Implemented
 
-### 1. Unified 3D Constellation System (`@react-three/fiber` + `@react-three/drei`)
-- **Single Background Layer**: Replaced local hero 3D shapes and 2D canvas particles with a single, unified 3D WebGL background in [components/ConstellationBackground.jsx](file:///c:/Portfolio-Website-/components/ConstellationBackground.jsx) fixed across all sections.
-- **Starfield (Instanced Points)**:
-  - Generates 190 (desktop) / 85 (mobile) points scattered across a wide 3D volume (`[-18, 18]` x/y, `[-15, 8]` z) using `<Points>` and `<PointMaterial>` for high frame-rate instanced rendering.
-  - Sized with `sizeAttenuation` for multi-plane depth perception.
-  - Soft ambient drift rotation around the Y and X axes.
-- **4 Featured Project Stars**:
-  - Distinct glowing emissive spheres (`#6B7F5E` / `#93A886`) with breathing outer halos.
-  - Representing:
-    1. **Code Review AI** (`Full Stack AI`)
-    2. **MARKD** (`Android & Vision`)
-    3. **Journey Curator** (`ML & Prediction`)
-    4. **This Portfolio** (`Next.js & 3D`)
-  - Connected by a thin, elegant constellation path line (`<Line>` from `@react-three/drei`) symbolizing connected engineering milestones.
-  - Floating 3D HTML tooltips (`<Html>` from `@react-three/drei`) with smooth hover interactions that scroll directly to the Projects section on click.
-- **Natural Camera Parallax**:
-  - Smooth normalized mouse tracking on `window` smoothly offsets the camera with lerping for depth perception without abrupt jumps.
-  - Scroll-reactive subtle group rotation.
-- **Hero & Page Layout Polish**:
-  - Removed obsolete torus knot shape from [components/Hero.jsx](file:///c:/Portfolio-Website-/components/Hero.jsx) and refined typography layout in [components/Hero.module.css](file:///c:/Portfolio-Website-/components/Hero.module.css) so the constellation shines around the hero content.
-  - Removed duplicate section shaders from [app/page.js](file:///c:/Portfolio-Website-/app/page.js).
+### 1. Interactive Particle Constellation Network (HTML5 Canvas)
+- **Component**: [components/ParticleBackground.jsx](file:///c:/Portfolio-Website-/components/ParticleBackground.jsx) containing a full-viewport, fixed HTML5 Canvas animation behind all page content (`position: fixed; inset: 0; pointer-events: none;`).
+- **Applied AI / Neural Constellation Aesthetic**:
+  - Small drifting particle nodes connected by dynamic thin lines when particles move within 140px proximity.
+  - **Sage-Neutral Palette**: Uses `rgba(107, 127, 94, 0.5)` for particle nodes and distance-interpolated `rgba(107, 127, 94, ...)` for connection lines.
+  - **Mouse Magnetism**: Subtle interactive drift where nearby particles gently gravitate toward cursor position.
+- **High DPI & Performance**:
+  - Automatic `devicePixelRatio` scaling for crisp rendering on Retina/mobile displays.
+  - Efficient `requestAnimationFrame` loop with seamless wrap-around edge calculations.
+  - Desktop (~70 particles) vs Mobile (<768px: ~35 particles) adaptive counts for optimal battery and 60fps performance.
+  - Full support for `prefers-reduced-motion: reduce`.
+- **Root Layout Integration**:
+  - Integrated cleanly in [app/layout.js](file:///c:/Portfolio-Website-/app/layout.js).
 
 ---
 
@@ -32,12 +24,9 @@ Detailed summary of the unified full-page 3D Project Constellation Background bu
 
 | File | Status | Description |
 |---|---|---|
-| [components/ConstellationBackground.jsx](file:///c:/Portfolio-Website-/components/ConstellationBackground.jsx) | **CREATED** | Full-page 3D constellation with instanced stars, 4 project stars, connecting lines, and HTML tooltips |
-| [components/ConstellationBackground.module.css](file:///c:/Portfolio-Website-/components/ConstellationBackground.module.css) | **CREATED** | 3D overlay styling and floating glassmorphic project tooltips |
-| [app/layout.js](file:///c:/Portfolio-Website-/app/layout.js) | **MODIFIED** | Mounted `ConstellationBackground` at root layout level |
-| [components/Hero.jsx](file:///c:/Portfolio-Website-/components/Hero.jsx) | **MODIFIED** | Removed local 3D element to let full-page constellation shine through |
-| [components/Hero.module.css](file:///c:/Portfolio-Website-/components/Hero.module.css) | **MODIFIED** | Centered and balanced hero presentation |
-| [app/page.js](file:///c:/Portfolio-Website-/app/page.js) | **MODIFIED** | Cleaned up duplicate section shader elements |
-| [components/ParticleBackground.jsx](file:///c:/Portfolio-Website-/components/ParticleBackground.jsx) | **MODIFIED** | Aliased to `ConstellationBackground` |
-| [components/AnimatedBackground.jsx](file:///c:/Portfolio-Website-/components/AnimatedBackground.jsx) | **MODIFIED** | Aliased to `ConstellationBackground` |
-| [components/Hero3DElement.jsx](file:///c:/Portfolio-Website-/components/Hero3DElement.jsx) | **MODIFIED** | Cleaned up obsolete local WebGL script |
+| [components/ParticleBackground.jsx](file:///c:/Portfolio-Website-/components/ParticleBackground.jsx) | **ACTIVE** | Interactive HTML5 canvas particle constellation with mouse magnetism |
+| [app/layout.js](file:///c:/Portfolio-Website-/app/layout.js) | **ACTIVE** | Mounted `ParticleBackground` globally at the root layout |
+| [components/Hero.jsx](file:///c:/Portfolio-Website-/components/Hero.jsx) | **RESTORED** | Interactive 3D Torus Knot & neural node network |
+| [components/Hero.module.css](file:///c:/Portfolio-Website-/components/Hero.module.css) | **RESTORED** | Restored hero two-column grid layout |
+| [components/Hero3DElement.jsx](file:///c:/Portfolio-Website-/components/Hero3DElement.jsx) | **RESTORED** | Interactive 3D geometric core with orbit controls |
+| [app/page.js](file:///c:/Portfolio-Website-/app/page.js) | **RESTORED** | Restored section 3D accents and structure |

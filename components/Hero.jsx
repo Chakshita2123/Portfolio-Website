@@ -1,16 +1,22 @@
-'use client';
 import { useRef } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { FaFileDownload, FaArrowDown } from 'react-icons/fa';
 import useMouse3D from '../hooks/useMouse3D';
 import styles from './Hero.module.css';
+
+// Lazy-load the interactive 3D Neural Engineering element to ensure zero SSR blockage
+const Hero3DElement = dynamic(() => import('./Hero3DElement'), {
+    ssr: false,
+    loading: () => <div className={styles.blobSkeleton} />
+});
 
 export default function Hero() {
     const heroRef = useRef(null);
     const contentRef = useRef(null);
 
     // Subtle 3D tilt on content
-    useMouse3D(heroRef, contentRef, 3);
+    useMouse3D(heroRef, contentRef, 4);
 
     return (
         <section id="home" className={styles.hero} ref={heroRef}>
@@ -71,6 +77,11 @@ export default function Hero() {
                             <span className={styles.statLabel}>+ LLM</span>
                         </div>
                     </div>
+                </div>
+
+                {/* Right column — 3D Central Geometric Shape + Neural Network Nodes */}
+                <div className={`${styles.heroVisual} ${styles.animateIn} ${styles.delay2}`}>
+                    <Hero3DElement />
                 </div>
             </div>
 

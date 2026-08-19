@@ -1,6 +1,6 @@
 import "./globals.css";
 import CustomCursor from "../components/CustomCursor";
-import ConstellationBackground from "../components/ConstellationBackground";
+import ParticleBackground from "../components/ParticleBackground";
 import PortfolioExperienceProvider from "../components/PortfolioExperienceProvider";
 
 export const viewport = {
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <PortfolioExperienceProvider>
-          <ConstellationBackground />
+          <ParticleBackground />
           <CustomCursor />
           {children}
         </PortfolioExperienceProvider>
