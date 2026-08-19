@@ -9,8 +9,6 @@ import styles from './projects.module.css';
 const projects = [
     {
         id: 1,
-        level: 'LEVEL 01',
-        progress: 100,
         title: 'Code Review AI',
         problem: 'Developers need fast, structured feedback on code — not generic AI chat responses.',
         description: 'Full-stack AI-powered code review platform with streaming reviews (SSE), multiple review templates, GitHub PR review, an AI chat assistant with LaTeX rendering, and PDF export.',
@@ -21,8 +19,6 @@ const projects = [
     },
     {
         id: 2,
-        level: 'LEVEL 02',
-        progress: 100,
         title: 'MARKD — Attendance Tracker',
         problem: 'Students need a reliable, mobile-native way to track attendance without relying on spreadsheets or fragile college portals.',
         description: 'Cross-platform attendance tracker with Google OAuth, native Android sign-in via Capacitor, AI-powered timetable upload (Gemini Vision + Groq fallback), and balance tracking.',
@@ -36,8 +32,6 @@ const projects = [
     },
     {
         id: 3,
-        level: 'LEVEL 03',
-        progress: 68,
         title: 'Journey Curator',
         problem: 'Most "AI travel planners" are just LLM wrappers with no real predictive intelligence.',
         description: 'Travel planning platform built around a real ML core — a trip cost predictor trained with scikit-learn/XGBoost — combined with Gemini/Groq for planning assistance.',
@@ -49,8 +43,6 @@ const projects = [
     },
     {
         id: 4,
-        level: 'LEVEL 04',
-        progress: 100,
         title: 'This Portfolio',
         problem: 'Traditional portfolios are static PDFs disguised as websites — they don\'t demonstrate how someone actually builds.',
         description: 'A clean, AI-integrated personal portfolio with an embedded AI assistant grounded in real project data.',
@@ -69,9 +61,7 @@ export default function ProjectsPage() {
                 {/* Page Header */}
                 <section className={styles.pageHeader}>
                     <div className="container">
-                        <div className={styles.headerEyebrow}>
-                            <span className={styles.eyebrowCode}>ALL MODULES // LEVEL LOG</span>
-                        </div>
+                        <span className="section-label">Portfolio</span>
                         <h1 className={styles.pageTitle}>
                             Projects
                         </h1>
@@ -91,14 +81,11 @@ export default function ProjectsPage() {
                                     className={styles.projectCard}
                                 >
                                     <div className={styles.cardHeader}>
-                                        <div className={styles.titleRow}>
-                                            <span className={styles.levelBadge}>{project.level}</span>
-                                            <h3 className={styles.cardTitle}>{project.title}</h3>
-                                        </div>
+                                        <h3 className={styles.cardTitle}>{project.title}</h3>
                                         <div className={styles.badges}>
                                             {project.status === 'in-progress' && (
                                                 <span className={styles.statusBadge}>
-                                                    <FaClock style={{ marginRight: '4px', fontSize: '0.65rem' }} /> In Progress
+                                                    <FaClock style={{ marginRight: '4px', fontSize: '0.7rem' }} /> In Progress
                                                 </span>
                                             )}
                                             {project.hasCaseStudy && (
@@ -126,16 +113,6 @@ export default function ProjectsPage() {
                                                 </p>
                                             </div>
                                         )}
-                                    </div>
-
-                                    {/* Level Progress Bar Divider */}
-                                    <div className={styles.progressBarSection} aria-hidden="true">
-                                        <div className={styles.progressTrack}>
-                                            <div
-                                                className={`${styles.progressFill} ${project.status === 'in-progress' ? styles.progressInProgress : ''}`}
-                                                style={{ width: `${project.progress}%` }}
-                                            />
-                                        </div>
                                     </div>
 
                                     <div className={styles.cardTechStack}>

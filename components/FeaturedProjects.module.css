@@ -1,8 +1,4 @@
-/* =====================================================
-   FEATURED PROJECTS — SAGE CONTRAST SECTION
-   "Level Select" Restyle (Subtle Game-Menu Chrome)
-   ===================================================== */
-
+/* ==================== FEATURED PROJECTS (THE ONE SAGE CONTRAST SECTION) ==================== */
 .projects {
     background: var(--bg-contrast);
     padding: var(--spacing-4xl) 0;
@@ -16,24 +12,14 @@
     max-width: 680px;
 }
 
-/* Level Select Eyebrow Monospace Chrome */
-.headerEyebrow {
-    margin-bottom: var(--spacing-sm);
-}
-
-.eyebrowCode {
-    display: inline-flex;
-    align-items: center;
-    font-family: var(--font-mono, monospace);
+.sectionLabel {
+    display: inline-block;
     font-size: var(--font-size-xs);
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--accent-hover);
-    background: rgba(31, 36, 32, 0.08);
-    padding: 3px 10px;
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(31, 36, 32, 0.15);
+    margin-bottom: var(--spacing-sm);
 }
 
 .sectionTitle {
@@ -61,82 +47,53 @@
 /* Cards on Contrast Section in light --bg-contrast-elevated (#F7F7F0) */
 .card {
     background: var(--bg-contrast-elevated);
-    border: 1.5px solid rgba(43, 46, 39, 0.12);
+    border: 1px solid rgba(43, 46, 39, 0.1);
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
     display: flex;
     flex-direction: column;
     position: relative;
     box-shadow: 0 4px 16px rgba(43, 46, 39, 0.15);
-    min-height: 400px;
+    min-height: 380px;
     transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
 }
 
-/* Selected / Hover state with soft glow */
 .card:hover {
-    box-shadow: 0 0 0 1.5px var(--accent), 0 16px 36px rgba(43, 46, 39, 0.22);
+    box-shadow: 0 14px 32px rgba(43, 46, 39, 0.22);
     transform: translateY(-4px);
     border-color: var(--accent);
 }
 
-/* Card Top Level Select Header Row */
 .cardTop {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: var(--spacing-sm);
     margin-bottom: var(--spacing-md);
     min-height: 28px;
 }
 
-/* LEVEL 0X Monospace Tag */
-.levelBadge {
-    display: inline-flex;
-    align-items: center;
-    font-family: var(--font-mono, monospace);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--text-inverse);
-    background: var(--accent);
-    padding: 3px 9px;
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 1px 3px rgba(43, 46, 39, 0.15);
-}
-
-.topRightBadges {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-}
-
+/* Badges with --accent solid fill so they pop against light card */
 .statusBadge {
     display: inline-flex;
     align-items: center;
-    font-family: var(--font-mono, monospace);
-    font-size: 0.7rem;
+    font-size: var(--font-size-xs);
     font-weight: 600;
-    letter-spacing: 0.04em;
-    color: var(--text-primary);
-    background: rgba(107, 127, 94, 0.15);
-    border: 1px solid var(--accent);
-    padding: 2px 8px;
-    border-radius: var(--radius-sm);
+    color: var(--text-inverse);
+    background: var(--accent);
+    padding: 3px var(--spacing-sm);
+    border-radius: var(--radius-full);
+    width: fit-content;
 }
 
 .caseStudyBadge {
-    display: inline-flex;
-    align-items: center;
-    font-family: var(--font-mono, monospace);
-    font-size: 0.7rem;
+    display: inline-block;
+    font-size: var(--font-size-xs);
     font-weight: 600;
-    letter-spacing: 0.04em;
-    color: var(--accent);
-    background: rgba(107, 127, 94, 0.12);
-    border: 1px solid rgba(107, 127, 94, 0.3);
-    padding: 2px 8px;
-    border-radius: var(--radius-sm);
+    color: var(--text-inverse);
+    background: var(--accent);
+    padding: 3px var(--spacing-sm);
+    border-radius: var(--radius-full);
+    width: fit-content;
 }
 
 .cardContent {
@@ -183,36 +140,11 @@
     margin-bottom: var(--spacing-md);
 }
 
-/* Level Progress Bar Divider */
-.progressBarSection {
-    margin-top: auto;
-    margin-bottom: var(--spacing-md);
-}
-
-.progressTrack {
-    width: 100%;
-    height: 4px;
-    background: rgba(43, 46, 39, 0.08);
-    border-radius: var(--radius-full);
-    overflow: hidden;
-    position: relative;
-}
-
-.progressFill {
-    height: 100%;
-    background: var(--accent);
-    border-radius: var(--radius-full);
-    transition: width 0.4s ease;
-}
-
-.progressInProgress {
-    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
-}
-
 .techStack {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-xs);
+    margin-top: auto;
     margin-bottom: var(--spacing-lg);
 }
 

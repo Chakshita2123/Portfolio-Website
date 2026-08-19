@@ -1,7 +1,11 @@
-/* ==================== SKILLS SNAPSHOT ==================== */
-.skills {
+/* =====================================================
+   SKILL TREE — CONNECTED BRANCHING NODE NETWORK
+   Sage-Neutral Technical Diagram Aesthetic
+   ===================================================== */
+
+.skillsSection {
     background: transparent;
-    padding: var(--spacing-3xl) 0;
+    padding: var(--spacing-4xl) 0;
     position: relative;
 }
 
@@ -13,118 +17,433 @@
     margin-right: auto;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-xl);
+/* ==================== TREE CONTAINER ==================== */
+.treeContainer {
+    position: relative;
+    background: var(--bg-elevated);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-3xl) var(--spacing-xl) var(--spacing-2xl);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    margin-bottom: var(--spacing-3xl);
 }
 
-/* Category Cards in --bg-elevated */
-.category {
+/* Subtle Technical Grid Blueprint Pattern in Background */
+.treeCanvasGrid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at 1px 1px, rgba(107, 127, 94, 0.1) 1px, transparent 0);
+    background-size: 24px 24px;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* ==================== TIER 0: ROOT NODE ==================== */
+.rootWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    margin-bottom: var(--spacing-xl);
+}
+
+.rootNode {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    background: var(--surface-elevated);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius-full);
+    padding: 0.65rem 1.6rem 0.65rem 0.75rem;
+    box-shadow: 0 4px 20px rgba(107, 127, 94, 0.18);
+    position: relative;
+    cursor: default;
+    transition: all var(--transition-base);
+}
+
+.rootNode:hover,
+.rootConnected {
+    transform: scale(1.03);
+    box-shadow: 0 8px 28px rgba(107, 127, 94, 0.28);
+    border-color: var(--accent-hover);
+}
+
+.rootPulseRing {
+    position: absolute;
+    inset: -4px;
+    border-radius: var(--radius-full);
+    border: 1.5px solid var(--accent-light);
+    opacity: 0.4;
+    animation: rootPulse 3s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes rootPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.06);
+        opacity: 0.7;
+    }
+}
+
+.rootIconCircle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--text-inverse);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: 0 2px 8px rgba(43, 46, 39, 0.2);
+}
+
+.rootContent {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.rootTag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+.rootTitle {
+    font-size: var(--font-size-base);
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.rootSubtitle {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Vertical Trunk from Root */
+.trunkLine {
+    width: 2px;
+    height: 36px;
+    background: var(--accent);
+    opacity: 0.5;
+    margin-top: 4px;
+    position: relative;
+}
+
+.trunkLine::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* ==================== TIER 1 & 2: BRANCHES & TOOLS ==================== */
+.branchesGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+    position: relative;
+    z-index: 2;
+}
+
+/* Individual Branch Column */
+.branchColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: transform var(--transition-base);
+}
+
+/* Category Top Horizontal Connector to Trunk */
+.categoryConnector {
+    width: 2px;
+    height: 20px;
+    background: var(--border-subtle);
+    transition: background-color var(--transition-fast);
+}
+
+.branchActive .categoryConnector {
+    background: var(--accent);
+}
+
+/* Category Branch Node */
+.categoryNode {
+    width: 100%;
+    background: var(--bg-primary);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    transition: all var(--transition-base);
+    position: relative;
+    z-index: 2;
+}
+
+.branchActive .categoryNode {
+    border-color: var(--accent);
+    background: var(--surface-elevated);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.categoryHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.categoryIconBadge {
+    font-size: 1.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
     background: var(--bg-elevated);
     border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-xl);
-    padding: var(--spacing-xl);
-    box-shadow: var(--shadow-md);
-    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
-    position: relative;
-    overflow: hidden;
-    min-height: 280px;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.categoryTitleWrapper {
     display: flex;
     flex-direction: column;
 }
 
-.category:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
-    box-shadow: var(--shadow-lg);
-}
-
-/* Category Header Layout */
-.categoryHeader {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
-}
-
-.categoryIcon {
-    font-size: var(--font-size-2xl);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    background: var(--bg-primary);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-subtle);
-    transition: border-color var(--transition-fast);
-}
-
-.category:hover .categoryIcon {
-    border-color: var(--accent);
+.branchLabel {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
 }
 
 .categoryTitle {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.categoryInsight {
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    line-height: 1.4;
+    margin-top: 2px;
+}
+
+.branchActive .categoryInsight {
+    color: var(--text-secondary);
+}
+
+/* Vertical Stem Connecting Category to Tool Nodes */
+.toolStemLine {
+    width: 2px;
+    height: 18px;
+    background: var(--border-subtle);
+    transition: background-color var(--transition-fast);
+}
+
+.branchActive .toolStemLine {
+    background: var(--accent);
+}
+
+/* Tool Nodes List */
+.toolNodesList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    padding-left: 12px;
+    border-left: 2px solid var(--border-subtle);
+    transition: border-color var(--transition-fast);
+}
+
+.branchActive .toolNodesList {
+    border-left-color: var(--accent);
+}
+
+/* Individual Tool Node */
+.toolNode {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.leafConnector {
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    width: 10px;
+    height: 2px;
+    background: var(--border-subtle);
+    transition: background-color var(--transition-fast);
+}
+
+.toolNode:hover .leafConnector,
+.branchActive .leafConnector {
+    background: var(--accent);
+}
+
+.toolNodeBody {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 7px 10px;
+    box-shadow: 0 1px 3px rgba(43, 46, 39, 0.04);
+    transition: all var(--transition-fast);
+}
+
+.toolNode:hover .toolNodeBody,
+.toolNodeHovered .toolNodeBody {
+    border-color: var(--accent);
+    background: #FFFFFF;
+    box-shadow: 0 4px 14px rgba(107, 127, 94, 0.16);
+    transform: translateX(3px);
+}
+
+.toolIconContainer {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+}
+
+.toolIconImg {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.toolCheck {
+    font-size: 0.8rem;
+    color: var(--accent);
+}
+
+.toolInfo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.toolName {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+}
+
+.toolDesc {
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.toolNode:hover .toolDesc {
+    color: var(--text-secondary);
+}
+
+.activeDot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 5px rgba(107, 127, 94, 0.6);
+    flex-shrink: 0;
+}
+
+/* ==================== INSPECTOR TOOLTIP BAR ==================== */
+.inspectorBar {
+    margin-top: var(--spacing-2xl);
+    padding: 0.75rem 1.25rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    z-index: 2;
+    transition: all var(--transition-base);
+}
+
+.inspectorVisible {
+    border-color: var(--accent);
+    background: var(--surface-elevated);
+    box-shadow: 0 4px 16px rgba(107, 127, 94, 0.12);
+}
+
+.inspectorInner {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.inspectorTag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background: rgba(107, 127, 94, 0.1);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(107, 127, 94, 0.2);
+}
+
+.inspectorName {
+    font-size: var(--font-size-sm);
     font-weight: 700;
     color: var(--text-primary);
 }
 
-/* Skill Tags */
-.skillTags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-    flex: 1;
-    align-content: flex-start;
+.inspectorDivider {
+    color: var(--border-subtle);
 }
 
-.skillTag {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-    padding: 0.35rem 0.75rem !important;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-secondary);
+.inspectorDesc {
     font-size: var(--font-size-xs);
+    color: var(--text-secondary);
     font-weight: 500;
-    border-radius: var(--radius-md);
-    transition: all var(--transition-fast);
-}
-
-.skillTag:hover {
-    border-color: var(--accent) !important;
-    color: var(--accent) !important;
-    background: var(--surface-elevated) !important;
-    transform: translateY(-2px);
-}
-
-.tagIcon {
-    width: 16px;
-    height: 16px;
-    object-fit: contain;
-}
-
-/* Subtle Insight on Card */
-.categoryInsight {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-lg);
-    padding-top: var(--spacing-md);
-    border-top: 1px solid var(--border-subtle);
-}
-
-.insightText {
-    font-size: var(--font-size-xs);
-    color: var(--text-tertiary);
-    line-height: 1.5;
-}
-
-.category:hover .insightText {
-    color: var(--text-secondary);
 }
 
 /* ==================== CERTIFICATIONS STRIP ==================== */
@@ -132,7 +451,7 @@
     margin-top: var(--spacing-3xl);
     padding: var(--spacing-2xl);
     background: var(--bg-elevated);
-    border: 1px solid var(--border-subtle);
+    border: 1.5px solid var(--border-subtle);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-md);
 }
@@ -194,23 +513,29 @@
     font-weight: 500;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .certChips {
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+    .branchesGrid {
         grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xl);
     }
 }
 
-@media (max-width: 600px) {
-    .certificationsSection {
-        padding: var(--spacing-lg);
+@media (max-width: 768px) {
+    .treeContainer {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .branchesGrid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
     }
 
     .certChips {
         grid-template-columns: 1fr;
+    }
+
+    .inspectorBar {
+        display: none;
     }
 }
