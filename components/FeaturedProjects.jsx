@@ -6,6 +6,8 @@ import styles from './FeaturedProjects.module.css';
 const projects = [
     {
         id: 1,
+        level: 'LEVEL 01',
+        progress: 100,
         title: 'Code Review AI',
         problem: 'Developers need fast, structured feedback on code — not generic AI chat responses.',
         description: 'Full-stack AI-powered code review platform with streaming reviews (SSE), multiple review templates, GitHub PR review, an AI chat assistant with LaTeX rendering, and PDF export.',
@@ -16,6 +18,8 @@ const projects = [
     },
     {
         id: 2,
+        level: 'LEVEL 02',
+        progress: 100,
         title: 'MARKD — Attendance Tracker',
         problem: 'Students need a reliable, mobile-native way to track attendance without relying on spreadsheets or fragile college portals.',
         description: 'Cross-platform attendance tracker with Google OAuth, native Android sign-in via Capacitor, AI-powered timetable upload (Gemini Vision + Groq fallback), and balance tracking.',
@@ -29,6 +33,8 @@ const projects = [
     },
     {
         id: 3,
+        level: 'LEVEL 03',
+        progress: 68,
         title: 'Journey Curator',
         problem: 'Most "AI travel planners" are just LLM wrappers with no real predictive intelligence.',
         description: 'Travel planning platform built around a real ML core — a trip cost predictor trained with scikit-learn/XGBoost — combined with Gemini/Groq for planning assistance.',
@@ -40,6 +46,8 @@ const projects = [
     },
     {
         id: 4,
+        level: 'LEVEL 04',
+        progress: 100,
         title: 'This Portfolio',
         problem: 'Traditional portfolios are static PDFs disguised as websites — they don\'t demonstrate how someone actually builds.',
         description: 'A clean, AI-integrated personal portfolio with an embedded AI assistant grounded in real project data.',
@@ -55,7 +63,9 @@ export default function FeaturedProjects() {
         <section id="projects" className={styles.projects}>
             <div className="container">
                 <div className={styles.header}>
-                    <span className={styles.sectionLabel}>Featured Work</span>
+                    <div className={styles.headerEyebrow}>
+                        <span className={styles.eyebrowCode}>SELECT PROJECT // LOG_04</span>
+                    </div>
                     <h2 className={styles.sectionTitle}>
                         Selected Projects
                     </h2>
@@ -68,15 +78,20 @@ export default function FeaturedProjects() {
                 <div className={styles.grid}>
                     {projects.map((project) => (
                         <div key={project.id} className={styles.card}>
+                            {/* Card Top Level Select Chrome */}
                             <div className={styles.cardTop}>
-                                {project.status === 'in-progress' && (
-                                    <span className={styles.statusBadge}>
-                                        <FaClock style={{ marginRight: '4px', fontSize: '0.7rem' }} /> In Progress
-                                    </span>
-                                )}
-                                {project.hasCaseStudy && (
-                                    <span className={styles.caseStudyBadge}>Case Study</span>
-                                )}
+                                <span className={styles.levelBadge}>{project.level}</span>
+                                
+                                <div className={styles.topRightBadges}>
+                                    {project.status === 'in-progress' && (
+                                        <span className={styles.statusBadge}>
+                                            <FaClock style={{ marginRight: '4px', fontSize: '0.65rem' }} /> In Progress
+                                        </span>
+                                    )}
+                                    {project.hasCaseStudy && (
+                                        <span className={styles.caseStudyBadge}>Case Study</span>
+                                    )}
+                                </div>
                             </div>
 
                             <div className={styles.cardContent}>
@@ -92,6 +107,16 @@ export default function FeaturedProjects() {
                                         💡 {project.note}
                                     </p>
                                 )}
+
+                                {/* Subtle Level Select Progress Bar */}
+                                <div className={styles.progressBarSection} aria-hidden="true">
+                                    <div className={styles.progressTrack}>
+                                        <div 
+                                            className={`${styles.progressFill} ${project.status === 'in-progress' ? styles.progressInProgress : ''}`} 
+                                            style={{ width: `${project.progress}%` }} 
+                                        />
+                                    </div>
+                                </div>
 
                                 <div className={styles.techStack}>
                                     {project.techStack.map((tech, idx) => (
@@ -121,8 +146,8 @@ export default function FeaturedProjects() {
                                     className={`btn ${styles.secondaryAction}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                >
-                                    <FaGithub /> GitHub
+                                    >
+                                        <FaGithub /> GitHub
                                 </a>
 
                                 {project.apkUrl && (
