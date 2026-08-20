@@ -34,9 +34,17 @@ export default function SystemLog({ pathname }) {
         ]);
     }, [pathname]);
 
+    const isFirstRender = useRef(true);
+
     useEffect(() => {
-        endRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [entries]);
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+        if (visible) {
+            endRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [entries, visible]);
 
     if (!visible) return null;
 

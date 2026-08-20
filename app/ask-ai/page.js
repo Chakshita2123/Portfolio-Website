@@ -112,8 +112,14 @@ export default function AskAIPage() {
         }
     }, [messages, activeConversationId, isHydrated, saveConversations]);
 
+    const isFirstRender = useRef(true);
+
     // Auto-scroll to bottom when new messages arrive
     useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 

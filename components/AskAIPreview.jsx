@@ -27,9 +27,20 @@ export default function AskAIPreview() {
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const messagesEndRef = useRef(null);
+    const chatMessagesRef = useRef(null);
+    const isFirstRender = useRef(true);
 
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+        if (chatMessagesRef.current) {
+            chatMessagesRef.current.scrollTo({
+                top: chatMessagesRef.current.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
     }, [messages]);
 
     const sendMessage = async (messageText) => {
@@ -135,7 +146,7 @@ export default function AskAIPreview() {
                             </div>
 
                             {/* Chat Messages */}
-                            <div className={styles.chatMessages}>
+                            <div className={styles.chatMessages} ref={chatMessagesRef}>
                                 {messages.slice(-4).map((msg, index) => (
                                     <div key={index} className={msg.role === 'ai' ? styles.messageBot : styles.messageUser}>
                                         <div className={msg.role === 'ai' ? styles.messageBubble : styles.messageBubbleUser}>
