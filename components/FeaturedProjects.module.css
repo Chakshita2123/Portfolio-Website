@@ -149,7 +149,9 @@
 }
 
 .techTag {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     padding: 0.25rem 0.65rem;
     font-size: var(--font-size-xs);
     font-weight: 500;
@@ -157,6 +159,19 @@
     background: var(--bg-primary);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.techTag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.tagIcon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .cardActions {

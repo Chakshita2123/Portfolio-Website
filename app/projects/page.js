@@ -13,7 +13,14 @@ const projects = [
         title: 'Code Review AI',
         problem: 'Developers need fast, structured feedback on code — not generic AI chat responses.',
         description: 'Full-stack AI-powered code review platform with streaming reviews (SSE), multiple review templates, GitHub PR review, an AI chat assistant with LaTeX rendering, and PDF export.',
-        techStack: ['Next.js 15', 'TypeScript', 'MongoDB', 'NextAuth', 'Gemini/Groq', 'Monaco Editor'],
+        techStack: [
+            { name: 'Next.js 15', icon: 'nextjs' },
+            { name: 'TypeScript', icon: 'ts' },
+            { name: 'MongoDB', icon: 'mongodb' },
+            { name: 'NextAuth' },
+            { name: 'Gemini/Groq' },
+            { name: 'Monaco Editor' }
+        ],
         liveUrl: 'https://code-review-ai-blond.vercel.app/',
         githubUrl: 'https://github.com/Chakshita2123/Code-Review-AI',
         status: 'live'
@@ -23,7 +30,14 @@ const projects = [
         title: 'MARKD — Attendance Tracker',
         problem: 'Students need a reliable, mobile-native way to track attendance without relying on spreadsheets or fragile college portals.',
         description: 'Cross-platform attendance tracker with Google OAuth, native Android sign-in via Capacitor, AI-powered timetable upload (Gemini Vision + Groq fallback), and balance tracking.',
-        techStack: ['React', 'Node.js', 'MongoDB', 'Capacitor (Android)', 'Gemini Vision', 'Groq'],
+        techStack: [
+            { name: 'React', icon: 'react' },
+            { name: 'Node.js', icon: 'nodejs' },
+            { name: 'MongoDB', icon: 'mongodb' },
+            { name: 'Capacitor (Android)', icon: 'androidstudio' },
+            { name: 'Gemini Vision' },
+            { name: 'Groq' }
+        ],
         liveUrl: 'https://attendance-tracker-ruddy-ten.vercel.app/',
         githubUrl: 'https://github.com/Chakshita2123/Attendance-Tracker-Chakshita',
         apkUrl: 'https://github.com/Chakshita2123/Attendance-Tracker-Chakshita/releases/download/v1.0/app-debug.apk',
@@ -37,7 +51,13 @@ const projects = [
         problem: 'Most "AI travel planners" are just LLM wrappers with no real predictive intelligence.',
         description: 'Travel planning platform built around a real ML core — a trip cost predictor trained with scikit-learn/XGBoost — combined with Gemini/Groq for planning assistance.',
         note: 'Actively training the cost prediction model — check back soon.',
-        techStack: ['Next.js 15', 'TypeScript', 'MongoDB', 'Python', 'scikit-learn/XGBoost'],
+        techStack: [
+            { name: 'Next.js 15', icon: 'nextjs' },
+            { name: 'TypeScript', icon: 'ts' },
+            { name: 'MongoDB', icon: 'mongodb' },
+            { name: 'Python', icon: 'py' },
+            { name: 'scikit-learn/XGBoost' }
+        ],
         liveUrl: null,
         githubUrl: 'https://github.com/Chakshita2123/Journey-Curator-AI',
         status: 'in-progress'
@@ -47,7 +67,12 @@ const projects = [
         title: 'This Portfolio',
         problem: 'Traditional portfolios are static PDFs disguised as websites — they don\'t demonstrate how someone actually builds.',
         description: 'A clean, AI-integrated personal portfolio with an embedded AI assistant grounded in real project data.',
-        techStack: ['Next.js', 'React', 'CSS Modules', 'Gemini API'],
+        techStack: [
+            { name: 'Next.js', icon: 'nextjs' },
+            { name: 'React', icon: 'react' },
+            { name: 'CSS Modules', icon: 'css' },
+            { name: 'Gemini API' }
+        ],
         liveUrl: 'https://portfolio-website-zeta-seven-42.vercel.app/',
         githubUrl: 'https://github.com/Chakshita2123/Portfolio-Website',
         status: 'live'
@@ -119,7 +144,17 @@ export default function ProjectsPage() {
 
                                     <div className={styles.cardTechStack}>
                                         {project.techStack.map((tech, techIndex) => (
-                                            <span key={techIndex} className={styles.techTag}>{tech}</span>
+                                            <span key={techIndex} className={styles.techTag}>
+                                                {tech.icon && (
+                                                    <img
+                                                        src={`https://skillicons.dev/icons?i=${tech.icon}`}
+                                                        alt=""
+                                                        className={styles.tagIcon}
+                                                        loading="lazy"
+                                                    />
+                                                )}
+                                                {tech.name}
+                                            </span>
                                         ))}
                                     </div>
 
