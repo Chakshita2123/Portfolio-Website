@@ -1,308 +1,311 @@
-/* ==================== FEATURED PROJECTS (THE ONE SAGE CONTRAST SECTION) ==================== */
+/* =====================================================
+   FeaturedProjects.module.css
+   Color-block card design — Projects section only
+   ===================================================== */
+
+/* ── Section wrapper (uses --bg-contrast) ─────────── */
 .projects {
     background: var(--bg-contrast);
-    padding: var(--spacing-4xl) 0;
+    padding: var(--spacing-3xl) 0;
     position: relative;
-    border-top: 1px solid var(--border-contrast);
-    border-bottom: 1px solid var(--border-contrast);
 }
 
+/* ── Section header ────────────────────────────────── */
 .header {
+    text-align: center;
     margin-bottom: var(--spacing-3xl);
-    max-width: 680px;
 }
 
 .sectionLabel {
     display: inline-block;
     font-size: var(--font-size-xs);
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--accent-hover);
+    color: var(--text-on-contrast);
+    opacity: 0.65;
     margin-bottom: var(--spacing-sm);
 }
 
 .sectionTitle {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-3xl);
     font-weight: 800;
     color: var(--text-on-contrast);
-    margin-bottom: var(--spacing-sm);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
 }
 
 .sectionSubtitle {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-base);
     color: var(--text-on-contrast-muted);
-    line-height: 1.6;
+    line-height: 1.7;
+    max-width: 540px;
+    margin: 0 auto;
 }
 
-/* Project Grid — 2 columns on desktop */
+/* ── 2-column grid ─────────────────────────────────── */
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-xl);
-    margin-bottom: var(--spacing-3xl);
+    gap: 1.5rem;
 }
 
-/* Cards on Contrast Section — visual frame sits flush at the top */
+@media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; }
+}
+
+/* ── Card shell ────────────────────────────────────── */
 .card {
-    background: var(--bg-contrast-elevated);
-    border: 1px solid rgba(43, 46, 39, 0.1);
-    border-radius: var(--radius-xl);
-    padding: 0;                          /* visual frame fills top edge */
+    border-radius: 12px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    position: relative;
-    box-shadow: 0 4px 16px rgba(43, 46, 39, 0.15);
-    overflow: hidden;                    /* clip the visual frame corners */
-    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+    background: var(--bg-contrast-elevated);
+    border: 1px solid var(--border-contrast-subtle);
+    box-shadow: 0 2px 12px rgba(31, 36, 32, 0.10);
+    transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
 .card:hover {
-    box-shadow: 0 14px 32px rgba(43, 46, 39, 0.22);
-    transform: translateY(-4px);
-    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(31, 36, 32, 0.18);
 }
 
-.cardTop {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    min-height: 28px;
-    padding: var(--spacing-md) var(--spacing-xl) 0;
-}
-
-/* Badges with --accent solid fill so they pop against light card */
-.statusBadge {
-    display: inline-flex;
-    align-items: center;
-    font-size: var(--font-size-xs);
-    font-weight: 600;
-    color: var(--text-inverse);
-    background: var(--accent);
-    padding: 3px var(--spacing-sm);
-    border-radius: var(--radius-full);
-    width: fit-content;
-}
-
-.caseStudyBadge {
-    display: inline-block;
-    font-size: var(--font-size-xs);
-    font-weight: 600;
-    color: var(--text-inverse);
-    background: var(--accent);
-    padding: 3px var(--spacing-sm);
-    border-radius: var(--radius-full);
-    width: fit-content;
-}
-
-.cardContent {
-    flex: 1;
+/* ── Colored top panel (≈55% height) ──────────────── */
+.panel {
+    position: relative;
+    padding: 1.4rem 1.5rem 1.5rem;
+    overflow: hidden;
+    min-height: 180px;
     display: flex;
     flex-direction: column;
-    padding: 0 var(--spacing-xl);
+    justify-content: flex-end;
 }
 
-.cardTitle {
-    font-size: var(--font-size-2xl);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-md);
-    letter-spacing: -0.01em;
-}
-
-.cardProblem {
-    font-size: var(--font-size-sm);
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-sm);
-}
-
-.problemLabel {
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.cardDesc {
-    font-size: var(--font-size-sm);
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-md);
-}
-
-.inProgressNote {
-    font-size: var(--font-size-xs);
-    font-weight: 600;
-    color: var(--text-primary);
-    background: var(--accent-subtle);
-    border: 1px dashed var(--accent);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius-md);
-    margin-bottom: var(--spacing-md);
-}
-
-.techStack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-xs);
-    margin-top: auto;
-    margin-bottom: var(--spacing-lg);
-}
-
-.techTag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 0.25rem 0.65rem;
-    font-size: var(--font-size-xs);
-    font-weight: 500;
-    color: var(--text-secondary);
-    background: var(--bg-primary);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    transition: all var(--transition-fast);
-}
-
-.techTag:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-.tagIcon {
-    width: 16px;
-    height: 16px;
-    object-fit: contain;
+/* Soft decorative blurred circle — top-right corner */
+.panelOrb {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    filter: blur(28px);
+    pointer-events: none;
     flex-shrink: 0;
 }
 
-.cardActions {
+/* Top row: icon on the left, status badge on the right */
+.panelTop {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
     align-items: center;
-    padding: var(--spacing-md) var(--spacing-xl) var(--spacing-xl);
-    border-top: 1px solid var(--border-subtle);
-    margin-top: auto;
+    justify-content: space-between;
+    margin-bottom: 1.1rem;
 }
 
-.cardActions .btn {
-    padding: 0.55rem 1rem;
-    font-size: var(--font-size-xs);
+.panelIcon {
+    font-size: 2.25rem;     /* 36px — big but not overwhelming */
+    line-height: 1;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.18));
 }
 
-.primaryAction {
-    background: var(--accent);
-    color: var(--text-inverse) !important;
-    border: 1.5px solid var(--accent);
-}
-
-.primaryAction:hover {
-    background: var(--accent-hover);
-    border-color: var(--accent-hover);
-}
-
-.secondaryAction {
-    background: var(--bg-primary);
-    color: var(--text-primary) !important;
-    border: 1.5px solid var(--border-subtle);
-}
-
-.secondaryAction:hover {
-    border-color: var(--accent);
-    color: var(--accent) !important;
-    background: var(--surface-elevated);
-}
-
-.apkBtn {
-    color: var(--text-primary) !important;
-    border: 1.5px solid var(--border-subtle);
-    background: var(--bg-primary);
-}
-
-.apkBtn:hover {
-    border-color: var(--accent);
-    color: var(--accent) !important;
-    background: var(--surface-elevated);
-}
-
-.caseStudyBtn {
-    color: var(--accent) !important;
-    font-weight: 600;
-    padding-left: 0;
-}
-
-.caseStudyBtn:hover {
-    color: var(--accent-hover) !important;
-    text-decoration: underline;
-    background: transparent !important;
-}
-
-.wip {
+/* Status badges */
+.badgeLive,
+.badgeWip {
     display: inline-flex;
     align-items: center;
-    font-size: var(--font-size-xs);
-    font-weight: 600;
-    color: var(--text-secondary);
-    padding: 0.55rem 1rem;
-    border: 1.5px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
-    background: var(--bg-primary);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
-/* View All */
+.badgeLive {
+    background: rgba(255, 255, 255, 0.22);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.badgeWip {
+    background: rgba(255, 255, 255, 0.10);
+    color: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+}
+
+/* Title inside panel */
+.panelTitle {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+/* One-line tagline inside panel */
+.panelTagline {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.5;
+    font-weight: 400;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+/* ── Neutral card footer ───────────────────────────── */
+.footer {
+    padding: 1.1rem 1.4rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+    background: var(--bg-contrast-elevated);
+}
+
+/* Feature chips row */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.chip {
+    display: inline-block;
+    padding: 0.28rem 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+
+/* Action buttons row */
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+}
+
+/* Primary button — inherits accent bg via inline style */
+.btnPrimary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #fff !important;
+    border-radius: var(--radius-md);
+    border: 1.5px solid transparent;
+    transition: filter 150ms ease, transform 150ms ease;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btnPrimary:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+    color: #fff !important;
+}
+
+/* Ghost button */
+.btnGhost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary) !important;
+    border-radius: var(--radius-md);
+    border: 1.5px solid var(--border-subtle);
+    background: transparent;
+    transition: border-color 150ms ease, color 150ms ease, transform 150ms ease;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btnGhost:hover {
+    border-color: var(--accent);
+    color: var(--accent) !important;
+    transform: translateY(-1px);
+}
+
+/* Disabled "In Progress" pseudo-button */
+.btnDisabled {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    border-radius: var(--radius-md);
+    border: 1.5px dashed var(--border-subtle);
+    background: transparent;
+    cursor: default;
+    white-space: nowrap;
+    user-select: none;
+}
+
+/* Secondary text links (APK / case study) */
+.secondaryLinks {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.textLink {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 150ms ease;
+}
+
+.textLink:hover {
+    color: var(--accent-hover);
+}
+
+/* ── View-all link ─────────────────────────────────── */
 .viewAll {
     text-align: center;
+    margin-top: var(--spacing-2xl);
 }
 
 .viewAllLink {
-    color: var(--text-on-contrast) !important;
-    font-size: var(--font-size-base);
-    font-weight: 600;
     display: inline-flex;
     align-items: center;
-    gap: var(--spacing-xs);
-    padding: var(--spacing-sm) var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    background: rgba(247, 247, 240, 0.4);
-    border: 1px solid var(--border-contrast);
-    transition: all var(--transition-fast);
+    gap: 8px;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-on-contrast);
+    padding: 0.65rem 1.4rem;
+    border: 1.5px solid rgba(31, 36, 32, 0.25);
+    border-radius: var(--radius-full);
+    transition: all 200ms ease;
+    text-decoration: none;
 }
 
 .viewAllLink:hover {
-    color: var(--text-primary) !important;
-    background: var(--bg-contrast-elevated);
-    transform: translateX(4px);
-    box-shadow: var(--shadow-sm);
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .projects {
-        padding: var(--spacing-3xl) 0;
-    }
-
-    .sectionTitle {
-        font-size: var(--font-size-3xl);
-    }
-
-    .cardActions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .cardActions .btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .caseStudyBtn {
-        padding-left: var(--spacing-md);
-        justify-content: center;
-    }
+    background: rgba(31, 36, 32, 0.06);
+    border-color: rgba(31, 36, 32, 0.4);
+    color: var(--text-on-contrast);
+    transform: translateX(3px);
 }
