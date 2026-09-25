@@ -37,8 +37,9 @@ const projects = [
     {
         id: 3,
         title: 'Career Lens',
-        tagline: 'Resume\u2013JD alignment scoring, skill gap analysis & career insights.',
-        chips: ['Resume\u2013JD scoring', 'Skill gap analysis', 'AI-powered insights'],
+        tagline: 'Resume–JD alignment scoring, skill gap analysis & career insights.',
+        description: 'AI-powered career intelligence platform that analyses job descriptions, scores resume–JD alignment, maps skill gaps, and surfaces actionable insights to help candidates position themselves effectively for target roles. Results are presented through a clean dashboard that lets users track alignment across multiple job listings at once.',
+        chips: ['Resume–JD scoring', 'Skill gap analysis', 'AI-powered insights'],
         icon: '🎯',
         accent: '#6B5BA8',
         accentDark: '#574A8A',
@@ -52,6 +53,7 @@ const projects = [
         id: 4,
         title: 'Flipkart Analytics Hub',
         tagline: 'E-commerce analytics dashboard with pricing trends & sentiment.',
+        description: 'Data analytics dashboard for Flipkart product data — visualising pricing trends, category breakdowns, and customer review sentiment through interactive charts and a Python/pandas data pipeline. The pipeline ingests and normalises raw listing data before surfacing it through a React frontend with filterable chart views.',
         chips: ['Price trend charts', 'Sentiment analysis', 'pandas pipeline'],
         icon: '📊',
         accent: '#3A72A8',
@@ -148,13 +150,14 @@ export default function FeaturedProjects() {
                                             <FaExternalLinkAlt /> Live Demo
                                         </a>
                                     ) : (
-                                        <span className={styles.btnDisabled}>In Progress</span>
+                                        <span className={styles.btnDisabled}>Coming soon</span>
                                     )}
                                     <a
                                         href={project.githubUrl}
                                         className={styles.btnGhost}
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
                                     >
                                         <FaGithub /> GitHub
                                     </a>

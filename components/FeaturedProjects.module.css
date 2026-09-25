@@ -201,7 +201,8 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 0.6rem 0.9rem;
+    padding: 0 0.9rem;
+    height: 38px;
     font-size: 0.82rem;
     font-weight: 700;
     color: #fff !important;
@@ -224,7 +225,8 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 0.6rem 0.9rem;
+    padding: 0 0.9rem;
+    height: 38px;
     font-size: 0.82rem;
     font-weight: 600;
     color: var(--text-primary) !important;
@@ -242,13 +244,14 @@
     transform: translateY(-1px);
 }
 
-/* Disabled "In Progress" pseudo-button */
+/* Disabled "Coming soon" pseudo-button */
 .btnDisabled {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 0.6rem 0.9rem;
+    padding: 0 0.9rem;
+    height: 38px;
     font-size: 0.82rem;
     font-weight: 600;
     color: var(--text-tertiary);
@@ -258,6 +261,8 @@
     cursor: default;
     white-space: nowrap;
     user-select: none;
+    opacity: 0.65;
+    pointer-events: none;
 }
 
 /* Secondary text links (APK / case study) */

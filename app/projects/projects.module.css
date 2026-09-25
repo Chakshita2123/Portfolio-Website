@@ -160,8 +160,11 @@
 }
 
 .inProgressNote {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
     font-size: 0.82rem;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     background: var(--bg-primary);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
@@ -221,7 +224,8 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 0.6rem 0.9rem;
+    padding: 0 0.9rem;
+    height: 38px;
     font-size: 0.82rem;
     font-weight: 700;
     color: #fff !important;
@@ -243,7 +247,8 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 0.6rem 0.9rem;
+    padding: 0 0.9rem;
+    height: 38px;
     font-size: 0.82rem;
     font-weight: 600;
     color: var(--text-primary) !important;
@@ -266,7 +271,8 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 0.6rem 0.9rem;
+    padding: 0 0.9rem;
+    height: 38px;
     font-size: 0.82rem;
     font-weight: 600;
     color: var(--text-tertiary);
@@ -276,6 +282,8 @@
     cursor: default;
     white-space: nowrap;
     user-select: none;
+    opacity: 0.65;
+    pointer-events: none;
 }
 
 /* Secondary links */

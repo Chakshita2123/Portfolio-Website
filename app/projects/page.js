@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { FaGithub, FaExternalLinkAlt, FaAndroid, FaClock } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaAndroid } from 'react-icons/fa';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import GitHubActivity from '@/components/GitHubActivity';
@@ -45,7 +45,7 @@ const projects = [
         id: 3,
         title: 'Career Lens',
         tagline: 'Resume\u2013JD alignment scoring, skill gap analysis & career insights.',
-        description: 'AI-powered career intelligence platform that analyses job descriptions, scores resume\u2013JD alignment, maps skill gaps, and surfaces actionable insights to help candidates position themselves effectively for target roles.',
+        description: 'AI-powered career intelligence platform that analyses job descriptions, scores resume–JD alignment, maps skill gaps, and surfaces actionable insights to help candidates position themselves effectively for target roles. Results are presented through a clean dashboard that lets users track alignment across multiple job listings at once.',
         chips: ['Resume\u2013JD scoring', 'Skill gap analysis', 'AI-powered insights'],
         techStack: ['React', 'Node.js', 'MongoDB', 'Express', 'Gemini AI'],
         icon: '\uD83C\uDFAF',
@@ -61,7 +61,7 @@ const projects = [
         id: 4,
         title: 'Flipkart Analytics Hub',
         tagline: 'E-commerce analytics dashboard with pricing trends & sentiment.',
-        description: 'Data analytics dashboard for Flipkart product data \u2014 visualising pricing trends, category breakdowns, and customer review sentiment through interactive charts and a Python/pandas data pipeline.',
+        description: 'Data analytics dashboard for Flipkart product data — visualising pricing trends, category breakdowns, and customer review sentiment through interactive charts and a Python/pandas data pipeline. The pipeline ingests and normalises raw listing data before surfacing it through a React frontend with filterable chart views.',
         chips: ['Price trend charts', 'Sentiment analysis', 'pandas pipeline'],
         techStack: ['React', 'Python', 'pandas', 'Recharts', 'FastAPI'],
         icon: '\uD83D\uDCCA',
@@ -160,7 +160,8 @@ export default function ProjectsPage() {
                                         <p className={styles.cardDesc}>{project.description}</p>
                                         {project.note && (
                                             <p className={styles.inProgressNote}>
-                                                \uD83D\uDCA1 {project.note}
+                                                <span style={{ flexShrink: 0, fontStyle: 'normal' }}>ℹ</span>
+                                                {project.note}
                                             </p>
                                         )}
 
@@ -192,7 +193,7 @@ export default function ProjectsPage() {
                                                 </a>
                                             ) : (
                                                 <span className={styles.btnDisabled}>
-                                                    <FaClock /> In Progress
+                                                    Coming soon
                                                 </span>
                                             )}
                                             <a
@@ -200,6 +201,7 @@ export default function ProjectsPage() {
                                                 className={styles.btnGhost}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
+                                                style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
                                             >
                                                 <FaGithub /> GitHub
                                             </a>
