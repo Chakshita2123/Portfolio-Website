@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { FaGithub, FaExternalLinkAlt, FaAndroid, FaArrowRight, FaClock } from 'react-icons/fa';
 import GlassTiltCard from '@/components/GlassTiltCard';
+import ProjectVisual, { HighlightChips } from '@/components/ProjectVisual';
 import styles from './FeaturedProjects.module.css';
 
 const projects = [
@@ -10,6 +11,7 @@ const projects = [
         title: 'Code Review AI',
         problem: 'Developers need fast, structured feedback on code — not generic AI chat responses.',
         description: 'Full-stack AI code review platform with streaming reviews (SSE), multiple review templates, GitHub PR review, AI chat with LaTeX rendering, PDF export, and Roast Mode. Built with Next.js 15, TypeScript, MongoDB, NextAuth v5, Gemini AI + Groq fallback, Monaco Editor, and Recharts.',
+        chips: ['SSE streaming', 'Gemini + Groq fallback', 'GitHub PR review'],
         techStack: [
             { name: 'Next.js 15', icon: 'nextjs' },
             { name: 'TypeScript', icon: 'ts' },
@@ -27,6 +29,7 @@ const projects = [
         title: 'Attendance Tracker (MARKD)',
         problem: 'Students need a reliable, mobile-native way to track attendance without relying on spreadsheets or fragile college portals.',
         description: 'Node.js/Express + MongoDB + React/Vite attendance tracker with Capacitor Android APK, Google OAuth, per-subject "Starting Balance" feature, and Timetable AI Scan via Gemini Vision + Groq fallback.',
+        chips: ['Android APK shipped', 'AI timetable scan', 'Per-subject balance'],
         techStack: [
             { name: 'Node.js', icon: 'nodejs' },
             { name: 'Express' },
@@ -47,6 +50,7 @@ const projects = [
         title: 'Career Lens',
         problem: 'Job seekers struggle to align their skills and resumes with real market demand without spending hours on manual research.',
         description: 'AI-powered career intelligence platform that analyses job descriptions, scores resume–JD alignment, maps skill gaps, and surfaces actionable insights to help candidates position themselves effectively for target roles.',
+        chips: ['Resume–JD scoring', 'Skill gap analysis', 'AI-powered insights'],
         techStack: [
             { name: 'React', icon: 'react' },
             { name: 'Node.js', icon: 'nodejs' },
@@ -63,6 +67,7 @@ const projects = [
         title: 'Flipkart Analytics Hub',
         problem: 'E-commerce sellers and analysts lack an intuitive dashboard to make sense of product listings, pricing trends, and review sentiment at scale.',
         description: 'Data analytics dashboard for Flipkart product data — visualising pricing trends, category breakdowns, and customer review sentiment through interactive charts and a Python/pandas data pipeline.',
+        chips: ['Price trend charts', 'Sentiment analysis', 'pandas pipeline'],
         techStack: [
             { name: 'React', icon: 'react' },
             { name: 'Python', icon: 'py' },
@@ -80,6 +85,7 @@ const projects = [
         problem: 'Most "AI travel planners" are just LLM wrappers with no real predictive intelligence.',
         description: 'Travel planning platform built around a real ML core — a trip cost predictor trained with scikit-learn/XGBoost — combined with Gemini/Groq for personalised itinerary generation and planning assistance.',
         note: 'Actively training the cost prediction model — check back soon.',
+        chips: ['Custom XGBoost model', 'Cost predictor', 'LLM itinerary gen'],
         techStack: [
             { name: 'Next.js 15', icon: 'nextjs' },
             { name: 'TypeScript', icon: 'ts' },
@@ -96,6 +102,7 @@ const projects = [
         title: 'Developer Portfolio',
         problem: 'Traditional portfolios are static PDFs disguised as websites — they don\'t demonstrate how someone actually builds.',
         description: 'This site — a clean, AI-integrated personal portfolio with an embedded AI assistant grounded in real project data, showcasing projects, skills, and a full MARKD case study.',
+        chips: ['Embedded AI assistant', 'MARKD case study', 'Design system'],
         techStack: [
             { name: 'Next.js', icon: 'nextjs' },
             { name: 'React', icon: 'react' },
@@ -126,6 +133,10 @@ export default function FeaturedProjects() {
                 <div className={styles.grid}>
                     {projects.map((project) => (
                         <GlassTiltCard key={project.id} className={styles.card} maxTilt={6}>
+                            {/* ── Project visual header ── */}
+                            <ProjectVisual projectId={project.id} status={project.status} />
+
+                            {/* ── Badges row ── */}
                             <div className={styles.cardTop}>
                                 {project.status === 'in-progress' && (
                                     <span className={styles.statusBadge}>
@@ -144,7 +155,10 @@ export default function FeaturedProjects() {
                                     {project.problem}
                                 </p>
                                 <p className={styles.cardDesc}>{project.description}</p>
-                                
+
+                                {/* ── Highlight chips ── */}
+                                <HighlightChips chips={project.chips} />
+
                                 {project.note && (
                                     <p className={styles.inProgressNote}>
                                         💡 {project.note}
@@ -224,3 +238,4 @@ export default function FeaturedProjects() {
         </section>
     );
 }
+
