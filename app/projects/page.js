@@ -12,7 +12,7 @@ const projects = [
         id: 1,
         title: 'Code Review AI',
         problem: 'Developers need fast, structured feedback on code — not generic AI chat responses.',
-        description: 'Full-stack AI-powered code review platform with streaming reviews (SSE), multiple review templates, GitHub PR review, an AI chat assistant with LaTeX rendering, and PDF export.',
+        description: 'Full-stack AI code review platform with streaming reviews (SSE), multiple review templates, GitHub PR review, AI chat with LaTeX rendering, PDF export, and Roast Mode. Built with Next.js 15, TypeScript, MongoDB, NextAuth v5, Gemini AI + Groq fallback, Monaco Editor, and Recharts.',
         techStack: [
             { name: 'Next.js 15', icon: 'nextjs' },
             { name: 'TypeScript', icon: 'ts' },
@@ -21,24 +21,24 @@ const projects = [
             { name: 'Gemini/Groq' },
             { name: 'Monaco Editor' }
         ],
-        liveUrl: 'https://code-review-ai-blond.vercel.app/',
+        liveUrl: 'https://code-review-ai-blond.vercel.app',
         githubUrl: 'https://github.com/Chakshita2123/Code-Review-AI',
         status: 'live'
     },
     {
         id: 2,
-        title: 'MARKD — Attendance Tracker',
+        title: 'Attendance Tracker (MARKD)',
         problem: 'Students need a reliable, mobile-native way to track attendance without relying on spreadsheets or fragile college portals.',
-        description: 'Cross-platform attendance tracker with Google OAuth, native Android sign-in via Capacitor, AI-powered timetable upload (Gemini Vision + Groq fallback), and balance tracking.',
+        description: 'Node.js/Express + MongoDB + React/Vite attendance tracker with Capacitor Android APK, Google OAuth, per-subject "Starting Balance" feature, and Timetable AI Scan via Gemini Vision + Groq fallback.',
         techStack: [
-            { name: 'React', icon: 'react' },
             { name: 'Node.js', icon: 'nodejs' },
+            { name: 'Express' },
             { name: 'MongoDB', icon: 'mongodb' },
-            { name: 'Capacitor (Android)', icon: 'androidstudio' },
-            { name: 'Gemini Vision' },
-            { name: 'Groq' }
+            { name: 'React', icon: 'react' },
+            { name: 'Vite', icon: 'vite' },
+            { name: 'Capacitor' }
         ],
-        liveUrl: 'https://attendance-tracker-ruddy-ten.vercel.app/',
+        liveUrl: 'https://markd-attendance-tracker.onrender.com',
         githubUrl: 'https://github.com/Chakshita2123/Attendance-Tracker-Chakshita',
         apkUrl: 'https://github.com/Chakshita2123/Attendance-Tracker-Chakshita/releases/download/v1.0/app-debug.apk',
         caseStudyUrl: '/projects/markd',
@@ -47,9 +47,41 @@ const projects = [
     },
     {
         id: 3,
-        title: 'Journey Curator',
+        title: 'Career Lens',
+        problem: 'Job seekers struggle to align their skills and resumes with real market demand without spending hours on manual research.',
+        description: 'AI-powered career intelligence platform that analyses job descriptions, scores resume–JD alignment, maps skill gaps, and surfaces actionable insights to help candidates position themselves effectively for target roles.',
+        techStack: [
+            { name: 'React', icon: 'react' },
+            { name: 'Node.js', icon: 'nodejs' },
+            { name: 'MongoDB', icon: 'mongodb' },
+            { name: 'Express' },
+            { name: 'Gemini AI' }
+        ],
+        liveUrl: 'https://careerlens-1-y5zn.onrender.com',
+        githubUrl: 'https://github.com/Chakshita2123/CareerLens',
+        status: 'live'
+    },
+    {
+        id: 4,
+        title: 'Flipkart Analytics Hub',
+        problem: 'E-commerce sellers and analysts lack an intuitive dashboard to make sense of product listings, pricing trends, and review sentiment at scale.',
+        description: 'Data analytics dashboard for Flipkart product data — visualising pricing trends, category breakdowns, and customer review sentiment through interactive charts and a Python/pandas data pipeline.',
+        techStack: [
+            { name: 'React', icon: 'react' },
+            { name: 'Python', icon: 'py' },
+            { name: 'pandas' },
+            { name: 'Recharts' },
+            { name: 'FastAPI' }
+        ],
+        liveUrl: null,
+        githubUrl: 'https://github.com/Chakshita2123/Flipkart-Analytics-Hub',
+        status: 'in-progress'
+    },
+    {
+        id: 5,
+        title: 'Journey Curator AI',
         problem: 'Most "AI travel planners" are just LLM wrappers with no real predictive intelligence.',
-        description: 'Travel planning platform built around a real ML core — a trip cost predictor trained with scikit-learn/XGBoost — combined with Gemini/Groq for planning assistance.',
+        description: 'Travel planning platform built around a real ML core — a trip cost predictor trained with scikit-learn/XGBoost — combined with Gemini/Groq for personalised itinerary generation and planning assistance.',
         note: 'Actively training the cost prediction model — check back soon.',
         techStack: [
             { name: 'Next.js 15', icon: 'nextjs' },
@@ -63,10 +95,10 @@ const projects = [
         status: 'in-progress'
     },
     {
-        id: 4,
-        title: 'This Portfolio',
+        id: 6,
+        title: 'Developer Portfolio',
         problem: 'Traditional portfolios are static PDFs disguised as websites — they don\'t demonstrate how someone actually builds.',
-        description: 'A clean, AI-integrated personal portfolio with an embedded AI assistant grounded in real project data.',
+        description: 'This site — a clean, AI-integrated personal portfolio with an embedded AI assistant grounded in real project data, showcasing projects, skills, and a full MARKD case study.',
         techStack: [
             { name: 'Next.js', icon: 'nextjs' },
             { name: 'React', icon: 'react' },
